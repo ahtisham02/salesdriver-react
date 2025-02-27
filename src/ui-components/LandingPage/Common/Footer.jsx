@@ -1,8 +1,10 @@
 import React from "react";
 import { Facebook, Instagram, Linkedin, Youtube, X } from "lucide-react";
 import img from "../../../assets/download-removebg-preview.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <footer className="bg-[#f6f9f6] text-[#111] pt-10 lg:pt-16 pb-6 px-5 md:px-20">
       <div className="max-w-7xl mx-auto">
@@ -14,11 +16,11 @@ export default function Footer() {
               className="md:h-[64px] h-[52px] md:-mt-2.5 z-10"
             />
             <div className="flex space-x-4 mt-4">
-              <Linkedin className="w-5 h-5 cursor-pointer" />
-              <Facebook className="w-5 h-5 cursor-pointer" />
-              <Instagram className="w-5 h-5 cursor-pointer" />
-              <Youtube className="w-5 h-5 cursor-pointer" />
-              <X className="w-5 h-5 cursor-pointer" />
+              <Linkedin className="w-5 h-5 cursor-pointer hover:text-yellowclr" />
+              <Facebook className="w-5 h-5 cursor-pointer hover:text-yellowclr" />
+              <Instagram className="w-5 h-5 cursor-pointer hover:text-yellowclr" />
+              <Youtube className="w-5 h-5 cursor-pointer hover:text-yellowclr" />
+              <X className="w-5 h-5 cursor-pointer hover:text-yellowclr" />
             </div>
           </div>
 
@@ -26,52 +28,105 @@ export default function Footer() {
             <div>
               <h3 className="font-bold mb-3">Services</h3>
               <ul className="space-y-2.5 text-[#333333]">
-                <li>Strategy</li>
-                <li>Sales</li>
-                <li>Data</li>
-                <li>Content</li>
-                <li>Automation</li>
-                <li>SEO/Ads</li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Strategy
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">Sales</li>
+                <li className="cursor-pointer hover:text-yellowclr">Data</li>
+                <li className="cursor-pointer hover:text-yellowclr">Content</li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Automation
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">SEO/Ads</li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-3">Solutions</h3>
               <ul className="space-y-2.5 text-[#333333]">
-                <li>Virtual Sales Reps</li>
-                <li>Complete Web Solution</li>
-                <li>Social Selling</li>
-                <li>Lead Generation</li>
-                <li>Web Design</li>
-                <li>Custom Software Solutions</li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Virtual Sales Reps
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Complete Web Solution
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Social Selling
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Lead Generation
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Web Design
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Custom Software Solutions
+                </li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-3">Industry</h3>
               <ul className="space-y-2.5 text-[#333333]">
-                <li>Marketing</li>
-                <li>Technology</li>
-                <li>Consulting</li>
-                <li>B2B Agencies</li>
-                <li>Real Estate</li>
-                <li>Healthcare</li>
-                <li>Industrial</li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Marketing
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Technology
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Consulting
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  B2B Agencies
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Real Estate
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Healthcare
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Industrial
+                </li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-3">Company</h3>
               <ul className="space-y-2.5 text-[#333333]">
-                <li>About Us</li>
-                <li>Contact</li>
-                <li>Careers</li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  About Us
+                </li>
+                <li
+                  className="cursor-pointer hover:text-yellowclr"
+                  onClick={() => {
+                    navigate("/contact");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Contact
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">Careers</li>
+                <li
+                  className="cursor-pointer hover:text-yellowclr"
+                  onClick={() => {
+                    navigate("/casestudy");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Case Studies
+                </li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-3">Resources</h3>
               <ul className="space-y-2.5 text-[#333333]">
-                <li>Blog</li>
-                <li>Webinars</li>
-                <li>Whitepapers</li>
-                <li>Guides</li>
+                <li className="cursor-pointer hover:text-yellowclr">Blog</li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Webinars
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">
+                  Whitepapers
+                </li>
+                <li className="cursor-pointer hover:text-yellowclr">Guides</li>
               </ul>
             </div>
           </div>
@@ -79,7 +134,13 @@ export default function Footer() {
 
         <div className="border-t mt-8 pt-6 text-[#333333] text-center text-sm">
           &copy; SalesDriver.io. {new Date().getFullYear()}{" "}
-          <a href="/privacy">Privacy</a> — <a href="/terms">Terms</a>
+          <a href="/privacy" className="cursor-pointer hover:text-yellowclr">
+            Privacy
+          </a>{" "}
+          —{" "}
+          <a href="/terms" className="cursor-pointer hover:text-yellowclr">
+            Terms
+          </a>
         </div>
       </div>
     </footer>

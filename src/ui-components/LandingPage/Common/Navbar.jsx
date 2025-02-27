@@ -38,7 +38,7 @@ function Navbar() {
       },
       {
         label: "Company",
-        path: "/aboutus",
+        path: "/company",
         icon: <Users2 className="size-5 transition-all" />,
       },
       {

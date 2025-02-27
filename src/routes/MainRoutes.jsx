@@ -4,6 +4,9 @@ import HomePage from "../pages/LandingPages/Home/Home";
 import ServicesPage from "../pages/LandingPages/Services/Services";
 import SolutionsPage from "../pages/LandingPages/Solutions/Solutions";
 import IndustriesPage from "../pages/LandingPages/Industries/Industries";
+import CompanyPage from "../pages/LandingPages/Company/Company";
+import ContactUsPage from "../pages/LandingPages/ContactUs/ContactUs";
+import CasestudyPage from "../pages/LandingPages/CaseStudy/CaseStudy";
 import Layout from "./LandingPageLayout";
 import ScrollToTop from "../utils/ScrollToTop";
 
@@ -18,6 +21,9 @@ const MainRoutes = () => {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/industries" element={<IndustriesPage />} />
+          <Route path="/company" element={<CompanyPage />} />
+          <Route path="/contact" element={<ContactUsPage />} />
+          <Route path="/casestudy" element={<CasestudyPage />} />
         </Route>
       </Routes>
     </>
