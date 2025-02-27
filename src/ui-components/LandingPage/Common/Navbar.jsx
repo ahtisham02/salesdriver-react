@@ -23,17 +23,17 @@ function Navbar() {
     () => [
       {
         label: "Services",
-        path: "/",
+        path: "/services",
         icon: <Package className="size-5 transition-all" />,
       },
       {
         label: "Solutions",
-        path: "/products",
+        path: "/solutions",
         icon: <Briefcase className="size-5 transition-all" />,
       },
       {
         label: "Industries",
-        path: "/blog",
+        path: "/industries",
         icon: <Building className="size-5 transition-all" />,
       },
       {
@@ -76,7 +76,7 @@ function Navbar() {
     <div className="relative z-50">
       <nav className="fixed top-0 left-0 w-full bg-white border-gray-200">
         <div className="flex items-center justify-between pr-10 pl-5 py-4 mr-5 lg:mr-0">
-          <img src={img} alt="logo" className="md:h-[68px] h-[52px] md:-mt-2.5 -ml-2 md:0 z-10" />
+          <img onClick={() => navigate("/")} src={img} alt="logo" className="md:h-[68px] cursor-pointer h-[52px] md:-mt-2.5 -ml-2 md:0 z-10" />
           <button
             onClick={toggleMenu}
             className="custom-lg:hidden absolute mr-5 right-0 z-[1050]"

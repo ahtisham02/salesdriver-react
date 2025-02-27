@@ -57,15 +57,15 @@ export default function ExactUILayout() {
       </div>
 
       <div className="flex min-h-screen">
-        <div className="w-1/4 bg-slate-100 hidden md:block p-4 rounded-xl">
+        <div className="w-1/4 hidden md:block p-4">
           {tabs.map(({ name, icon: Icon }) => (
             <button
               key={name}
               onClick={() => setActiveTab(name)}
               className={`flex items-center w-full px-4 py-3 rounded-lg mb-2 transition-all text-left ${
                 activeTab === name
-                  ? "bg-yellow-500 text-white font-bold"
-                  : "bg-slate-200"
+                  ? "bg-[#999DA0] text-gray-800 font-semibold"
+                  : ""
               }`}
             >
               <Icon className="w-5 h-5 mr-3" />
@@ -75,7 +75,7 @@ export default function ExactUILayout() {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row w-full md:w-3/4 md:mx-6 bg-white px-8 py-12 rounded-xl shadow-lg mx-auto">
+        <div className="flex flex-col md:flex-row w-full md:w-3/4 md:mx-6 bg-[#EAEBEB] px-8 py-12 rounded-xl shadow-lg mx-auto">
           <div className="md:w-1/2 pr-6">
             <h1 className="md:text-3xl text-2xl font-bold">{activeTab}</h1>
             <p className="text-gray-600 mt-2 text-[14px] sm:text-base">
@@ -97,16 +97,16 @@ export default function ExactUILayout() {
                 LINKED SERVICES <ChevronDown className="ml-2" size={20} />
               </h2>
               <div className="grid sm:grid-cols-2 grid-cols-1 gap-2 mt-2 sm:text-base text-[14px]">
-                <button className="border p-2 rounded-lg">
+                <button className="border-[1.5px] border-black p-2 rounded-lg">
                   DEDICATED ACCOUNT
                 </button>
-                <button className="border p-2 rounded-lg">
+                <button className="border-[1.5px] border-black p-2 rounded-lg">
                   SALES ACQUISITION
                 </button>
-                <button className="border p-2 rounded-lg">
+                <button className="border-[1.5px] border-black p-2 rounded-lg">
                   CUSTOMER JOURNEY
                 </button>
-                <button className="border p-2 rounded-lg">
+                <button className="border-[1.5px] border-black p-2 rounded-lg">
                   MAPPING/TRACKING
                 </button>
               </div>
