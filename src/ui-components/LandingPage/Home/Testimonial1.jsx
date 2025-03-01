@@ -11,17 +11,29 @@ export default function SalesDriverDifference() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-left">
         <div className="text-[16px]">
           <p className="text-gray-700 mt-4">
-            SalesDriver eliminates sales inefficiencies with a structured,
-            AI-powered system that drives predictable revenue.
+            SalesDriver{" "}
+            <span className="font-bold">eliminates sales inefficiencies</span>{" "}
+            with a{" "}
+            <span className="font-bold"> structured, AI-powered system </span>{" "}
+            that drives predictable revenue.
           </p>
           <p className="text-gray-700 mt-4">
-            We combine strategy, automation, and targeting to streamline the
-            sales process, optimize outreach, and increase conversions.
+            We combine{" "}
+            <span className="font-bold">
+              {" "}
+              strategy, automation, and targeting{" "}
+            </span>{" "}
+            to streamline the sales process, optimize outreach, and increase
+            conversions.
           </p>
           <p className="text-gray-700 mt-4">
             We optimize your entire sales process using AI and expert-driven
-            strategies to optimize every stage of the sales cycle—from CRM
-            integration to content marketing, SEO, and digital ads.
+            strategies to{" "}
+            <span className="font-bold">
+              {" "}
+              optimize every stage of the sales cycle—{" "}
+            </span>{" "}
+            from CRM integration to content marketing, SEO, and digital ads.
           </p>
         </div>
 

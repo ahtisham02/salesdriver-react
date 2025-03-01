@@ -52,7 +52,7 @@ export default function ExactUILayout() {
     <div className="px-6 py-8 my-4">
       <div className="mb-8">
         <h1 className="sm:text-[45px] text-[35px] text-center font-extrabold text-gray-800 mt-2">
-          Case Studies
+        Work Delivers Results
         </h1>
       </div>
 

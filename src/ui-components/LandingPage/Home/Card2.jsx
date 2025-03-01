@@ -8,9 +8,6 @@ const tabs = [
   { name: "Webinars" },
   { name: "Downloadables" },
   { name: "Guides" },
-  { name: "HealthCare" },
-  { name: "Industrial" },
-  { name: "Category" },
 ];
 
 const caseStudies = [
@@ -57,7 +54,7 @@ export default function ExactUILayout() {
         <h1 className="sm:text-[45px] text-4xl text-center font-extrabold text-gray-800 mt-1">
           Stay Ahead in Sales
         </h1>
-        <h1 className="text-[15px] text-center text-gray-800 mt-2">
+        <h1 className="text-[15px] text-center text-gray-800 mt-4">
           Get practical insights, proven strategies, and expert guidance to
           sharpen your sales process.{" "}
         </h1>
@@ -84,7 +81,11 @@ export default function ExactUILayout() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 md:mx-10 lg:mx-12">
         {caseStudies.map(({ id, title, author, date, label, description }) => (
           <div key={id} className="border rounded-lg shadow-lg overflow-hidden">
-            <img src={img} alt={title} className="w-full h-52 lg:h-56 object-cover" />
+            <img
+              src={img}
+              alt={title}
+              className="w-full h-52 lg:h-56 object-cover"
+            />
             <div className="p-4">
               <p className="text-gray-500 text-sm">
                 {author} • {date}
