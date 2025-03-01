@@ -127,6 +127,33 @@ export default function Footer() {
                   Whitepapers
                 </li>
                 <li className="cursor-pointer hover:text-yellowclr">Guides</li>
+                <li
+                  className="cursor-pointer hover:text-yellowclr"
+                  onClick={() => {
+                    navigate("/howitworks");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  How It Works
+                </li>
+                <li
+                  className="cursor-pointer hover:text-yellowclr"
+                  onClick={() => {
+                    navigate("/dictionary");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Dictionary
+                </li>
+                <li
+                  className="cursor-pointer hover:text-yellowclr"
+                  onClick={() => {
+                    navigate("/webinar");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Webinar
+                </li>
               </ul>
             </div>
           </div>
