@@ -88,15 +88,15 @@ export default function ExactUILayout() {
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
   return (
-    <div className="px-6 py-8 my-4">
-      <div className="mb-8">
-        <p className="sm:text-[12px] text-[11px] font-medium text-blueclr">
+    <div className="px-8 pt-10 pb-20 bg-slate-50 min-h-screen">
+      <div className="mb-12 text-center">
+        <p className="sm:text-[13px] text-[11px] font-medium text-blueclr">
           The SalesDriver Advantage
         </p>
-        <h1 className="sm:text-[32px] text-[28px] font-extrabold text-gray-800 mt-2">
+        <h1 className="md:text-5xl text-3xl font-extrabold text-slate-800 mt-3">
           Our Services
         </h1>
-        <p className="sm:text-lg text-base font-semibold text-gray-700 mt-1.5">
+        <p className="text-lg font-semibold text-slate-600 mt-2">
           Helping you get more for your business
         </p>
       </div>
@@ -107,10 +107,10 @@ export default function ExactUILayout() {
             <button
               key={name}
               onClick={() => setActiveTab(name)}
-              className={`px-6 py-2 sm:text-lg text-base font-medium relative ${
+              className={`px-6 py-2 text-lg font-semibold relative transition-all ${
                 activeTab === name
                   ? "text-blueclr font-bold border-b-[3px] border-blueclr"
-                  : "text-gray-600 border-b-[3px] border-gray-500"
+                  : "text-slate-500 hover:text-slate-700"
               }`}
             >
               {name}
@@ -119,65 +119,65 @@ export default function ExactUILayout() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row min-h-screen">
-        <div className="w-full md:w-1/4 hidden md:block p-4">
+      <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
+        <div className="w-full md:w-1/4 hidden md:block">
           {tabs.map(({ name, icon: Icon }) => (
             <button
               key={name}
               onClick={() => setActiveTab(name)}
-              className={`flex items-center w-full px-4 py-3 rounded-lg mb-2 transition-all text-left ${
+              className={`flex items-center w-full px-5 py-4 rounded-xl mb-3 transition-all text-left shadow-md ${
                 activeTab === name
-                  ? "bg-[#999DA0] text-gray-800 font-semibold"
-                  : "bg-gray-200 text-gray-600"
+                  ? "bg-blue-100 text-blueclr font-semibold"
+                  : "bg-white text-slate-600 hover:bg-slate-100"
               }`}
             >
-              <Icon className="w-5 h-5 mr-3" />
-              <span className="flex-1">{name}</span>
-              <ChevronRight />
+              <Icon className="w-6 h-6 mr-3 text-blueclr" />
+              <span className="flex-1 text-lg">{name}</span>
+              <ChevronRight className="w-5 h-5 text-slate-500" />
             </button>
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row w-full md:w-3/4 md:mx-6 bg-[#EAEBEB] px-8 py-12 rounded-xl shadow-lg mx-auto">
-          <div className="md:w-1/2 pr-6">
-            <h1 className="md:text-3xl text-2xl font-bold">
+        <div className="flex flex-col md:flex-row w-full md:w-3/4 bg-white px-10 py-14 rounded-xl shadow-xl">
+          <div className="md:w-1/2 pr-8">
+            <h1 className="text-4xl font-bold text-slate-900">
               {activeTabData?.heading}
             </h1>
-            <p className="text-gray-600 mt-2 text-[14px] sm:text-base">
+            <p className="text-slate-600 mt-5 text-lg leading-relaxed">
               {activeTabData?.description}
             </p>
 
-            <button className="text-blue-500 mt-3 text-[14px] sm:text-base flex items-center">
-              M BUTTON <ArrowRight className="ml-2" size={18} />
+            <button className="text-blue-600 mt-6 text-lg flex items-center font-medium hover:text-blue-700 transition-all">
+              Learn More <ArrowRight className="ml-2" size={20} />
             </button>
 
-            <div className="mt-4">
-              <h2 className="font-semibold flex items-center sm:text-base text-[14px]">
-                LINKED SERVICES <ChevronDown className="ml-2" size={20} />
+            <div className="mt-10">
+              <h2 className="text-xl font-semibold text-slate-800 flex items-center">
+                Linked Services <ChevronDown className="ml-2" size={22} />
               </h2>
-              <div className="grid sm:grid-cols-2 grid-cols-1 gap-2 mt-2 sm:text-base text-[14px]">
+              <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 mt-4">
                 {activeTabData?.btn1 && (
-                  <button className="border-[1.5px] border-black p-2 rounded-lg">
+                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
                     {activeTabData.btn1}
                   </button>
                 )}
                 {activeTabData?.btn2 && (
-                  <button className="border-[1.5px] border-black p-2 rounded-lg">
+                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
                     {activeTabData.btn2}
                   </button>
                 )}
                 {activeTabData?.btn3 && (
-                  <button className="border-[1.5px] border-black p-2 rounded-lg">
+                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
                     {activeTabData.btn3}
                   </button>
                 )}
                 {activeTabData?.btn4 && (
-                  <button className="border-[1.5px] border-black p-2 rounded-lg">
+                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
                     {activeTabData.btn4}
                   </button>
                 )}
                 {activeTabData?.btn5 && (
-                  <button className="border-[1.5px] border-black p-2 rounded-lg">
+                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
                     {activeTabData.btn5}
                   </button>
                 )}
@@ -186,21 +186,27 @@ export default function ExactUILayout() {
           </div>
 
           <div className="md:w-1/2">
-            <div className="rounded-lg flex items-center mt-7 sm:mt-0 sm:mb-0 mb-3 justify-center">
-              <img className="w-full h-auto rounded-lg" src={img} alt="img" />
+            <div className="rounded-xl overflow-hidden shadow-lg">
+              <img
+                className="w-full h-auto"
+                src={img}
+                alt="Service Illustration"
+              />
             </div>
 
-            <div className="mt-6">
-              <h2 className="font-semibold flex items-center sm:text-base text-[14px]">
-                CASE STUDIES <ChevronDown className="ml-2" size={20} />
+            <div className="mt-10">
+              <h2 className="text-xl font-semibold text-slate-800 flex items-center">
+                Case Studies <ChevronDown className="ml-2" size={22} />
               </h2>
-              <div className="grid sm:grid-cols-3 grid-cols-2 text-sm sm:text-base gap-2 mt-2">
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
+              <div className="grid sm:grid-cols-3 grid-cols-2 gap-4 mt-4">
+                {[...Array(6)].map((_, index) => (
+                  <button
+                    key={index}
+                    className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all"
+                  >
+                    Button
+                  </button>
+                ))}
               </div>
             </div>
           </div>

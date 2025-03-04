@@ -32,12 +32,6 @@ const caseStudies = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
-  {
-    id: 4,
-    title: "Case Study 4",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
 ];
 
 export default function ExactUILayout() {
@@ -49,23 +43,23 @@ export default function ExactUILayout() {
   };
 
   return (
-    <div className="px-6 py-8 my-4">
-      <div className="mb-8">
-        <h1 className="sm:text-[45px] text-[35px] text-center font-extrabold text-gray-800 mt-2">
-        Work Delivers Results
+    <div className="px-6 py-16 bg-gray-100">
+      <div className="text-center mb-12">
+        <h1 className="md:text-5xl text-3xl font-extrabold text-gray-900">
+          Work Delivers Results
         </h1>
       </div>
 
-      <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
-        <div className="flex justify-center min-w-max">
+      <div className="mb-10 overflow-x-auto scrollbar-hide">
+        <div className="flex justify-center min-w-max space-x-6 border-b border-gray-300">
           {tabs.map(({ name }) => (
             <button
               key={name}
               onClick={() => setActiveTab(name)}
-              className={`px-6 py-2 sm:text-lg text-base font-medium relative ${
+              className={`pb-3 text-lg font-medium transition-all duration-300 ${
                 activeTab === name
-                  ? "text-blue-500 font-bold border-b-[3px] border-blue-500"
-                  : "text-gray-600 border-b-[3px] border-gray-500"
+                  ? "text-blueclr font-bold border-b-2 border-blueclr"
+                  : "text-gray-500 hover:text-blue-500"
               }`}
             >
               {name}
@@ -74,27 +68,36 @@ export default function ExactUILayout() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {caseStudies.map(({ id, title, description }) => (
-          <div key={id} className="border p-4 rounded-lg shadow-md">
+          <div
+            key={id}
+            className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden p-6 border border-gray-200"
+          >
             <img
               src={img}
               alt={title}
-              className="w-full h-32 object-cover mb-4"
+              className="w-full h-44 object-cover rounded-2xl mb-4"
             />
-            <p className="text-gray-700 mb-2 text-[14px] sm:text-base">{description}</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              {title}
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed mb-4">
+              {description}
+            </p>
             <a
               href="#"
-              className="text-blue-500 flex items-center font-semibold text-[14px] sm:text-base"
+              className="mt-3 text-blueclr flex items-center font-semibold hover:text-blue-700 transition-all duration-300"
             >
-              S BUTTON <ArrowRight className="ml-2" size={18} />
+              Learn More <ArrowRight className="ml-2" size={18} />
             </a>
-            <div className="mt-4">
+
+            <div className="mt-6">
               <button
-                className="w-full py-2 bg-gray-200 text-[14px] sm:text-base rounded-md flex justify-between items-center px-4"
+                className="w-full py-3 bg-gray-100 text-sm rounded-xl flex justify-between items-center px-4 font-medium hover:bg-gray-200 transition-all duration-300"
                 onClick={() => toggleExpand(id)}
               >
-                SERVICE CATEGORY
+                Service Category
                 {expanded[id] ? (
                   <ChevronUp size={18} />
                 ) : (
@@ -102,15 +105,18 @@ export default function ExactUILayout() {
                 )}
               </button>
               {expanded[id] && (
-                <p className="p-2 text-gray-600 text-[14px] sm:text-base">Service details...</p>
+                <p className="p-4 text-gray-700 bg-gray-50 rounded-xl mt-3">
+                  Service details...
+                </p>
               )}
             </div>
-            <div className="mt-2">
+
+            <div className="mt-3">
               <button
-                className="w-full py-2 text-[14px] sm:text-base bg-gray-200 rounded-md flex justify-between items-center px-4"
+                className="w-full py-3 bg-gray-100 text-sm rounded-xl flex justify-between items-center px-4 font-medium hover:bg-gray-200 transition-all duration-300"
                 onClick={() => toggleExpand(`sol-${id}`)}
               >
-                SOLUTION CATEGORY
+                Solution Category
                 {expanded[`sol-${id}`] ? (
                   <ChevronUp size={18} />
                 ) : (
@@ -118,19 +124,21 @@ export default function ExactUILayout() {
                 )}
               </button>
               {expanded[`sol-${id}`] && (
-                <p className="p-2 text-gray-600 text-[14px] sm:text-base">Solution details...</p>
+                <p className="p-4 text-gray-700 bg-gray-50 rounded-xl mt-3">
+                  Solution details...
+                </p>
               )}
             </div>
           </div>
         ))}
       </div>
 
-      <div className="text-right mt-6 mr-4 text-[14px] sm:text-base">
+      <div className="text-center mt-12">
         <a
           href="#"
-          className="text-blue-500 flex items-center justify-end font-semibold"
+          className="inline-flex items-center px-6 py-3 bg-blueclr text-white text-lg font-semibold rounded-xl shadow-md hover:bg-blue-600 transition-all duration-300"
         >
-          VIEW ALL <ArrowRight className="ml-2" size={18} />
+          View All <ArrowRight className="ml-2" size={20} />
         </a>
       </div>
     </div>

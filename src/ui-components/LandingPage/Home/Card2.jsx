@@ -46,30 +46,30 @@ export default function ExactUILayout() {
   };
 
   return (
-    <div className="sm:px-6 px-3 py-8 my-4">
-      <div className="mb-8">
-        <h1 className="text-xs text-center font-medium text-blueclr mt-2">
+    <div className="sm:px-8 px-4 py-14 bg-gray-50">
+      <div className="text-center mb-10">
+        <h2 className="sm:text-[13px] text-[11px] font-medium text-blueclr">
           Insights & Content
-        </h1>
-        <h1 className="sm:text-[45px] text-4xl text-center font-extrabold text-gray-800 mt-1">
+        </h2>
+        <h1 className="md:text-5xl text-3xl font-bold text-gray-900 mt-2">
           Stay Ahead in Sales
         </h1>
-        <h1 className="text-[15px] text-center text-gray-800 mt-4">
+        <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
           Get practical insights, proven strategies, and expert guidance to
-          sharpen your sales process.{" "}
-        </h1>
+          sharpen your sales process.
+        </p>
       </div>
 
-      <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
-        <div className="flex justify-center min-w-max">
+      <div className="mb-8 overflow-x-auto scrollbar-hide">
+        <div className="flex justify-center min-w-max space-x-6 border-b border-gray-300">
           {tabs.map(({ name }) => (
             <button
               key={name}
               onClick={() => setActiveTab(name)}
-              className={`px-6 py-2 sm:text-lg text-base font-medium relative ${
+              className={`pb-3 text-lg font-medium transition-all duration-300 ${
                 activeTab === name
-                  ? "text-blue-500 font-bold border-b-[3px] border-blue-500"
-                  : "text-gray-600 border-b-[3px] border-gray-500"
+                  ? "text-blueclr font-bold border-b-2 border-blueclr"
+                  : "text-gray-500 hover:text-blue-500"
               }`}
             >
               {name}
@@ -78,22 +78,27 @@ export default function ExactUILayout() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 md:mx-10 lg:mx-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12">
         {caseStudies.map(({ id, title, author, date, label, description }) => (
-          <div key={id} className="border rounded-lg shadow-lg overflow-hidden">
+          <div
+            key={id}
+            className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+          >
             <img
               src={img}
               alt={title}
               className="w-full h-52 lg:h-56 object-cover"
             />
-            <div className="p-4">
+            <div className="p-5">
               <p className="text-gray-500 text-sm">
                 {author} • {date}
               </p>
-              <h2 className="text-lg font-semibold mt-1">{label}</h2>
-              <p className="text-gray-700 mt-1">{description}</p>
+              <h2 className="text-xl font-semibold text-gray-900 mt-2">
+                {label}
+              </h2>
+              <p className="text-gray-700 mt-2">{description}</p>
               <button
-                className="mt-3 text-blue-500 flex items-center font-semibold"
+                className="mt-4 text-blueclr flex items-center font-semibold hover:text-blue-700 transition-all duration-300"
                 onClick={() => toggleExpand(id)}
               >
                 Read More <ArrowRight className="ml-2" size={18} />
@@ -103,12 +108,12 @@ export default function ExactUILayout() {
         ))}
       </div>
 
-      <div className="text-right mt-6 mr-4 text-[14px] sm:text-base">
+      <div className="text-center mt-8">
         <a
           href="#"
-          className="text-blue-500 flex items-center justify-end font-semibold"
+          className="text-blueclr text-lg font-semibold flex items-center justify-center hover:text-blue-700 transition-all duration-300"
         >
-          VIEW ALL <ArrowRight className="ml-2" size={18} />
+          VIEW ALL <ArrowRight className="ml-2" size={20} />
         </a>
       </div>
     </div>

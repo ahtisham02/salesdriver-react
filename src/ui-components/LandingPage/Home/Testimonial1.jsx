@@ -3,67 +3,63 @@ import img from "../../../assets/h1.jpg";
 
 export default function SalesDriverDifference() {
   return (
-    <div className="max-w-7xl mx-auto pb-16 pt-10 px-6 md:px-12 text-center">
-      <h2 className="text-3xl md:text-[49px] lg:!leading-[4rem] font-extrabold text-gray-900 mb-12 md:mb-16">
-        The SalesDriver <br /> Difference
+    <div className="max-w-7xl mx-auto py-16 px-6 md:px-12 text-center">
+      <p className="sm:text-[13px] text-[11px] font-medium text-blueclr">
+        Our Approach
+      </p>
+      <h2 className="text-3xl md:text-[49px] lg:!leading-[4rem] font-extrabold text-gray-900 mb-12 md:mb-10">
+        The SalesDriver <br className="hidden md:block" /> Difference
       </h2>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-left">
-        <div className="text-[16px]">
-          <p className="text-gray-700 mt-4">
-            SalesDriver{" "}
-            <span className="font-bold">eliminates sales inefficiencies</span>{" "}
-            with a{" "}
-            <span className="font-bold"> structured, AI-powered system </span>{" "}
+ 
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-left">
+        <div className="space-y-6 text-gray-700">
+          <p className="text-[16px]">
+            <span className="font-bold">SalesDriver</span> eliminates sales
+            inefficiencies with a
+            <span className="font-bold"> structured, AI-powered system</span>{" "}
             that drives predictable revenue.
           </p>
-          <p className="text-gray-700 mt-4">
+          <p className="text-[16px]">
             We combine{" "}
             <span className="font-bold">
-              {" "}
-              strategy, automation, and targeting{" "}
+              strategy, automation, and targeting
             </span>{" "}
             to streamline the sales process, optimize outreach, and increase
             conversions.
           </p>
-          <p className="text-gray-700 mt-4">
-            We optimize your entire sales process using AI and expert-driven
-            strategies to{" "}
-            <span className="font-bold">
-              {" "}
-              optimize every stage of the sales cycle—{" "}
-            </span>{" "}
-            from CRM integration to content marketing, SEO, and digital ads.
+          <p className="text-[16px]">
+            Our AI-driven approach optimizes every stage of the sales cycle—from
+            CRM integration to content marketing, SEO, and digital ads.
           </p>
         </div>
 
         <div className="flex justify-center">
           <img
             src={img}
-            alt="img"
-            className="shadow-md w-full max-w-[450px] h-[290px]"
+            alt="Sales Process"
+            className="shadow-lg rounded-lg w-full max-w-[450px] h-[300px] object-cover"
           />
         </div>
 
-        <div className="text-left text-[16px]">
-          <p className="text-gray-700">
-            <span className="font-bold">Strategy: </span>Data-driven sales
+        <div className="space-y-4 text-gray-700">
+          <p className="text-[16px]">
+            <span className="font-bold">Strategy:</span> Data-driven sales
             roadmaps that guide prospects from lead to close.
           </p>
-          <p className="text-gray-700 mt-4">
-            <span className="font-bold">Automation: </span>AI-powered tools for
+          <p className="text-[16px]">
+            <span className="font-bold">Automation:</span> AI-powered tools for
             outreach, follow-ups, and engagement—maximizing efficiency.
           </p>
-          <p className="text-gray-700 mt-4">
-            <span className="font-bold">Targeting: </span>Advanced data insights
+          <p className="text-[16px]">
+            <span className="font-bold">Targeting:</span> Advanced data insights
             to connect with the right prospects at the right time.
           </p>
 
-          <button className="bg-yellowclr text-white font-medium text-sm py-2 px-4 mt-6 rounded-md shadow">
+          <button className="bg-yellowclr hover:bg-yellow-600 transition duration-300 text-white font-semibold text-sm py-3 px-6 mt-6 rounded-lg shadow-md">
             GET STARTED
           </button>
 
-          <p className="text-gray-500 text-[12px] mt-2">
+          <p className="text-gray-500 text-[11px]">
             See how our AI-powered system drives consistent sales growth.
           </p>
         </div>

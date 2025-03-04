@@ -112,27 +112,24 @@ const tabs = [
 
 export default function ExactUILayout() {
   const [activeTab, setActiveTab] = useState(tabs[0].name);
-
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
   return (
-    <div className="px-6 py-8 my-4">
-      <div className="mb-8">
-        <h1 className="lg:text-[55px] text-3xl text-center font-extrabold text-gray-800 mt-2">
-          Industries
-        </h1>
-      </div>
+    <div className="max-w-7xl mx-auto py-16 px-6 md:px-12">
+      <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-12 leading-snug text-center">
+        Industries
+      </h1>
 
       <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
-        <div className="flex justify-center min-w-max">
+        <div className="flex justify-start min-w-max space-x-6">
           {tabs.map(({ name }) => (
             <button
               key={name}
               onClick={() => setActiveTab(name)}
-              className={`px-6 py-2 sm:text-lg text-base font-medium relative ${
+              className={`px-6 py-2 text-lg font-medium transition-all duration-300 border-b-2 ${
                 activeTab === name
-                  ? "text-blueclr font-bold border-b-[3px] border-blueclr"
-                  : "text-gray-600 border-b-[3px] border-gray-500"
+                  ? "text-blueclr font-bold border-blueclr"
+                  : "text-gray-500 border-gray-300 hover:border-gray-500"
               }`}
             >
               {name}
@@ -141,45 +138,32 @@ export default function ExactUILayout() {
         </div>
       </div>
 
-      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-white px-8 lg:px-14 py-12 mx-auto rounded-xl">
-        {/* Rainbow Border */}
-        <div
-          className="absolute inset-0 rounded-xl p-[1px]"
-          style={{
-            background:
-              "linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)",
-            WebkitMask:
-              "linear-gradient(white 0 0) content-box, linear-gradient(white 0 0)",
-            WebkitMaskComposite: "destination-out",
-            maskComposite: "exclude",
-            zIndex: 0,
-          }}
-        ></div>
-
-        {/* Content Wrapper to Fix Alignment */}
+      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-white px-6 lg:px-8 py-12 mx-auto rounded-xl shadow-lg border border-gray-200">
         <div className="relative flex flex-col md:flex-row w-full bg-white rounded-xl p-6 z-10">
-          {/* Left Content */}
-          <div className="md:w-1/2 pr-6">
-            <h1 className="sm:text-3xl text-2xl lg:!leading-normal font-bold">
+          <div className="md:w-1/2 pr-6 text-left">
+            <h2 className="text-3xl font-bold leading-snug text-gray-800">
               {activeTabData.headline}
-            </h1>
+            </h2>
             {activeTabData.description.map((desc, index) => (
-              <p key={index} className="text-gray-600 mt-2 sm:text-base text-[14px]">
+              <p key={index} className="text-gray-600 mt-2 text-lg">
                 {desc}
               </p>
             ))}
 
-            <button className="text-blue-500 mt-3 flex items-center sm:text-base text-[14px]">
-              {activeTabData.button} <ArrowRight className="ml-2" size={18} />
+            <button className="text-blueclr hover:text-blue-700 transition duration-300 flex items-center text-lg font-medium mt-4">
+              {activeTabData.button} <ArrowRight className="ml-2" size={20} />
             </button>
 
-            <div className="mt-4">
-              <h2 className="font-semibold flex items-center sm:text-base text-[14px]">
+            <div className="mt-6">
+              <h3 className="font-semibold text-lg flex items-center text-gray-800">
                 SERVICE CATEGORY <ChevronDown className="ml-2" size={20} />
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
                 {activeTabData.services.map((service, index) => (
-                  <button key={index} className="border p-2 rounded-lg">
+                  <button
+                    key={index}
+                    className="border p-3 rounded-lg text-gray-700 hover:bg-blUe-50 transition"
+                  >
                     {service}
                   </button>
                 ))}
@@ -187,23 +171,26 @@ export default function ExactUILayout() {
             </div>
           </div>
 
-          {/* Right Content */}
-          <div className="md:w-1/2">
-            <div className="rounded-lg flex items-center mt-7 sm:mt-0 sm:mb-0 mb-3 justify-center">
-              <img className="" src={img} alt="img" />
-            </div>
+          <div className="md:w-1/2 flex flex-col items-center justify-center">
+            <img
+              src={img}
+              alt="Industry"
+              className="rounded-lg shadow-md max-w-full h-auto"
+            />
 
-            <div className="mt-6">
-              <h2 className="font-semibold flex items-center sm:text-base text-[14px]">
+            <div className="mt-6 w-full">
+              <h3 className="font-semibold text-lg flex items-center text-gray-800">
                 SOLUTION CATEGORY <ChevronDown className="ml-2" size={20} />
-              </h2>
-              <div className="grid sm:grid-cols-3 grid-cols-2 text-[14px] sm:text-base gap-2 mt-2">
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
-                <button className="border p-2 rounded-lg">BUTTON</button>
+              </h3>
+              <div className="grid sm:grid-cols-3 grid-cols-2 gap-3 mt-3">
+                {[...Array(6)].map((_, index) => (
+                  <button
+                    key={index}
+                    className="border p-3 rounded-lg text-gray-700 hover:bg-blue-50 transition"
+                  >
+                    BUTTON {index + 1}
+                  </button>
+                ))}
               </div>
             </div>
           </div>

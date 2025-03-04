@@ -8,10 +8,11 @@ export default function Header() {
   return (
     <div className="bg-white px-6 py-12 md:pt-20 md:px-16 flex flex-col items-center justify-center text-center">
       <div className="max-w-3xl w-full">
-        <h1 className="text-3xl md:text-4xl lg:text-[55px] lg:!leading-[4rem] font-extrabold text-blueclr">
-          More Leads, More Sales,<br /> Less Effort
+        <h1 className="text-3xl md:text-5xl md:leading-[4rem] font-extrabold text-blueclr">
+          More Leads, More Sales,
+          <br /> Less Effort
         </h1>
-        <p className="text-gray-700 mt-4">
+        <p className="text-gray-700 text-lg mt-6 max-w-2xl mx-auto">
           Driven by AI automation, proven strategies, and 40+ years of hands-on
           sales expertise to help you close more deals with less effort.
         </p>
@@ -30,7 +31,11 @@ export default function Header() {
           </button>
         </div>
       </div>
-      <img src={img} alt="img" className="mx-auto mt-20 rounded-md shadow-2xl" />
+      <img
+        src={img}
+        alt="img"
+        className="mx-auto mt-20 rounded-md shadow-2xl"
+      />
     </div>
   );
 }

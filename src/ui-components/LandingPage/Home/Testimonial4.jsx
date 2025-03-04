@@ -101,12 +101,12 @@ export default function ExactUILayout() {
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
   return (
-    <div className="px-6 py-8 my-4">
-      <div className="mb-8">
-        <p className="sm:text-[12px] text-[11px] font-medium text-blueclr">
+    <div className="px-8 pt-10 pb-20 bg-slate-50 min-h-screen">
+      <div className="mb-12 text-center">
+        <p className="sm:text-[13px] text-[11px] font-medium text-blueclr">
           Our Solutions
         </p>
-        <h1 className="sm:text-[32px] text-[28px] font-extrabold text-gray-800 mt-2">
+        <h1 className="md:text-5xl text-3xl font-extrabold text-gray-800 mt-2">
           Comprehensive Solutions
         </h1>
         <p className="sm:text-lg text-base font-semibold text-gray-800 mt-1.5">
@@ -114,17 +114,16 @@ export default function ExactUILayout() {
         </p>
       </div>
 
-      {/* Mobile Tabs */}
       <div className="mb-6 pb-3 md:hidden overflow-x-auto scrollbar-hide">
         <div className="flex justify-center min-w-max">
           {tabs.map(({ name }) => (
             <button
               key={name}
               onClick={() => setActiveTab(name)}
-              className={`px-6 py-2 sm:text-lg text-base font-medium relative ${
+              className={`px-6 py-2 text-lg font-semibold relative transition-all ${
                 activeTab === name
                   ? "text-blueclr font-bold border-b-[3px] border-blueclr"
-                  : "text-gray-600 border-b-[3px] border-gray-500"
+                  : "text-slate-500 hover:text-slate-700"
               }`}
             >
               {name}
@@ -133,59 +132,63 @@ export default function ExactUILayout() {
         </div>
       </div>
 
-      <div className="flex min-h-screen">
-        {/* Desktop Tabs */}
-        <div className="w-1/4 p-4 hidden md:block rounded-xl">
+      <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
+        <div className="w-full md:w-1/4 hidden md:block">
           {tabs.map(({ name, icon: Icon }) => (
             <button
               key={name}
               onClick={() => setActiveTab(name)}
-              className={`flex items-center w-full px-4 py-3 rounded-lg mb-2 transition-all text-left ${
-                activeTab === name ? "bg-[#999DA0] font-semibold" : ""
+              className={`flex items-center w-full px-5 py-4 rounded-xl mb-3 transition-all text-left shadow-md ${
+                activeTab === name
+                  ? "bg-blue-100 text-blueclr font-semibold"
+                  : "bg-white text-slate-600 hover:bg-slate-100"
               }`}
             >
-              <Icon className="w-5 h-5 mr-3" />
-              <span className="flex-1">{name}</span>
-              <ChevronRight />
+              <Icon className="w-6 h-6 mr-3 text-blueclr" />
+              <span className="flex-1 text-lg">{name}</span>
+              <ChevronRight className="w-5 h-5 text-slate-500" />
             </button>
           ))}
         </div>
 
-        {/* Content */}
-        <div className="flex flex-col md:flex-row w-full md:w-3/4 md:mx-6 bg-[#EAEBEB] px-8 py-12 rounded-xl mx-auto">
-          <div className="md:w-1/2 pr-6">
-            <h1 className="text-sm text-blueclr font-medium mb-1">
-              MeetNow.agency
-            </h1>
-            <h1 className="md:text-3xl text-2xl font-bold">{activeTab}</h1>
-            <p className="text-gray-600 mt-3 text-[14px] sm:text-base">
-              {activeTabData?.description}
-            </p>
+        <div className="w-full md:w-3/4 bg-white px-10 py-14 rounded-xl shadow-xl">
+          {/* First Two Sections */}
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-1/2 pr-8">
+              <h1 className="text-4xl font-bold text-slate-900">{activeTab}</h1>
+              <p className="text-slate-600 mt-5 text-lg leading-relaxed">
+                {activeTabData?.description}
+              </p>
+              <button className="text-blue-600 mt-6 text-lg flex items-center font-medium hover:text-blue-700 transition-all">
+                LEARN MORE <ArrowRight className="ml-2" size={20} />
+              </button>
+            </div>
 
-            <button className="text-blue-500 mt-3 flex items-center text-[14px] sm:text-base">
-              LEARN MORE <ArrowRight className="ml-2" size={18} />
-            </button>
-
-            <div className="mt-4">
-              <h3 className="font-semibold text-sm flex items-center text-[14px] sm:text-base">
-                CASE STUDIES <ChevronDown className="ml-2" size={17} />
-              </h3>
-              <div className="grid sm:grid-cols-3 grid-cols-2 gap-2 mt-4 text-sm">
-                {activeTabData?.buttons.map((button, index) => (
-                  <button
-                    key={index}
-                    className="border border-gray-700 p-2 rounded-lg hover:bg-gray-200 transition-all"
-                  >
-                    {button}
-                  </button>
-                ))}
+            <div className="md:w-1/2">
+              <div className="rounded-xl overflow-hidden shadow-lg">
+                <img
+                  className="w-full h-auto"
+                  src={img}
+                  alt="Service Illustration"
+                />
               </div>
             </div>
           </div>
 
-          <div className="md:w-1/2 mt-10 md:mt-0">
-            <div className="rounded-lg flex items-center justify-center">
-              <img className="w-full h-auto rounded-lg" src={img} alt="img" />
+          {/* Full Width Section Below */}
+          <div className="mt-10 w-full">
+            <h2 className="text-xl font-semibold text-slate-800 flex items-center">
+              Linked Services <ChevronDown className="ml-2" size={22} />
+            </h2>
+            <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 mt-4 w-full">
+              {activeTabData?.buttons?.map((button, index) => (
+                <button
+                  key={index}
+                  className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all w-full"
+                >
+                  {button}
+                </button>
+              ))}
             </div>
           </div>
         </div>
