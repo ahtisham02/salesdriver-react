@@ -135,7 +135,7 @@ export default function ExactUILayout() {
 
       <div className="text-center mt-12">
         <a
-          href="#"
+          href="/dictionary"
           className="inline-flex items-center px-6 py-3 bg-blueclr text-white text-lg font-semibold rounded-xl shadow-md hover:bg-blue-600 transition-all duration-300"
         >
           View All <ArrowRight className="ml-2" size={20} />

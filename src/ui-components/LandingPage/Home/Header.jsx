@@ -12,19 +12,19 @@ export default function Header() {
           More Leads, More Sales,
           <br /> Less Effort
         </h1>
-        <p className="text-gray-700 text-lg mt-6 max-w-2xl mx-auto">
+        <p className="text-gray-700 text-base sm:text-lg mt-6 max-w-2xl mx-auto">
           Driven by AI automation, proven strategies, and 40+ years of hands-on
           sales expertise to help you close more deals with less effort.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
           <button
-            onClick={() => navigate("/aboutus")}
+            onClick={() => navigate("/howitworks")}
             className="px-4 py-3 text-sm uppercase bg-yellowclr shadow-md text-white rounded-md font-medium"
           >
             Work with us
           </button>
           <button
-            onClick={() => navigate("/aboutus")}
+            onClick={() => navigate("/services")}
             className="px-4 py-3 text-sm uppercase border border-[#3F464B] shadow-md text-[#3F464B] rounded-md font-medium"
           >
             Explore services

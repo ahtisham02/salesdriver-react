@@ -110,7 +110,7 @@ export default function ExactUILayout() {
 
       <div className="text-center mt-8">
         <a
-          href="#"
+          href="/webinar"
           className="text-blueclr text-lg font-semibold flex items-center justify-center hover:text-blue-700 transition-all duration-300"
         >
           VIEW ALL <ArrowRight className="ml-2" size={20} />

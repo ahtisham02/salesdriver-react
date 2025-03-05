@@ -137,9 +137,6 @@ export default function Footer() {
               <ul className="space-y-2.5 text-[#333333]">
                 <li className="cursor-pointer hover:text-yellowclr">Blog</li>
                 <li className="cursor-pointer hover:text-yellowclr">
-                  Webinars
-                </li>
-                <li className="cursor-pointer hover:text-yellowclr">
                   Whitepapers
                 </li>
                 <li className="cursor-pointer hover:text-yellowclr">Guides</li>
@@ -168,7 +165,7 @@ export default function Footer() {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
                 >
-                  Webinar
+                  Webinars
                 </li>
               </ul>
             </div>

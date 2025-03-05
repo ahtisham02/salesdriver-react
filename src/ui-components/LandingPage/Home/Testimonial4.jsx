@@ -152,11 +152,12 @@ export default function ExactUILayout() {
         </div>
 
         <div className="w-full md:w-3/4 bg-white px-10 py-14 rounded-xl shadow-xl">
-          {/* First Two Sections */}
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/2 pr-8">
-              <h1 className="text-4xl font-bold text-slate-900">{activeTab}</h1>
-              <p className="text-slate-600 mt-5 text-lg leading-relaxed">
+              <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
+                {activeTab}
+              </h1>
+              <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
                 {activeTabData?.description}
               </p>
               <button className="text-blue-600 mt-6 text-lg flex items-center font-medium hover:text-blue-700 transition-all">
@@ -164,7 +165,7 @@ export default function ExactUILayout() {
               </button>
             </div>
 
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 mt-10 mb-5 md:mb-0 md:mt-0">
               <div className="rounded-xl overflow-hidden shadow-lg">
                 <img
                   className="w-full h-auto"
@@ -175,7 +176,6 @@ export default function ExactUILayout() {
             </div>
           </div>
 
-          {/* Full Width Section Below */}
           <div className="mt-10 w-full">
             <h2 className="text-xl font-semibold text-slate-800 flex items-center">
               Linked Services <ChevronDown className="ml-2" size={22} />
@@ -184,7 +184,7 @@ export default function ExactUILayout() {
               {activeTabData?.buttons?.map((button, index) => (
                 <button
                   key={index}
-                  className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all w-full"
+                  className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105 text-gray-800"
                 >
                   {button}
                 </button>

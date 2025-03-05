@@ -138,61 +138,47 @@ export default function ExactUILayout() {
         </div>
       </div>
 
-      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-white px-6 lg:px-8 py-12 mx-auto rounded-xl shadow-lg border border-gray-200">
-        <div className="relative flex flex-col md:flex-row w-full bg-white rounded-xl p-6 z-10">
+      <div className="relative flex flex-col w-full max-w-5xl bg-white px-6 lg:px-8 py-12 mx-auto rounded-xl shadow-lg border border-gray-200">
+        <div className="flex flex-col md:flex-row w-full bg-white rounded-xl p-6 z-10">
           <div className="md:w-1/2 pr-6 text-left">
-            <h2 className="text-3xl font-bold leading-snug text-gray-800">
+            <h2 className="text-3xl md:text-4xl font-bold leading-snug text-gray-800">
               {activeTabData.headline}
             </h2>
             {activeTabData.description.map((desc, index) => (
-              <p key={index} className="text-gray-600 mt-2 text-lg">
+              <p
+                key={index}
+                className="text-gray-600 mt-2 text-base sm:text-lg"
+              >
                 {desc}
               </p>
             ))}
-
             <button className="text-blueclr hover:text-blue-700 transition duration-300 flex items-center text-lg font-medium mt-4">
               {activeTabData.button} <ArrowRight className="ml-2" size={20} />
             </button>
-
-            <div className="mt-6">
-              <h3 className="font-semibold text-lg flex items-center text-gray-800">
-                SERVICE CATEGORY <ChevronDown className="ml-2" size={20} />
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                {activeTabData.services.map((service, index) => (
-                  <button
-                    key={index}
-                    className="border p-3 rounded-lg text-gray-700 hover:bg-blUe-50 transition"
-                  >
-                    {service}
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
 
-          <div className="md:w-1/2 flex flex-col items-center justify-center">
+          <div className="md:w-1/2 mt-10 mb-1 md:mb-0 md:mt-0 flex items-center justify-center">
             <img
               src={img}
               alt="Industry"
               className="rounded-lg shadow-md max-w-full h-auto"
             />
+          </div>
+        </div>
 
-            <div className="mt-6 w-full">
-              <h3 className="font-semibold text-lg flex items-center text-gray-800">
-                SOLUTION CATEGORY <ChevronDown className="ml-2" size={20} />
-              </h3>
-              <div className="grid sm:grid-cols-3 grid-cols-2 gap-3 mt-3">
-                {[...Array(6)].map((_, index) => (
-                  <button
-                    key={index}
-                    className="border p-3 rounded-lg text-gray-700 hover:bg-blue-50 transition"
-                  >
-                    BUTTON {index + 1}
-                  </button>
-                ))}
-              </div>
-            </div>
+        <div className="mt-10 w-full">
+          <h3 className="font-semibold text-lg flex items-center text-gray-800">
+            SERVICE CATEGORY <ChevronDown className="ml-2" size={20} />
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 w-full">
+            {activeTabData.services.map((service, index) => (
+              <button
+                key={index}
+                className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105 text-gray-800"
+              >
+                {service}
+              </button>
+            ))}
           </div>
         </div>
       </div>

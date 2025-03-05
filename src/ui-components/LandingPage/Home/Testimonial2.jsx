@@ -138,76 +138,61 @@ export default function ExactUILayout() {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row w-full md:w-3/4 bg-white px-10 py-14 rounded-xl shadow-xl">
-          <div className="md:w-1/2 pr-8">
-            <h1 className="text-4xl font-bold text-slate-900">
-              {activeTabData?.heading}
-            </h1>
-            <p className="text-slate-600 mt-5 text-lg leading-relaxed">
-              {activeTabData?.description}
-            </p>
+        <div className="flex flex-col w-full md:w-3/4 bg-white px-10 py-14 rounded-xl shadow-xl">
+          <div className="flex flex-col md:flex-row w-full">
+            <div className="md:w-1/2 pr-8">
+              <h1 className="text-3xl sm:text-4xl font-bold text-slate-900">
+                {activeTabData?.heading}
+              </h1>
+              <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
+                {activeTabData?.description}
+              </p>
+              <button className="text-blue-600 mt-6 text-base sm:text-lg flex items-center font-medium hover:text-blue-700 transition-all">
+                Learn More <ArrowRight className="ml-2" size={20} />
+              </button>
+            </div>
 
-            <button className="text-blue-600 mt-6 text-lg flex items-center font-medium hover:text-blue-700 transition-all">
-              Learn More <ArrowRight className="ml-2" size={20} />
-            </button>
-
-            <div className="mt-10">
-              <h2 className="text-xl font-semibold text-slate-800 flex items-center">
-                Linked Services <ChevronDown className="ml-2" size={22} />
-              </h2>
-              <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 mt-4">
-                {activeTabData?.btn1 && (
-                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
-                    {activeTabData.btn1}
-                  </button>
-                )}
-                {activeTabData?.btn2 && (
-                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
-                    {activeTabData.btn2}
-                  </button>
-                )}
-                {activeTabData?.btn3 && (
-                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
-                    {activeTabData.btn3}
-                  </button>
-                )}
-                {activeTabData?.btn4 && (
-                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
-                    {activeTabData.btn4}
-                  </button>
-                )}
-                {activeTabData?.btn5 && (
-                  <button className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all">
-                    {activeTabData.btn5}
-                  </button>
-                )}
+            <div className="md:w-1/2 flex items-center mt-10 mb-5 md:mb-0 md:mt-0">
+              <div className="rounded-xl overflow-hidden shadow-lg w-full">
+                <img
+                  className="w-full h-auto"
+                  src={img}
+                  alt="Service Illustration"
+                />
               </div>
             </div>
           </div>
 
-          <div className="md:w-1/2">
-            <div className="rounded-xl overflow-hidden shadow-lg">
-              <img
-                className="w-full h-auto"
-                src={img}
-                alt="Service Illustration"
-              />
-            </div>
-
-            <div className="mt-10">
-              <h2 className="text-xl font-semibold text-slate-800 flex items-center">
-                Case Studies <ChevronDown className="ml-2" size={22} />
-              </h2>
-              <div className="grid sm:grid-cols-3 grid-cols-2 gap-4 mt-4">
-                {[...Array(6)].map((_, index) => (
-                  <button
-                    key={index}
-                    className="border border-slate-300 py-3 px-5 rounded-lg text-[16px] font-medium bg-white hover:bg-blue-50 transition-all"
-                  >
-                    Button
-                  </button>
-                ))}
-              </div>
+          <div className="mt-10 w-full">
+            <h2 className="text-xl font-semibold text-slate-800 flex items-center">
+              Linked Services <ChevronDown className="ml-2" size={22} />
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 w-full">
+              {activeTabData?.btn1 && (
+                <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                  {activeTabData.btn1}
+                </button>
+              )}
+              {activeTabData?.btn2 && (
+                <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                  {activeTabData.btn2}
+                </button>
+              )}
+              {activeTabData?.btn3 && (
+                <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                  {activeTabData.btn3}
+                </button>
+              )}
+              {activeTabData?.btn4 && (
+                <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                  {activeTabData.btn4}
+                </button>
+              )}
+              {activeTabData?.btn5 && (
+                <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                  {activeTabData.btn5}
+                </button>
+              )}
             </div>
           </div>
         </div>

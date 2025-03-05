@@ -1,7 +1,10 @@
 import React from "react";
 import img from "../../../assets/h1.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function SalesDriverDifference() {
+  const navigate = useNavigate();
+  
   return (
     <div className="max-w-7xl mx-auto py-16 px-6 md:px-12 text-center">
       <p className="sm:text-[13px] text-[11px] font-medium text-blueclr">
@@ -55,7 +58,7 @@ export default function SalesDriverDifference() {
             to connect with the right prospects at the right time.
           </p>
 
-          <button className="bg-yellowclr hover:bg-yellow-600 transition duration-300 text-white font-semibold text-sm py-3 px-6 mt-6 rounded-lg shadow-md">
+          <button onClick={()=>{navigate('/contact')}} className="bg-yellowclr hover:bg-yellow-600 transition duration-300 text-white font-semibold text-sm py-3 px-6 mt-6 rounded-lg shadow-md">
             GET STARTED
           </button>
 
