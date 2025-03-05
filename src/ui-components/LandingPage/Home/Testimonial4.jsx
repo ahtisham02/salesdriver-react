@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import img from "../../../assets/h1.jpg";
+import img from "../../../assets/help.jpg";
+import img1 from "../../../assets/websol.jpg";
+import img2 from "../../../assets/sell.jpg";
+import img3 from "../../../assets/lead.jpg";
+import img4 from "../../../assets/webdes.jpg";
+import img5 from "../../../assets/css.jpg";
 import {
   Users,
   Globe,
@@ -16,6 +21,7 @@ const tabs = [
   {
     name: "Virtual Sales Reps",
     icon: Users,
+    img: img,
     description:
       "Cut costs, save time, and eliminate the hassle of training. Get on-demand virtual sales reps to book meetings, nurture leads, and close deals. Our sales professionals integrate seamlessly with your team to drive revenue without the overhead.",
     buttons: [
@@ -31,6 +37,7 @@ const tabs = [
   {
     name: "Web Solution",
     icon: Globe,
+    img: img1,
     description:
       "WebPoint Digital builds high-performing websites that generate leads, increase conversions, and enhance user experience. Every design is optimized for speed, search engines, and customer engagement.",
     buttons: [
@@ -44,6 +51,7 @@ const tabs = [
   {
     name: "Social Selling",
     icon: Share2,
+    img: img2,
     description:
       "SEP Marketing Services transforms social platforms into revenue channels. Our team helps you attract, engage, and convert prospects through LinkedIn outreach, targeted content, and paid social campaigns.",
     buttons: [
@@ -57,6 +65,7 @@ const tabs = [
   {
     name: "Lead Generation",
     icon: UserPlus,
+    img: img3,
     description:
       "B2B Marketing.biz delivers targeted leads that fit your ideal customer profile. We build and execute lead-generation strategies that drive engagement and accelerate your sales pipeline.",
     buttons: [
@@ -70,6 +79,7 @@ const tabs = [
   {
     name: "Web Design",
     icon: Layout,
+    img: img4,
     description:
       "CompanyC Marketing designs visually striking websites that capture attention and drive action. Every page is optimized for user experience, brand impact, and measurable business results.",
     buttons: [
@@ -83,6 +93,7 @@ const tabs = [
   {
     name: "Custom Software Sol.",
     icon: Code,
+    img: img5,
     description:
       "IconDevs builds custom software solutions tailored to your business needs. From enterprise automation to SaaS development, our technology helps you streamline processes and unlock new growth opportunities.",
     buttons: [
@@ -169,7 +180,7 @@ export default function ExactUILayout() {
               <div className="rounded-xl overflow-hidden shadow-lg">
                 <img
                   className="w-full h-auto"
-                  src={img}
+                  src={activeTabData?.img}
                   alt="Service Illustration"
                 />
               </div>

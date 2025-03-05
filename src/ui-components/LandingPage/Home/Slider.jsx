@@ -14,7 +14,7 @@ const logos = [img1, img2, img3, img4, img5, img6, img7, img8];
 
 export default function SLFooter() {
   return (
-    <div className="text-center pb-12">
+    <div className="text-center pb-2">
       <div>
         <Marquee speed={40} pauseOnHover direction="right">
           {logos.map((logo, index) => (

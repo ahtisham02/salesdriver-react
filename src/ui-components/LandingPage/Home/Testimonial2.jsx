@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import img from "../../../assets/h1.jpg";
+import img from "../../../assets/strategy.jpg";
+import img1 from "../../../assets/sales.jpg";
+import img2 from "../../../assets/data.jpg";
+import img3 from "../../../assets/content.jpg";
+import img4 from "../../../assets/automation.jpg";
+import img5 from "../../../assets/seo.jpg";
 import {
   ChevronRight,
   ChevronDown,
@@ -17,6 +22,7 @@ const tabs = [
     name: "Strategy",
     heading: "Strategy",
     icon: Activity,
+    img: img,
     description:
       "SalesDriver’s strategy services provide agencies with a structured, data-driven approach to acquiring new clients. Our experts analyze the customer journey, optimize touchpoints, and create a scalable sales roadmap that drives predictable growth.",
     btn1: "Dedicated Account and Project Manager",
@@ -29,6 +35,7 @@ const tabs = [
     name: "Sales",
     heading: "Sales",
     icon: TrendingUp,
+    img: img1,
     description:
       "Our sales services focus on engaging, nurturing, and converting leads into paying clients. We combine AI-driven automation with human expertise to create an efficient, scalable sales funnel.",
     btn1: "Sales Support",
@@ -41,6 +48,7 @@ const tabs = [
     name: "Data",
     heading: "Data & CRM Management",
     icon: Database,
+    img: img2,
     btn1: "20 Domains: 60 Warmed Emails",
     btn2: "Lead Scoring",
     btn3: "4000 Appended Leads (Buyer & Hiring Intent Data)",
@@ -52,6 +60,7 @@ const tabs = [
     name: "Content",
     heading: "Content & Brand Marketing",
     icon: FileText,
+    img: img3,
     btn1: "Landing Page Creation",
     btn2: "Content Marketing",
     btn3: "Social Media Management",
@@ -63,6 +72,7 @@ const tabs = [
     name: "Automation",
     heading: "Automation",
     icon: Zap,
+    img: img4,
     btn1: "AI-Driven Management",
     btn2: "Email,and Social Media Outreach: 12-touch setup",
     btn3: "Campaign Automation",
@@ -73,6 +83,7 @@ const tabs = [
     name: "SEO/Ads",
     heading: "SEO & Digital Advertising",
     icon: Search,
+    img: img5,
     btn1: "On-page SEO",
     btn2: "IP, Link, Journey, and Heat Map Tracking",
     btn3: "PPC Management",
@@ -156,7 +167,7 @@ export default function ExactUILayout() {
               <div className="rounded-xl overflow-hidden shadow-lg w-full">
                 <img
                   className="w-full h-auto"
-                  src={img}
+                  src={activeTabData?.img}
                   alt="Service Illustration"
                 />
               </div>

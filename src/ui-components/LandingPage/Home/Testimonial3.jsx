@@ -1,26 +1,34 @@
 import React, { useState } from "react";
-import img from "../../../assets/h1.jpg";
+import img from "../../../assets/marketing.jpg";
+import img1 from "../../../assets/saas.jpg";
+import img2 from "../../../assets/consulting.jpg";
+import img3 from "../../../assets/b2b.jpg";
+import img4 from "../../../assets/estate.jpg";
+import img5 from "../../../assets/health.jpg";
+import img6 from "../../../assets/Production.jpg";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 const tabs = [
   {
-    name: "Marketing & Advertising Agencies",
-    headline: "More Clients, Less Prospecting",
+    name: "B2B Service Providers",
+    headline: "Scalable Lead Generation, On-Demand",
+    img: img3,
     description: [
-      "Agencies need a steady pipeline of qualified leads to fuel growth.",
-      "Our virtual sales reps handle lead generation and appointment setting, so your team can focus on strategy and execution.",
+      "Generating a consistent flow of qualified leads is critical for B2B success.",
+      "Our team provides scalable outbound prospecting to keep your pipeline full and your sales team closing.",
     ],
     button: "Learn More",
     services: [
-      "B2B Lead Generation",
-      "LinkedIn & Email Outreach",
-      "CRM & Pipeline Management",
-      "Appointment Setting",
+      "Scalable Lead Generation",
+      "Outbound & Account-Based Marketing",
+      "Appointment Setting & Lead Nurturing",
+      "CRM & Sales Funnel Optimization",
     ],
   },
   {
     name: "SaaS & Technology",
     headline: "Automate Growth with Smarter Outreach",
+    img: img1,
     description: [
       "Scaling a SaaS business requires consistent lead nurturing.",
       "Our team engages prospects, educates buyers, and converts leads using automated and personalized sales outreach.",
@@ -36,6 +44,7 @@ const tabs = [
   {
     name: "Business Consulting & Professional Services",
     headline: "Close More High-Value Clients",
+    img: img2,
     description: [
       "Consultants and professional service providers thrive on trust-based sales.",
       "Our virtual reps connect you with high-value prospects, positioning your expertise for maximum impact.",
@@ -49,23 +58,25 @@ const tabs = [
     ],
   },
   {
-    name: "B2B Service Providers",
-    headline: "Scalable Lead Generation, On-Demand",
+    name: "Marketing & Advertising Agencies",
+    headline: "More Clients, Less Prospecting",
+    img: img,
     description: [
-      "Generating a consistent flow of qualified leads is critical for B2B success.",
-      "Our team provides scalable outbound prospecting to keep your pipeline full and your sales team closing.",
+      "Agencies need a steady pipeline of qualified leads to fuel growth.",
+      "Our virtual sales reps handle lead generation and appointment setting, so your team can focus on strategy and execution.",
     ],
     button: "Learn More",
     services: [
-      "Scalable Lead Generation",
-      "Outbound & Account-Based Marketing",
-      "Appointment Setting & Lead Nurturing",
-      "CRM & Sales Funnel Optimization",
+      "B2B Lead Generation",
+      "LinkedIn & Email Outreach",
+      "CRM & Pipeline Management",
+      "Appointment Setting",
     ],
   },
   {
     name: "Real Estate & Commercial Development",
     headline: "More Investors & Tenants, Greater Conversions",
+    img: img4,
     description: [
       "Securing the right investors and tenants takes targeted, relationship-driven sales.",
       "Our outreach team engages, qualifies, and nurtures leads, delivering warm prospects to your sales pipeline.",
@@ -81,6 +92,7 @@ const tabs = [
   {
     name: "Healthcare & Medical Services",
     headline: "Build Trust, Grow Patient & Provider Networks",
+    img: img5,
     description: [
       "Healthcare sales require credibility and trust.",
       "Our team specializes in outreach strategies that connect providers, patients, and decision-makers with high-value solutions.",
@@ -96,6 +108,7 @@ const tabs = [
   {
     name: "Manufacturing & Industrial Services",
     headline: "Manage Complex Sales Cycles with Precision",
+    img: img6,
     description: [
       "Selling high-value industrial solutions involves multiple decision-makers and long sales cycles.",
       "Our reps streamline outreach, qualify leads, and guide prospects through every stage.",
@@ -159,7 +172,7 @@ export default function ExactUILayout() {
 
           <div className="md:w-1/2 mt-10 mb-1 md:mb-0 md:mt-0 flex items-center justify-center">
             <img
-              src={img}
+              src={activeTabData?.img}
               alt="Industry"
               className="rounded-lg shadow-md max-w-full h-auto"
             />

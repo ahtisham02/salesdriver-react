@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
-import img from "../../../assets/h1.jpg";
+import img from "../../../assets/sl4.webp";
+import img1 from "../../../assets/sl5.webp";
+import img2 from "../../../assets/sm3.webp";
 
 const tabs = [
   { name: "Marketing" },
@@ -17,18 +19,21 @@ const caseStudies = [
   {
     id: 1,
     title: "Case Study 1",
+    img: img,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 2,
     title: "Case Study 2",
+    img: img1,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
     title: "Case Study 3",
+    img: img2,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
@@ -69,7 +74,7 @@ export default function ExactUILayout() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {caseStudies.map(({ id, title, description }) => (
+        {caseStudies.map(({ id, title, description, img }) => (
           <div
             key={id}
             className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden p-6 border border-gray-200"

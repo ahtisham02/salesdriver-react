@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../../../assets/h1.jpg";
+import img from "../../../assets/img4.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function SalesDriverDifference() {
@@ -14,7 +14,7 @@ export default function SalesDriverDifference() {
         The SalesDriver <br className="hidden md:block" /> Difference
       </h2>
  
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-left">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center text-left">
         <div className="space-y-6 text-gray-700">
           <p className="text-[16px]">
             <span className="font-bold">SalesDriver</span> eliminates sales
@@ -40,7 +40,7 @@ export default function SalesDriverDifference() {
           <img
             src={img}
             alt="Sales Process"
-            className="shadow-lg rounded-lg w-full max-w-[450px] h-[300px] object-cover"
+            className="w-full max-w-[450px] h-[300px] object-cover"
           />
         </div>
 

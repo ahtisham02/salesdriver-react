@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
-import img from "../../../assets/h1.jpg";
+import { ArrowRight } from "lucide-react";
+import img from "../../../assets/sl3.png";
+import img1 from "../../../assets/sl6.webp";
+import img2 from "../../../assets/sl7.png";
 
 const tabs = [
   { name: "Blog" },
@@ -18,6 +20,7 @@ const caseStudies = [
     date: "4 Feb 2022",
     label: "Label",
     description: "Article description",
+    img: img
   },
   {
     id: 2,
@@ -26,6 +29,7 @@ const caseStudies = [
     date: "10 Mar 2022",
     label: "Case Study",
     description: "Another example of a case study description.",
+    img: img1
   },
   {
     id: 3,
@@ -34,6 +38,7 @@ const caseStudies = [
     date: "10 Mar 2022",
     label: "Case Study",
     description: "Another example of a case study description.",
+    img: img2
   },
 ];
 
@@ -79,7 +84,7 @@ export default function ExactUILayout() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12">
-        {caseStudies.map(({ id, title, author, date, label, description }) => (
+        {caseStudies.map(({ id, title, author, date, label, description, img }) => (
           <div
             key={id}
             className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
