@@ -22,7 +22,7 @@ export default function SalesInsightsSection() {
               business goals.
             </p>
             <div className="mt-8">
-              <button className="bg-blueclr text-white px-8 py-3 rounded-lg font-semibold text-lg  transition-all duration-300 transform hover:bg-teal-700 hover:scale-105">
+              <button className="bg-blueclr text-white px-8 py-3 rounded-lg font-semibold text-lg">
                 Book a Consultation
               </button>
             </div>
@@ -30,12 +30,12 @@ export default function SalesInsightsSection() {
         </div>
 
         <div
-          className="py-20 relative bg-cover bg-center"
+          className="py-20 my-10 rounded-[50px] mx-10 relative bg-cover bg-center"
           style={{
             backgroundImage: `url(${img})`,
           }}
         >
-          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="absolute inset-0 rounded-[50px] bg-gray-600 opacity-30"></div>
           <div className="relative z-10">
             <h3 className="text-3xl font-semibold text-white">
               Get Sales Insights Delivered to Your Inbox
@@ -48,9 +48,9 @@ export default function SalesInsightsSection() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="px-6 py-[14px] bg-white text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                  className="px-6 py-[12px] bg-white text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                 />
-                <button className="bg-[#69b2fc] text-white px-8 py-3 font-semibold text-lg  transition-all duration-300 transform hover:scale-105 hover:from-teal-600 hover:to-teal-800">
+                <button className="bg-[#69b2fc] text-white px-8 py-2.5 font-semibold text-lg  transition-all duration-300 transform hover:scale-105 hover:from-teal-600 hover:to-teal-800">
                   Subscribe
                 </button>
               </div>
