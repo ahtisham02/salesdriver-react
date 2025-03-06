@@ -103,7 +103,7 @@ function Navbar() {
                     }`}
                   >
                     <span className="font-semibold">{label}</span>
-                    <span className="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-yellowclr rounded-full transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-blueclr rounded-full transition-all duration-300 group-hover:w-full"></span>
                   </button>
                 </li>
               );
@@ -131,7 +131,7 @@ function Navbar() {
             </button>
             <button
               onClick={() => navigate("/contact")}
-              className="hidden ml-4 z-[1050] sm:flex sm:items-center text-white bg-yellowclr rounded-md shadow-md px-1 py-1.5 min-[1090px]:mb-1"
+              className="hidden ml-4 z-[1050] sm:flex sm:items-center text-white bg-blueclr rounded-md shadow-md px-1 py-1.5 min-[1090px]:mb-1"
             >
               <h1 className="font-medium px-3">Start Now</h1>
             </button>

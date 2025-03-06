@@ -107,7 +107,7 @@ export default function Form() {
           </div>
 
           <div className="flex justify-end">
-            <button className="bg-yellowclr text-white font-semibold py-3 px-8 rounded-md">
+            <button className="bg-blueclr text-white font-semibold py-3 px-8 rounded-md">
               M BUTTON
             </button>
           </div>

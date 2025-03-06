@@ -58,7 +58,7 @@ export default function SalesDriverDifference() {
             to connect with the right prospects at the right time.
           </p>
 
-          <button onClick={()=>{navigate('/contact')}} className="bg-yellowclr hover:bg-yellow-600 transition duration-300 text-white font-semibold text-sm py-3 px-6 mt-6 rounded-lg shadow-md">
+          <button onClick={()=>{navigate('/contact')}} className="bg-blueclr  transition duration-300 text-white font-semibold text-sm py-3 px-6 mt-6 rounded-lg shadow-md">
             GET STARTED
           </button>
 

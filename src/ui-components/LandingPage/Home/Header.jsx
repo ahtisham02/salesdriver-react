@@ -20,7 +20,7 @@ export default function Header() {
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <button
               onClick={() => navigate("/howitworks")}
-              className="px-6 py-3 text-white bg-yellowclr rounded-lg font-semibold shadow-md hover:bg-opacity-90 transition"
+              className="px-6 py-3 text-white bg-blueclr rounded-lg font-semibold shadow-md hover:bg-opacity-90 transition"
             >
               Get Started
             </button>

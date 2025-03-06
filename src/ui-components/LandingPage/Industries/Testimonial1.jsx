@@ -47,7 +47,7 @@ export default function SalesDriverDifference() {
             to connect with the right prospects at the right time.
           </p>
 
-          <button className="bg-yellowclr text-white font-medium text-sm py-2 px-4 mt-6 rounded-md shadow">
+          <button className="bg-blueclr text-white font-medium text-sm py-2 px-4 mt-6 rounded-md shadow">
             GET STARTED
           </button>
 

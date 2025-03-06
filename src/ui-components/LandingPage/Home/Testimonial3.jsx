@@ -6,7 +6,7 @@ import img3 from "../../../assets/b2b.jpg";
 import img4 from "../../../assets/estate.jpg";
 import img5 from "../../../assets/health.jpg";
 import img6 from "../../../assets/Production.jpg";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 
 const tabs = [
   {
@@ -125,6 +125,11 @@ const tabs = [
 
 export default function ExactUILayout() {
   const [activeTab, setActiveTab] = useState(tabs[0].name);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleToggle = () => {
+    setIsOpen((prevState) => !prevState);
+  };
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
   return (
@@ -165,8 +170,15 @@ export default function ExactUILayout() {
                 {desc}
               </p>
             ))}
-            <button className="text-blueclr hover:text-blue-700 transition duration-300 flex items-center text-lg font-medium mt-4">
-              {activeTabData.button} <ArrowRight className="ml-2" size={20} />
+            <button className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative">
+              <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
+                {activeTabData.button}{" "}
+              </span>
+              <ArrowRight
+                className="ml-2 relative z-10 group-hover:translate-y-[-2px] transition-all"
+                size={20}
+              />
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blueclr transition-all group-hover:w-full"></span>
             </button>
           </div>
 
@@ -180,18 +192,33 @@ export default function ExactUILayout() {
         </div>
 
         <div className="mt-10 w-full">
-          <h3 className="font-semibold text-lg flex items-center text-gray-800">
-            SERVICE CATEGORY <ChevronDown className="ml-2" size={20} />
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 w-full">
-            {activeTabData.services.map((service, index) => (
-              <button
-                key={index}
-                className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105 text-gray-800"
-              >
-                {service}
-              </button>
-            ))}
+          <h2
+            className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
+            onClick={handleToggle}
+          >
+            SERVICE CATEGORY
+            {isOpen ? (
+              <ChevronUp className="ml-2" size={22} />
+            ) : (
+              <ChevronDown className="ml-2" size={22} />
+            )}
+          </h2>
+          <div
+            className={`overflow-hidden transition-all px-4 duration-500 ease-in-out mt-4 ${
+              isOpen ? "max-h-screen py-4" : "max-h-0"
+            }`}
+          >
+            {" "}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 w-full">
+              {activeTabData.services.map((service, index) => (
+                <button
+                  key={index}
+                  className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105 text-gray-800"
+                >
+                  {service}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ export default function Section() {
         <h2 className="text-[28px] font-semibold mt-4 text-gray-900">
         We Drive Sales
         </h2>
-        <button className="text-lg px-9 py-2 font-medium my-6 rounded-md bg-yellowclr text-white">L Button</button>
+        <button className="text-lg px-9 py-2 font-medium my-6 rounded-md bg-blueclr text-white">L Button</button>
       </div>
       <div className="md:w-1/2 mt-6 md:mt-0 flex justify-center">
         <img

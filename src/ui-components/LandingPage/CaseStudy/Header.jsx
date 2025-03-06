@@ -12,7 +12,7 @@ export default function ContactHeader() {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-        <button className="px-4 py-3 text-sm uppercase bg-yellowclr shadow-md text-white rounded-md font-medium">
+        <button className="px-4 py-3 text-sm uppercase bg-blueclr shadow-md text-white rounded-md font-medium">
           Get started{" "}
         </button>
         <button className="px-4 py-3 text-sm uppercase border border-[#3F464B] shadow-md text-[#3F464B] rounded-md font-medium">

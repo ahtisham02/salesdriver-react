@@ -46,7 +46,7 @@ export default function SalesDriverSteps() {
         </div>
 
         <div className="mt-6 flex space-x-4">
-          <button className="bg-yellowclr text-sm text-white px-4 py-2 rounded font-semibold">
+          <button className="bg-blueclr text-sm text-white px-4 py-2 rounded font-semibold">
             GET STARTED
           </button>
           <button className="border border-gray-400 text-sm text-gray-700 px-4 py-2 rounded font-semibold">

@@ -15,6 +15,7 @@ import {
   ChevronRight,
   ChevronDown,
   ArrowRight,
+  ChevronUp,
 } from "lucide-react";
 
 const tabs = [
@@ -108,6 +109,11 @@ const tabs = [
 
 export default function ExactUILayout() {
   const [activeTab, setActiveTab] = useState(tabs[0].name);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleToggle = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
@@ -157,7 +163,11 @@ export default function ExactUILayout() {
             >
               <Icon className="w-6 h-6 mr-3 text-blueclr" />
               <span className="flex-1 text-lg">{name}</span>
-              <ChevronRight className="w-5 h-5 text-slate-500" />
+              <ChevronRight
+                className={`w-5 h-5  ${
+                  activeTab === name ? "text-blueclr" : "text-slate-500"
+                }`}
+              />{" "}
             </button>
           ))}
         </div>
@@ -171,8 +181,15 @@ export default function ExactUILayout() {
               <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
                 {activeTabData?.description}
               </p>
-              <button className="text-blue-600 mt-6 text-lg flex items-center font-medium hover:text-blue-700 transition-all">
-                LEARN MORE <ArrowRight className="ml-2" size={20} />
+              <button className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative">
+                <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
+                  Learn More
+                </span>
+                <ArrowRight
+                  className="ml-2 relative z-10 group-hover:translate-y-[-2px] transition-all"
+                  size={20}
+                />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blueclr transition-all group-hover:w-full"></span>
               </button>
             </div>
 
@@ -188,18 +205,34 @@ export default function ExactUILayout() {
           </div>
 
           <div className="mt-10 w-full">
-            <h2 className="text-xl font-semibold text-slate-800 flex items-center">
-              Linked Services <ChevronDown className="ml-2" size={22} />
+            <h2
+              className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
+              onClick={handleToggle}
+            >
+              Linked Services
+              {isOpen ? (
+                <ChevronUp className="ml-2" size={22} />
+              ) : (
+                <ChevronDown className="ml-2" size={22} />
+              )}
             </h2>
-            <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 mt-4 w-full">
-              {activeTabData?.buttons?.map((button, index) => (
-                <button
-                  key={index}
-                  className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105 text-gray-800"
-                >
-                  {button}
-                </button>
-              ))}
+
+            <div
+              className={`overflow-hidden transition-all duration-500 px-4 ease-in-out mt-4 ${
+                isOpen ? "max-h-screen py-4" : "max-h-0"
+              }`}
+            >
+              {" "}
+              <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 mt-4 w-full">
+                {activeTabData?.buttons?.map((button, index) => (
+                  <button
+                    key={index}
+                    className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105 text-gray-800"
+                  >
+                    {button}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

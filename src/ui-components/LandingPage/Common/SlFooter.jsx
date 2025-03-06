@@ -1,60 +1,59 @@
-import img from "../../../assets/img5.jpg";
+import img from "../../../assets/bgimg.webp";
+import img1 from "../../../assets/grow.jpg";
 
 export default function SalesInsightsSection() {
   return (
-    <footer className="relative w-full bg-gray-100 text-gray-900 py-16 px-8 overflow-hidden">
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <img
-          src={img}
-          alt="Background"
-          className="opacity-40 w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="relative max-w-screen-xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          <div className="w-full md:w-1/2">
-            <h2 className="text-3xl font-bold">Let’s Talk Sales</h2>
-            <h3 className="text-xl font-semibold mt-2">
-              Get a plan that’s built for you.
-            </h3>
+    <footer className="w-full text-white">
+      <div className="max-w-screen-xl mx-auto text-center">
+        <div className="relative bg-cover bg-center lg:grid lg:grid-cols-2 bg-[#ebf5ff]">
+          <div className="relative z-10 lg:block hidden">
+            <div
+              className="w-full h-96 bg-cover bg-center"
+              style={{ backgroundImage: `url(${img1})` }}
+            ></div>
           </div>
 
-          <div className="w-full md:w-1/2">
-            <p className="text-gray-700 mb-6">
-              More leads, better conversions, or an efficient unified sales
-              system—we can help.
+          <div className="relative z-10 flex flex-col text-black justify-center lg:px-16 px-8 text-center">
+            <h2 className="text-4xl font-bold">
+              Let’s Grow Your Sales
+            </h2>
+            <p className="text-lg mt-4">
+              A tailored sales strategy to drive results and achieve your
+              business goals.
             </p>
-            <div className="flex flex-col sm:flex-row text-sm sm:text-base gap-4">
-              <button className="bg-yellowclr hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold transition">
-                BOOK A CALL
-              </button>
-              <button className="border border-gray-800 text-gray-800 font-medium px-6 py-3 rounded-lg transition">
-                BROWSE SERVICES
+            <div className="mt-8">
+              <button className="bg-blueclr text-white px-8 py-3 rounded-lg font-semibold text-lg  transition-all duration-300 transform hover:bg-teal-700 hover:scale-105">
+                Book a Consultation
               </button>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12 mt-16">
-          <div className="w-full md:w-1/2">
-            <h2 className="text-3xl font-bold">
-              Get Sales Insights
-              <br />
-              Straight To Your Inbox
-            </h2>
-          </div>
-
-          <div className="w-full md:w-1/2">
-            <div className="flex border border-gray-400 rounded-lg overflow-hidden">
-              <input
-                type="email"
-                placeholder="Type your email here"
-                className="w-full px-4 py-3 outline-none bg-white text-gray-900 placeholder-gray-500"
-              />
-              <button className="bg-yellowclr hover:bg-yellow-600 text-white px-6 py-3 font-semibold transition">
-                SUBSCRIBE
-              </button>
+        <div
+          className="py-20 relative bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${img})`,
+          }}
+        >
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="relative z-10">
+            <h3 className="text-3xl font-semibold text-white">
+              Get Sales Insights Delivered to Your Inbox
+            </h3>
+            <p className="text-lg mt-4 text-gray-200">
+              Subscribe now for exclusive sales tips and strategies.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-md">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="px-6 py-[14px] bg-white text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                />
+                <button className="bg-[#69b2fc] text-white px-8 py-3 font-semibold text-lg  transition-all duration-300 transform hover:scale-105 hover:from-teal-600 hover:to-teal-800">
+                  Subscribe
+                </button>
+              </div>
             </div>
           </div>
         </div>
