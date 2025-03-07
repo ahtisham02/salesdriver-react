@@ -98,8 +98,8 @@ function Navbar() {
                     onClick={() => navigate(path)}
                     className={`relative group flex items-center justify-between w-full px-3 py-2 min-[1090px]:p-0 transition duration-300 ease-in-out ${
                       activeItem === label
-                        ? "text-yellowclr"
-                        : "hover:text-yellowclr"
+                        ? "text-blueclr"
+                        : "hover:text-blueclr"
                     }`}
                   >
                     <span className="font-semibold">{label}</span>
@@ -155,9 +155,9 @@ function Navbar() {
                     navigate(path);
                     setIsOpen(false);
                   }}
-                  className="flex items-center space-x-3 text-lg pl-6 py-2 transition-all group-hover:text-yellowclr"
+                  className="flex items-center space-x-3 text-lg pl-6 py-2 transition-all group-hover:text-blueclr"
                 >
-                  <span className="group-hover:text-yellowclr">{icon}</span>
+                  <span className="group-hover:text-blueclr">{icon}</span>
                   <span>{label}</span>
                 </button>
                 <hr className="mt-1 min-[1090px]:my-0 bg-black min-[1090px]:hidden" />
