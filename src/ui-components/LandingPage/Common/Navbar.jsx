@@ -11,7 +11,7 @@ import {
   AlignRight,
   X,
 } from "lucide-react";
-import img from "../../../assets/download-removebg-preview.png"
+import img from "../../../assets/download-removebg-preview.png";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,18 +72,47 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 0.9) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="relative z-50">
-      <nav className="fixed top-0 left-0 w-full bg-white border-gray-200">
+      <nav
+        className={`fixed top-0 left-0 w-full border-gray-200 transition-all duration-500 ease-in-out ${
+          isScrolled
+            ? "bg-white opacity-100"
+            : location.pathname === "/"
+            ? "bg-white md:bg-[linear-gradient(to_right,#fff_53%,#ecf7fd_47%)]"
+            : "bg-white"
+        }`}
+      >
+        {" "}
         <div className="flex items-center justify-between pr-10 pl-5 py-4 mr-5 lg:mr-0">
-          <img onClick={() => navigate("/")} src={img} alt="logo" className="md:h-[68px] cursor-pointer h-[52px] md:-mt-2.5 -ml-2 md:0 z-10" />
+          <img
+            onClick={() => navigate("/")}
+            src={img}
+            alt="logo"
+            className="md:h-[68px] cursor-pointer h-[52px] md:-mt-2.5 -ml-2 md:0 z-10"
+          />
           <button
             onClick={toggleMenu}
             className="custom-lg:hidden absolute mr-5 right-0 z-[1050]"
           >
             {isOpen ? <X size={28} /> : <AlignRight size={28} />}
           </button>
-          <ul className="hidden custom-lg:flex lg:space-x-8 text-black">
+          <ul className="hidden custom-lg:flex lg:-ml-60 lg:space-x-8 text-black">
             {["Services", "Solutions", "Industries", "Company"].map((label) => {
               const path = `/${label.toLowerCase()}`;
 
@@ -131,13 +160,12 @@ function Navbar() {
             </button>
             <button
               onClick={() => navigate("/contact")}
-              className="hidden ml-4 z-[1050] sm:flex sm:items-center text-white bg-blueclr rounded-md shadow-md px-1 py-1.5 min-[1090px]:mb-1"
+              className="hidden ml-4 z-[1050] sm:flex sm:items-center text-white bg-yellowclr rounded-md shadow-md px-1 py-1.5 min-[1090px]:mb-1"
             >
               <h1 className="font-medium px-3">Start Now</h1>
             </button>
           </div>
         </div>
-
         <div
           className={`custom-lg:hidden overflow-hidden fixed top-0 left-0 w-full bg-white rounded-b-3xl shadow-md transition-all duration-300 ease-in-out ${
             isOpen ? "max-h-[520px] opacity-100 pt-16" : "max-h-0 opacity-0"

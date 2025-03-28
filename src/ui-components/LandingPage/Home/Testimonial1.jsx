@@ -1,70 +1,88 @@
 import React from "react";
-import img from "../../../assets/img4.jpg";
-import { useNavigate } from "react-router-dom";
+import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
+import vector from "../../../assets/Vector3.png";
 
-export default function SalesDriverDifference() {
-  const navigate = useNavigate();
-  
+export default function HowWeWork() {
   return (
-    <div className="max-w-7xl mx-auto py-16 px-6 md:px-12 text-center">
-      <p className="sm:text-[13px] text-[11px] font-medium text-blueclr">
-        Our Approach
-      </p>
-      <h2 className="text-3xl md:text-[49px] lg:!leading-[4rem] font-extrabold text-gray-900 mb-12 md:mb-10">
-        The SalesDriver <br className="hidden md:block" /> Difference
-      </h2>
- 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center text-left">
-        <div className="space-y-6 text-gray-700">
-          <p className="text-[16px]">
-            <span className="font-bold">SalesDriver</span> eliminates sales
-            inefficiencies with a
-            <span className="font-bold"> structured, AI-powered system</span>{" "}
-            that drives predictable revenue.
+    <div className="max-w-7xl relative mx-auto py-16">
+      <div className="absolute inset-0 w-full h-full">
+        <img
+          src={HeadImg}
+          alt="Header Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-white opacity-75"></div>
+      </div>
+
+      <div className="relative z-10 px-6 md:px-12 flex flex-col md:flex-row justify-between items-start">
+        <div className="md:w-1/2">
+          <p className="inline-block bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+            OUR PROCESS
           </p>
-          <p className="text-[16px]">
-            We combine{" "}
-            <span className="font-bold">
-              strategy, automation, and targeting
-            </span>{" "}
-            to streamline the sales process, optimize outreach, and increase
-            conversions.
-          </p>
-          <p className="text-[16px]">
-            Our AI-driven approach optimizes every stage of the sales cycle—from
-            CRM integration to content marketing, SEO, and digital ads.
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#005895] mt-3">
+            How We Work
+          </h2>
+          <p className="text-gray-500 mt-2.5">
+            AI Tools + Human Expertise = More Sales, Less Hassle
           </p>
         </div>
 
-        <div className="flex justify-center">
-          <img
-            src={img}
-            alt="Sales Process"
-            className="w-full max-w-[450px] h-[300px] object-cover"
-          />
+        <div className="md:w-1/2 mt-6 md:mt-0 text-gray-700">
+          <p className="font-semibold text-[#005895] my-2">
+            Struggling with inconsistent sales or wasted time?
+          </p>
+          <p>
+            SalesDriver fixes this with a 3-part system that drives consistent
+            revenue:
+          </p>
+          <p className="text-[#005895] font-semibold my-2">
+            We optimize everything.
+          </p>
+          <p>
+            From CRM setup to content, SEO, and ads—we streamline your entire
+            sales process.
+          </p>
         </div>
+      </div>
 
-        <div className="space-y-4 text-gray-700">
-          <p className="text-[16px]">
-            <span className="font-bold">Strategy:</span> Data-driven sales
-            roadmaps that guide prospects from lead to close.
-          </p>
-          <p className="text-[16px]">
-            <span className="font-bold">Automation:</span> AI-powered tools for
-            outreach, follow-ups, and engagement—maximizing efficiency.
-          </p>
-          <p className="text-[16px]">
-            <span className="font-bold">Targeting:</span> Advanced data insights
-            to connect with the right prospects at the right time.
-          </p>
+      <div className="relative mt-12">
+        <img
+          src={vector}
+          alt="Vector Background"
+          className="absolute lg:block hidden top-1/2 left-0 w-full h-auto -translate-y-1/2"
+        />
 
-          <button onClick={()=>{navigate('/contact')}} className="bg-blueclr  transition duration-300 text-white font-semibold text-sm py-3 px-6 mt-6 rounded-lg shadow-md">
-            GET STARTED
-          </button>
-
-          <p className="text-gray-500 text-[11px]">
-            See how our AI-powered system drives consistent sales growth.
-          </p>
+        <div className="relative px-6 md:px-12 z-10 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-20">
+          {[
+            {
+              id: "1",
+              title: "Strategy First",
+              description: "Data-driven plans to turn leads into buyers.",
+            },
+            {
+              id: "2",
+              title: "AI Automation That Works",
+              description: "Data-driven plans to turn leads into buyers.",
+            },
+            {
+              id: "3",
+              title: "Target The Right People",
+              description: "Data-driven plans to turn leads into buyers.",
+            },
+          ].map((step) => (
+            <div
+              key={step.id}
+              className="relative bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-left"
+            >
+              <span className="absolute top-5 left-5 bg-[#FFEFDA] text-yellowclr font-bold text-sm px-3 py-1 rounded-lg">
+                {step.id}
+              </span>
+              <h3 className="text-2xl font-bold text-gray-900 mt-10">
+                {step.title}
+              </h3>
+              <p className="text-gray-600 mt-2.5">{step.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

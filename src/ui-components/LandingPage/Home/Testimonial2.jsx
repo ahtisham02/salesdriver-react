@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import img from "../../../assets/strategy.jpg";
+import img from "../../../assets/styled.png";
 import img1 from "../../../assets/sales.jpg";
 import img2 from "../../../assets/data.jpg";
 import img3 from "../../../assets/content.jpg";
 import img4 from "../../../assets/automation.jpg";
 import img5 from "../../../assets/seo.jpg";
+import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
+import elipse from "../../../assets/Ellipse.png";
 import {
   ChevronRight,
   ChevronDown,
@@ -105,136 +107,154 @@ export default function ExactUILayout() {
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
   return (
-    <div className="px-8 pt-10 pb-20 bg-slate-50 min-h-screen">
-      <div className="mb-12 text-center">
-        <p className="sm:text-[13px] text-[11px] font-medium text-blueclr">
-          The SalesDriver Advantage
-        </p>
-        <h1 className="md:text-5xl text-3xl font-extrabold text-slate-800 mt-3">
-          Our Services
-        </h1>
-        <p className="text-lg font-semibold text-slate-600 mt-2">
-          Helping you get more for your business
-        </p>
+    <div className="px-8 relative pt-10 pb-20 bg-slate-50 min-h-screen">
+      <div className="absolute inset-0 w-full h-full">
+        <img
+          src={HeadImg}
+          alt="Header Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-white opacity-75"></div>
       </div>
-
-      <div className="mb-6 pb-3 md:hidden overflow-x-auto scrollbar-hide">
-        <div className="flex justify-center min-w-max">
-          {tabs.map(({ name }) => (
-            <button
-              key={name}
-              onClick={() => setActiveTab(name)}
-              className={`px-6 py-2 text-lg font-semibold relative transition-all ${
-                activeTab === name
-                  ? "text-blueclr font-bold border-b-[3px] border-blueclr"
-                  : "text-slate-500 hover:text-slate-700"
-              }`}
-            >
-              {name}
-            </button>
-          ))}
+      <img
+        src={elipse}
+        alt="Glow"
+        className="absolute lg:block hidden -top-10 left-0 w-96 h-96"
+      />
+      <img
+        src={elipse}
+        alt="Glow"
+        className="absolute lg:block hidden bottom-0 right-0 w-96 h-96"
+      />
+      <div className="relative z-10">
+        <div className="mb-12 text-center">
+          <p className="inline-block bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+            OUR Services
+          </p>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#005895] mt-3">
+            Expert-built Services,
+            <br /> Built for You{" "}
+          </h2>
         </div>
-      </div>
 
-      <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
-        <div className="w-full md:w-1/4 hidden md:block">
-          {tabs.map(({ name, icon: Icon }) => (
-            <button
-              key={name}
-              onClick={() => setActiveTab(name)}
-              className={`flex items-center w-full px-5 py-4 rounded-xl mb-3 transition-all text-left shadow-md ${
-                activeTab === name
-                  ? "bg-blue-100 text-blueclr font-semibold"
-                  : "bg-white text-slate-600 hover:bg-slate-100"
-              }`}
-            >
-              <Icon className="w-6 h-6 mr-3 text-blueclr" />
-              <span className="flex-1 text-lg">{name}</span>
-              <ChevronRight
-                className={`w-5 h-5  ${
-                  activeTab === name ? "text-blueclr" : "text-slate-500"
+        <div className="mb-6 pb-3 md:hidden overflow-x-auto scrollbar-hide">
+          <div className="flex justify-center min-w-max">
+            {tabs.map(({ name }) => (
+              <button
+                key={name}
+                onClick={() => setActiveTab(name)}
+                className={`px-6 py-2 text-lg font-semibold relative transition-all ${
+                  activeTab === name
+                    ? "text-blueclr font-bold border-b-[3px] border-blueclr"
+                    : "text-slate-500 hover:text-slate-700"
                 }`}
-              />
-            </button>
-          ))}
+              >
+                {name}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="flex flex-col w-full md:w-3/4 bg-white px-10 py-14 rounded-xl shadow-xl">
-          <div className="flex flex-col md:flex-row w-full">
-            <div className="md:w-1/2 pr-8">
-              <h1 className="text-3xl sm:text-4xl font-bold text-slate-900">
-                {activeTabData?.heading}
-              </h1>
-              <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
-                {activeTabData?.description}
-              </p>
-              <button className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative">
-                <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
-                  Learn More
-                </span>
-                <ArrowRight
-                  className="ml-2 relative z-10 group-hover:translate-y-[-2px] transition-all"
-                  size={20}
+        <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
+          <div className="w-full md:w-1/4 hidden md:block">
+            {tabs.map(({ name, icon: Icon }) => (
+              <button
+                key={name}
+                onClick={() => setActiveTab(name)}
+                className={`flex items-center w-full px-5 py-4 rounded-xl mb-3 transition-all text-left shadow-md ${
+                  activeTab === name
+                    ? "bg-blue-100 text-blueclr font-semibold"
+                    : "bg-white text-slate-600 hover:bg-slate-100"
+                }`}
+              >
+                <Icon className="w-6 h-6 mr-3 text-blueclr" />
+                <span className="flex-1 text-lg">{name}</span>
+                <ChevronRight
+                  className={`w-5 h-5  ${
+                    activeTab === name ? "text-blueclr" : "text-slate-500"
+                  }`}
                 />
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blueclr transition-all group-hover:w-full"></span>
               </button>
-            </div>
-
-            <div className="md:w-1/2 flex items-center mt-10 mb-5 md:mb-0 md:mt-0">
-              <div className="rounded-xl overflow-hidden shadow-lg w-full">
-                <img
-                  className="w-full h-auto"
-                  src={activeTabData?.img}
-                  alt="Service Illustration"
-                />
-              </div>
-            </div>
+            ))}
           </div>
 
-          <div className="mt-10 w-full">
-            <h2
-              className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
-              onClick={handleToggle}
-            >
-              Linked Services
-              {isOpen ? (
-                <ChevronUp className="ml-2" size={22} />
-              ) : (
-                <ChevronDown className="ml-2" size={22} />
-              )}
-            </h2>
+          <div className="flex flex-col w-full md:w-3/4 bg-white px-10 py-14 rounded-xl shadow-xl">
+            <div className="flex flex-col md:flex-row w-full">
+              <div className="md:w-1/2 pr-8">
+                <h1 className="text-3xl sm:text-4xl font-bold text-[#005895]">
+                  {activeTabData?.heading}
+                </h1>
+                <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
+                  {activeTabData?.description}
+                </p>
+                <button className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative">
+                  <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
+                    Learn More
+                  </span>
+                  <ArrowRight
+                    className="ml-2 relative z-10 group-hover:translate-y-[-2px] transition-all"
+                    size={20}
+                  />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blueclr transition-all group-hover:w-full"></span>
+                </button>
+              </div>
 
-            <div
-              className={`overflow-hidden transition-all duration-500 px-4 ease-in-out mt-4 ${
-                isOpen ? "max-h-screen py-4" : "max-h-0"
-              }`}
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-                {activeTabData?.btn1 && (
-                  <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                    {activeTabData.btn1}
-                  </button>
+              <div className="md:w-1/2 flex items-center mt-10 mb-5 md:mb-0 md:mt-0">
+                <div className="overflow-hidden w-full">
+                  <img
+                    className="w-full h-auto"
+                    src={activeTabData?.img}
+                    alt="Service Illustration"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 w-full">
+              <h2
+                className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
+                onClick={handleToggle}
+              >
+                Linked Services
+                {isOpen ? (
+                  <ChevronUp className="ml-2" size={22} />
+                ) : (
+                  <ChevronDown className="ml-2" size={22} />
                 )}
-                {activeTabData?.btn2 && (
-                  <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                    {activeTabData.btn2}
-                  </button>
-                )}
-                {activeTabData?.btn3 && (
-                  <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                    {activeTabData.btn3}
-                  </button>
-                )}
-                {activeTabData?.btn4 && (
-                  <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                    {activeTabData.btn4}
-                  </button>
-                )}
-                {activeTabData?.btn5 && (
-                  <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                    {activeTabData.btn5}
-                  </button>
-                )}
+              </h2>
+
+              <div
+                className={`overflow-hidden transition-all duration-500 px-4 ease-in-out mt-4 ${
+                  isOpen ? "max-h-screen py-4" : "max-h-0"
+                }`}
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+                  {activeTabData?.btn1 && (
+                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                      {activeTabData.btn1}
+                    </button>
+                  )}
+                  {activeTabData?.btn2 && (
+                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                      {activeTabData.btn2}
+                    </button>
+                  )}
+                  {activeTabData?.btn3 && (
+                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                      {activeTabData.btn3}
+                    </button>
+                  )}
+                  {activeTabData?.btn4 && (
+                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                      {activeTabData.btn4}
+                    </button>
+                  )}
+                  {activeTabData?.btn5 && (
+                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
+                      {activeTabData.btn5}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>

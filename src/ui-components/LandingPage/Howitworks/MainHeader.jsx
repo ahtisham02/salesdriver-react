@@ -1,41 +1,33 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import img from "../../../assets/dictionary.jpg";
+import img from "../../../assets/how.jpg";
 
 export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[#e4f3fb] pt-14 pb-8 px-6 md:px-12 lg:px-20">
+    <div className="bg-[#fafafa] pt-14 pb-8 px-6 md:px-12 lg:px-20">
       <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
         <div className="text-center md:text-left md:w-1/2">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 !leading-[1.15]">
-            Defining Sales <br className="hidden md:block"></br> with{" "}
-            <span className="text-blueclr">SalesDriver</span>
+            Discover How <span className="text-blueclr">SalesDriver</span> Works
           </h1>
-
-          <p className="text-gray-700 mt-5 text-lg leading-relaxed">
-            Sales can be complicated, but knowing the right terms and strategies
-            makes it easier. This page gives you simple explanations of key
-            sales concepts.
-          </p>
-          <p className="text-gray-700 mt-3 text-lg leading-relaxed">
-            This guide helps you understand the sales process, use the right
-            language, and sell with confidence.
+          <p className="text-gray-700 mt-4 text-lg">
+            Learn how our innovative platform transforms your business processes, drives growth, and delivers measurable results. From strategy to execution, we’ve got you covered.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <button
               onClick={() => navigate("/services")}
-              className="px-8 py-3 text-white bg-blueclr rounded-lg font-semibold shadow-md hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105"
+              className="px-8 py-3 text-white bg-blueclr rounded-lg font-semibold shadow-lg hover:bg-opacity-90 transition transform hover:scale-105"
             >
-              Get Started
+              See It in Action
             </button>
             <button
               onClick={() => navigate("/contact")}
               className="px-8 py-3 border-[1.9px] border-blueclr text-blueclr rounded-lg font-semibold shadow-lg hover:bg-gray-200 transition transform hover:scale-105"
             >
-              Contact Us
+              Talk to an Expert
             </button>
           </div>
         </div>

@@ -8,6 +8,7 @@ import Testimonial4 from '../../../ui-components/LandingPage/Home/Testimonial4';
 import Card from '../../../ui-components/LandingPage/Home/Card';
 import Section from '../../../ui-components/LandingPage/Home/Section';
 import Card2 from '../../../ui-components/LandingPage/Home/Card2';
+import NewSec from '../../../ui-components/LandingPage/Home/NewSec';
 
 export default function HomePage() {
    return (
@@ -19,6 +20,7 @@ export default function HomePage() {
          <Testimonial3 />
          <Testimonial4 />
          <Card />
+         <NewSec />
          <Section />
          <Card2 />
        </div>

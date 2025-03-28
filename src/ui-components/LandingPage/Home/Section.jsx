@@ -1,22 +1,25 @@
 import React from "react";
-import img from "../../../assets/img3.webp";
+import img from "../../../assets/resizedi.png";
 
 export default function Section() {
   return (
     <section className="flex flex-col md:flex-row items-center gap-12 md:px-10 py-10 bg-[#ebf5ff] rounded-3xl mx-12 my-10">
       <div className="md:w-1/2 text-center bg-white px-8 py-7 rounded-3xl md:text-left">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-normal">
-          We Are SalesDriver. <br /> We Drive Sales.
+        <h2 className="text-3xl md:text-4xl font-bold text-blueclr leading-normal">
+          What is a <br /> SalesDriver?
         </h2>
-        <p className="text-gray-700 text-[17px] mt-5 leading-relaxed">
-          With over 40 years of experience and a track record of $100M+ in new
-          business sales, we know what works. Our high-performing sales systems
-          generate leads, close deals, and drive revenue.
+        <p className="text-gray-700 text-[16px] font-bold mt-5 leading-relaxed">
+          I am a SalesDriver, You are a SalesDriver.<br/> We Drive Sales.
         </p>
         <p className="text-gray-700 text-[17px] mt-4 leading-relaxed">
-          Our goal is to help you build a repeatable, scalable sales system so
-          you can focus on what truly matters—closing deals and growing your
-          business.
+          A SalesDriver uses data and strategy to accelerate sales. We identify
+          opportunities, build meaningful relationships, and own the sales
+          process to drive growth. We turn insights into action and prospects
+          into partners.
+        </p>
+        <p className="text-gray-700 text-[17px] mt-4 leading-relaxed">
+          Become a SalesDriver—where insights meet action and connections drive
+          growth.{" "}
         </p>
       </div>
 
@@ -24,7 +27,7 @@ export default function Section() {
         <img
           src={img}
           alt="Sales Illustration"
-          className="w-full h-[360px] max-w-xl rounded-3xl"
+          className="w-full h-[360px] max-w-xl"
         />
       </div>
     </section>
