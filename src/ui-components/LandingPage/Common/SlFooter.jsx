@@ -1,59 +1,38 @@
-import img from "../../../assets/bgimg.webp";
-import img1 from "../../../assets/grow.jpg";
+import img1 from "../../../assets/35e0bea07c5c6d9f911158e04c8fd7b6.png";
 
 export default function SalesInsightsSection() {
   return (
     <footer className="w-full text-white">
       <div className="max-w-screen-xl mx-auto text-center">
-        <div className="relative bg-cover bg-center lg:grid lg:grid-cols-2 py-10 bg-[#ebf5ff]">
-          <div className="relative z-10 lg:block hidden">
-            <div
-              className="w-full h-96 bg-cover bg-center"
-              style={{ backgroundImage: `url(${img1})` }}
-            ></div>
-          </div>
+        <div className="relative bg-cover bg-center bg-[#00263A] flex flex-col lg:grid lg:grid-cols-2">
+          <div className="relative w-full h-60">
+            <img
+              src={img1}
+              alt="Sales Insights"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-[#00263A] opacity-75"></div>
 
-          <div className="relative z-10 flex flex-col text-black justify-center lg:px-16 px-8 text-center">
-            <h2 className="md:text-4xl text-3xl font-bold">
-              Let’s Grow Your Sales
-            </h2>
-            <p className="md:text-lg mt-4">
-              A tailored sales strategy to drive results and achieve your
-              business goals.
-            </p>
-            <div className="mt-8">
-              <button className="bg-blueclr text-white px-8 py-3 rounded-lg font-semibold text-lg">
-                Book a Consultation
-              </button>
+            <div className="absolute inset-0 flex flex-col lg:items-start sm:pl-14 justify-center text-center lg:text-left px-4">
+              <h2 className="md:text-[50px] text-4xl mb-4 font-black">Let’s Talk Sales</h2>
+              <p className="sm:text-2xl text-xl font-medium">
+                Get a plan that’s built for you.
+              </p>
             </div>
           </div>
-        </div>
 
-        <div
-          className="py-20 my-10 rounded-[50px] md:mx-10 mx-5 relative bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${img})`,
-          }}
-        >
-          <div className="absolute inset-0 rounded-[50px] bg-gray-600 opacity-30"></div>
-          <div className="relative z-10">
-            <h3 className="text-3xl font-semibold text-white">
-              Get Sales Insights Delivered to Your Inbox
-            </h3>
-            <p className="text-lg mt-4 text-gray-200">
-              Subscribe now for exclusive sales tips and strategies.
+          <div className="relative z-10 flex flex-col text-white justify-center lg:px-16 px-8 py-16 text-center lg:text-left">
+            <p className="md:text-base mt-4">
+              More leads, better conversions, or an efficient unified sales
+              system, we can help.
             </p>
-            <div className="mt-8 flex justify-center">
-              <div className="flex mx-2 flex-wrap sm:flex-nowrap w-full max-w-md border border-gray-300 rounded-lg overflow-hidden shadow-md">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-[12px] bg-white text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 w-full sm:w-auto"
-                />
-                <button className="bg-[#69b2fc] text-white sm:px-8 py-2.5 font-semibold text-lg transition-all duration-300 transform hover:scale-105">
-                  Subscribe
-                </button>
-              </div>
+            <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-end space-y-4 sm:space-y-0 sm:space-x-4">
+              <button className="bg-yellowclr text-white px-7 py-2.5 rounded-lg font-semibold text-base">
+                Book a Call
+              </button>
+              <button className="border border-white text-white px-7 py-2.5 rounded-lg font-semibold text-base">
+                Browse Services
+              </button>
             </div>
           </div>
         </div>

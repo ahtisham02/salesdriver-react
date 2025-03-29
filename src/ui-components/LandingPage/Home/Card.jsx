@@ -94,7 +94,7 @@ export default function ExactUILayout() {
   }, [currentIndex, isAnimationActive]);
 
   return (
-    <div className="px-6 relative py-16 bg-gray-50">
+    <div className="px-6 relative py-16 bg-[#ECF7FD]">
       <img
         src={vector}
         alt="Vector Background"

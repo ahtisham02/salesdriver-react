@@ -32,12 +32,12 @@ body {
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: rgb(54,171,135);
+  background-color: rgb(0,162,221);
   border-radius: 4px;
 }
 
 .scrollbar-custom::-webkit-scrollbar-track {
-  background-color: rgb(215,254,200);
+  background-color: rgb(217,238,250);
   border-radius: 4px;
 }
 

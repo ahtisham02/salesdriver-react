@@ -10,6 +10,10 @@ import CasestudyPage from "../pages/LandingPages/CaseStudy/CaseStudy";
 import HowitworksPage from "../pages/LandingPages/Howitworks/Howitworks";
 import DictionaryPage from "../pages/LandingPages/Dictionary/Dictionary";
 import WebinarPage from "../pages/LandingPages/Webinar/Webinar";
+import BlogPage from "../pages/LandingPages/Blog/Blog";
+import DataSheetsPage from "../pages/LandingPages/DataSheets/DataSheets";
+import WhitePapersPage from "../pages/LandingPages/WhitePapers/WhitePapers";
+import DownloadablesPage from "../pages/LandingPages/Downloadables/Downloadables";
 import Layout from "./LandingPageLayout";
 import ScrollToTop from "../utils/ScrollToTop";
 
@@ -30,6 +34,10 @@ const MainRoutes = () => {
           <Route path="/howitworks" element={<HowitworksPage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
           <Route path="/webinar" element={<WebinarPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/data-sheets" element={<DataSheetsPage />} />
+          <Route path="/white-papers" element={<WhitePapersPage />} />
+          <Route path="/downloadables" element={<DownloadablesPage />} />
         </Route>
       </Routes>
     </>

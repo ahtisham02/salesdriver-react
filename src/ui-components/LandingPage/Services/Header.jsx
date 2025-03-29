@@ -1,27 +1,5 @@
-import {
-  Target,
-  TrendingUp,
-  Database,
-  FileText,
-  Settings,
-  Search,
-  Headphones,
-  User,
-  Briefcase,
-  Map,
-  Calendar,
-  MessageCircle,
-  BarChart,
-  Mail,
-  Link,
-  Eye,
-  DollarSign,
-  Layout,
-  Clock,
-  Users,
-  Phone,
-} from "lucide-react";
 import React, { useState } from "react";
+import HeadImg from "../../../assets/Group1000001040.png";
 
 const tabs = [
   "Strategy",
@@ -32,42 +10,6 @@ const tabs = [
   "SEO/Ads",
   "Support",
 ];
-
-// Unique icons for each title
-const titleIcons = {
-  "Dedicated Account and Project Manager": <User className="w-5 h-5" />,
-  "Sales Acquisition Strategy": <Briefcase className="w-5 h-5" />,
-  "Customer Journey": <Map className="w-5 h-5" />,
-  "Mapping/Tracking": <BarChart className="w-5 h-5" />,
-  "Weekly Review Meeting": <Calendar className="w-5 h-5" />,
-  "Sales Support": <MessageCircle className="w-5 h-5" />,
-  "Top of funnel SDR": <Users className="w-5 h-5" />,
-  "AI Sales Chatbot": <Headphones className="w-5 h-5" />,
-  "Live Reporting Dashboard": <BarChart className="w-5 h-5" />,
-  "Hot Lead Caller": <Phone className="w-5 h-5" />,
-  "20 Domains: 60 Warmed Emails": <Mail className="w-5 h-5" />,
-  "Lead Scoring": <TrendingUp className="w-5 h-5" />,
-  "4000 Appended Leads (Buyer & Hiring Intent Data)": <Database className="w-5 h-5" />,
-  "CRM": <Settings className="w-5 h-5" />,
-  "Landing Page Creation": <Layout className="w-5 h-5" />,
-  "Content Marketing": <FileText className="w-5 h-5" />,
-  "Social Media Management": <Users className="w-5 h-5" />,
-  "Content Creation": <FileText className="w-5 h-5" />,
-  "AI-Driven Management": <Settings className="w-5 h-5" />,
-  "Email Outreach": <Mail className="w-5 h-5" />,
-  "Campaign Automation": <Settings className="w-5 h-5" />,
-  "Social Media Outreach": <Users className="w-5 h-5" />,
-  "On-page SEO": <Search className="w-5 h-5" />,
-  "IP Tracking": <Eye className="w-5 h-5" />,
-  "Link Tracking": <Link className="w-5 h-5" />,
-  "Journey Tracking": <Map className="w-5 h-5" />,
-  "Heat Map Tracking": <Eye className="w-5 h-5" />,
-  "PPC Management": <DollarSign className="w-5 h-5" />,
-  "Backlinks package": <Link className="w-5 h-5" />,
-  "24/7 Live Sales Booking Rep": <Clock className="w-5 h-5" />,
-  "3 Commissioned Sales Reps": <Users className="w-5 h-5" />,
-  "Appointment Setter": <Calendar className="w-5 h-5" />,
-};
 
 const tabData = {
   Strategy: [
@@ -82,7 +24,8 @@ const tabData = {
     },
     {
       title: "Sales Acquisition Strategy",
-      description: "A custom strategy to identify and acquire high-value clients.",
+      description:
+        "A custom strategy to identify and acquire high-value clients.",
       points: [
         "Helps identify high-value prospects.",
         "Creates a custom plan for effective outreach.",
@@ -184,8 +127,7 @@ const tabData = {
     },
     {
       title: "4000 Appended Leads (Buyer & Hiring Intent Data)",
-      description:
-        "High-quality lead data enriched with intent signals.",
+      description: "High-quality lead data enriched with intent signals.",
       points: [
         "Provides enriched data for targeted outreach.",
         "Improves campaign effectiveness with qualified leads.",
@@ -242,8 +184,7 @@ const tabData = {
   Automation: [
     {
       title: "AI-Driven Management",
-      description:
-        "Intelligent automation to optimize customer interactions.",
+      description: "Intelligent automation to optimize customer interactions.",
       points: [
         "Automates tasks to improve efficiency.",
         "Reduces manual effort in sales processes.",
@@ -269,8 +210,7 @@ const tabData = {
     },
     {
       title: "Social Media Outreach",
-      description:
-        "Automated social media engagement to maximize brand reach.",
+      description: "Automated social media engagement to maximize brand reach.",
       points: [
         "Expands reach through automated engagement.",
         "Keeps your brand active and visible.",
@@ -307,8 +247,7 @@ const tabData = {
     },
     {
       title: "Journey Tracking",
-      description:
-        "Understanding user behavior to improve conversion rates.",
+      description: "Understanding user behavior to improve conversion rates.",
       points: [
         "Understands user behavior for better conversion rates.",
         "Improves website performance based on analytics.",
@@ -316,8 +255,7 @@ const tabData = {
     },
     {
       title: "Heat Map Tracking",
-      description:
-        "Visual insights on how users interact with your website.",
+      description: "Visual insights on how users interact with your website.",
       points: [
         "Provides insights on how users interact with your site.",
         "Helps improve user experience and engagement.",
@@ -374,68 +312,97 @@ const tabData = {
 };
 
 export default function ExactUILayout() {
+  const [expanded, setExpanded] = useState(1);
   const [activeTab, setActiveTab] = useState("Strategy");
 
   const features = tabData[activeTab] || [];
 
   return (
-    <div className="container mx-auto px-6 pt-10 lg:pt-14 my-4">
-      <div className="mb-8 text-center">
-        <p className="sm:text-[15px] text-[11px] font-medium text-blueclr">
-          Our Services
-        </p>
-        <h1 className="lg:text-[48px] mt-2 text-3xl font-extrabold text-gray-800 tracking-wide">
-          Helping you get more for your business
-        </h1>
+    <div className="container relative mx-auto px-6 pt-10 lg:pt-14 my-4">
+      <div className="absolute inset-0 w-full h-full">
+        <img
+          src={HeadImg}
+          alt="Header Background"
+          className="w-full h-full object-cover"
+        />
       </div>
+      <div className="relative z-10">
+        <div className="mb-8 text-center">
+          <h1 className="lg:text-[48px] mt-2 text-3xl font-extrabold text-[#00A7E2] tracking-wide">
+            Helping you get more for your business
+          </h1>
+        </div>
 
-      <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
-        <div className="flex justify-center min-w-max space-x-4">
-          {tabs.map((name) => (
-            <button
-              key={name}
-              onClick={() => setActiveTab(name)}
-              className={`px-6 py-2 text-base sm:text-lg font-medium transition ${
-                activeTab === name
-                  ? "text-blueclr font-bold border-b-2 border-blueclr"
-                  : "text-gray-600 border-b-2 border-transparent hover:border-gray-400"
+        <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
+          <div className="flex justify-center min-w-max space-x-4">
+            {tabs.map((name) => (
+              <button
+                key={name}
+                onClick={() => setActiveTab(name)}
+                className={`px-6 py-2 text-base sm:text-lg font-medium transition ${
+                  activeTab === name
+                    ? "text-blueclr font-bold border-b-2 border-blueclr"
+                    : "text-gray-600 border-b-2 border-transparent hover:border-gray-400"
+                }`}
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <p className="text-sm max-w-3xl mx-auto text-center font-medium text-gray-700">
+          SalesDriver’s strategy services provide agencies with a structured,
+          data-driven approach to acquiring new clients. Our experts analyze the
+          customer journey, optimize touchpoints, and create a scalable sales
+          roadmap that drives predictable growth.
+        </p>
+
+        <div className="flex overflow-x-auto scrollbar-custom space-x-4 py-6">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className={`cursor-pointer transition-all duration-300 rounded-3xl min-w-[200px] h-[390px] flex flex-col ${
+                expanded === index
+                  ? "min-w-[300px] h-[390px] items-start bg-[#D9EEFA]"
+                  : "items-center bg-[#ECF7FD]"
               }`}
+              onClick={() => setExpanded(expanded === index ? null : index)}
             >
-              {name}
-            </button>
+              <span
+                className={`text-lg px-6 pt-6 font-bold text-gray-700 ${
+                  expanded === index ? "self-start mb-5" : ""
+                }`}
+              >
+                {`0${index + 1}`}
+              </span>
+              <h3
+                className={`text-lg px-6 md:text-xl font-bold text-center transition-transform duration-300 ${
+                  expanded === index ? "rotate-0" : "rotate-90 !mt-[130px]"
+                }`}
+              >
+                {feature.title}
+              </h3>
+              {expanded === index && (
+                <>
+                  <p className="text-gray-600 mt-3 p-6 text-sm leading-relaxed text-center md:text-left">
+                    {feature.description}
+                  </p>
+                  <ol className="list-disc list-inside px-6 text-gray-700 text-sm">
+                    {feature.points.map((point, i) => (
+                      <li key={i} className="mt-1">
+                        {point}
+                      </li>
+                    ))}
+                  </ol>
+                  <button className="mt-auto px-5 py-2.5 text-white text-base font-semibold self-end rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2]">
+                    Learn More
+                  </button>
+                </>
+              )}
+            </div>
           ))}
         </div>
-      </div>
-
-      <p className="text-sm max-w-3xl mx-auto text-center font-medium text-gray-700">
-        SalesDriver’s strategy services provide agencies with a structured,
-        data-driven approach to acquiring new clients. Our experts analyze the
-        customer journey, optimize touchpoints, and create a scalable sales
-        roadmap that drives predictable growth.
-      </p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6">
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className="bg-white border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:scale-[1.03] duration-300"
-          >
-            <div className="flex items-center gap-3">
-              <div className="p-2 text-gray-600 bg-blue-50 border-[1.9px] border-blue-400 rounded-lg">
-                {titleIcons[feature.title]}
-              </div>
-              <h3 className="text-2xl font-semibold text-blueclr">{feature.title}</h3>
-            </div>
-            <p className="text-gray-600 mt-3 leading-relaxed">{feature.description}</p>
-            <ul className="mt-4 space-y-2 text-gray-700">
-              {feature.points.map((point, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-green-500 text-lg">✔</span> {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
       </div>
     </div>
   );

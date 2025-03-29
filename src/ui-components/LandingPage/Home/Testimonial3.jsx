@@ -176,7 +176,7 @@ export default function ExactUILayout() {
               <h2 className="text-lg mb-2.5 font-medium leading-snug text-blueclr">
                 {activeTabData.name}
               </h2>
-              <h2 className="text-3xl md:text-4xl font-bold leading-snug text-[#005895]">
+              <h2 className="text-2xl md:text-4xl font-bold leading-snug text-[#005895]">
                 {activeTabData.headline}
               </h2>
               {activeTabData.description.map((desc, index) => (

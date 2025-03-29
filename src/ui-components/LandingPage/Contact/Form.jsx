@@ -4,17 +4,14 @@ export default function Form() {
   return (
     <div className="bg-gradient-to-r from-blue-50 to-purple-50 py-16 px-6">
       <div className="bg-white p-10 rounded-2xl border border-gray-200 max-w-[1150px] mx-auto">
-        {/* Header */}
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-8">
+        <h2 className="text-4xl md:text-5xl font-bold text-blueclr text-center mb-8">
           Let’s Build Something Amazing
         </h2>
         <p className="text-lg text-gray-600 text-center mb-12">
           Reach out to us, and we’ll get back to you as soon as possible.
         </p>
 
-        {/* Form */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left Column */}
           <div className="space-y-6">
             <div className="relative">
               <input
@@ -107,7 +104,6 @@ export default function Form() {
             </div>
           </div>
 
-          {/* Right Column */}
           <div className="space-y-6">
             <div className="relative">
               <input
@@ -155,8 +151,8 @@ export default function Form() {
             </div>
 
             <div className="flex justify-end">
-              <button className="bg-blueclr text-white font-semibold py-3 px-10 rounded-lg">
-                Submit
+              <button className="bg-yellowclr text-white font-semibold py-3 px-10 rounded-lg">
+                Send message
               </button>
             </div>
           </div>

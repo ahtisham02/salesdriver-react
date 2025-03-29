@@ -9,9 +9,9 @@ export default function CompanyPage() {
   return (
     <div className="flex-grow">
       <Header />
-      <Testimonial1 />
       <Slider />
       <Section />
+      <Testimonial1 />
       <Reviews />
     </div>
   );

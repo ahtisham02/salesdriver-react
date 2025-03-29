@@ -44,9 +44,7 @@ export default function Footer() {
             <div>
               <h3 className="font-bold mb-3">Services</h3>
               <ul className="space-y-2.5 text-white">
-                <li className="cursor-pointer hover:text-blueclr">
-                  Strategy
-                </li>
+                <li className="cursor-pointer hover:text-blueclr">Strategy</li>
                 <li className="cursor-pointer hover:text-blueclr">Sales</li>
                 <li className="cursor-pointer hover:text-blueclr">Data</li>
                 <li className="cursor-pointer hover:text-blueclr">Content</li>
@@ -82,9 +80,7 @@ export default function Footer() {
             <div>
               <h3 className="font-bold mb-3">Industry</h3>
               <ul className="space-y-2.5 text-white">
-                <li className="cursor-pointer hover:text-blueclr">
-                  Marketing
-                </li>
+                <li className="cursor-pointer hover:text-blueclr">Marketing</li>
                 <li className="cursor-pointer hover:text-blueclr">
                   Technology
                 </li>
@@ -108,9 +104,7 @@ export default function Footer() {
             <div>
               <h3 className="font-bold mb-3">Company</h3>
               <ul className="space-y-2.5 text-white">
-                <li className="cursor-pointer hover:text-blueclr">
-                  About Us
-                </li>
+                <li className="cursor-pointer hover:text-blueclr">About Us</li>
                 <li
                   className="cursor-pointer hover:text-blueclr"
                   onClick={() => {
@@ -135,11 +129,42 @@ export default function Footer() {
             <div>
               <h3 className="font-bold mb-3">Resources</h3>
               <ul className="space-y-2.5 text-white">
-                <li className="cursor-pointer hover:text-blueclr">Blog</li>
-                <li className="cursor-pointer hover:text-blueclr">
+                <li
+                  className="cursor-pointer hover:text-blueclr"
+                  onClick={() => {
+                    navigate("/blog");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Blog
+                </li>
+                <li
+                  className="cursor-pointer hover:text-blueclr"
+                  onClick={() => {
+                    navigate("/data-sheets");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  DataSheets
+                </li>
+                <li
+                  className="cursor-pointer hover:text-blueclr"
+                  onClick={() => {
+                    navigate("/white-papers");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
                   Whitepapers
                 </li>
-                <li className="cursor-pointer hover:text-blueclr">Guides</li>
+                <li
+                  className="cursor-pointer hover:text-blueclr"
+                  onClick={() => {
+                    navigate("/downloadables");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Downloadables
+                </li>
                 <li
                   className="cursor-pointer hover:text-blueclr"
                   onClick={() => {
@@ -169,6 +194,21 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+        <div className="mt-10 flex flex-col lg:flex-row items-center justify-center gap-4">
+          <h3 className="text-white font-bold text-base text-center lg:text-left">
+            Get Sales Insights <br /> Straight to Your Inbox
+          </h3>
+          <div className="flex w-full lg:w-auto items-center">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="px-4 py-2 rounded-md text-black w-full lg:w-96"
+            />
+            <button className="bg-yellowclr text-white font-semibold text-sm px-6 py-2.5 rounded-md ml-2">
+              SUBSCRIBE
+            </button>
           </div>
         </div>
 
