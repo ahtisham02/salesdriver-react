@@ -1,8 +1,10 @@
 import React from "react";
 import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
 import vector from "../../../assets/Vector8.png";
+import { useNavigate } from "react-router-dom";
 
 export default function NewSec() {
+  const navigate = useNavigate();
   return (
     <div
       className="bg-[#f7fbff] relative px-10 lg:px-16 pt-16 pb-12 flex flex-col lg:flex-row items-center lg:items-start justify-between space-y-12 lg:space-y-0 bg-cover bg-center"
@@ -50,7 +52,7 @@ export default function NewSec() {
           <span className="text-blueclr ">100k+</span> People Join
         </p>
         <div className="text-right">
-          <button className="mt-4 bg-blueclr text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-blue-700 transition">
+          <button onClick={() => navigate("/company")} className="mt-4 bg-blueclr text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-blue-700 transition">
             Learn More
           </button>
         </div>

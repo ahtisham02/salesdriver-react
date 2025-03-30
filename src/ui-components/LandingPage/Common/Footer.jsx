@@ -13,7 +13,7 @@ export default function Footer() {
             <img
               src={img}
               alt="logo"
-              className="md:h-[64px] md:w-52 h-[52px] md:-mt-2.5 z-10"
+              className="md:h-[64px] md:w-44 h-[52px] md:-mt-2.5 z-10"
             />
             <div className="flex space-x-4 mt-4 md:ml-10">
               <a
@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-sm mt-6 lg:mt-0">
-            <div>
+            {/* <div>
               <h3 className="font-bold mb-3">Services</h3>
               <ul className="space-y-2.5 text-white">
                 <li className="cursor-pointer hover:text-blueclr">Strategy</li>
@@ -100,11 +100,11 @@ export default function Footer() {
                   Industrial
                 </li>
               </ul>
-            </div>
+            </div> */}
             <div>
               <h3 className="font-bold mb-3">Company</h3>
               <ul className="space-y-2.5 text-white">
-                <li className="cursor-pointer hover:text-blueclr">About Us</li>
+                {/* <li className="cursor-pointer hover:text-blueclr">About Us</li> */}
                 <li
                   className="cursor-pointer hover:text-blueclr"
                   onClick={() => {
@@ -114,7 +114,25 @@ export default function Footer() {
                 >
                   Contact
                 </li>
-                <li className="cursor-pointer hover:text-blueclr">Careers</li>
+                <li
+                  className="cursor-pointer hover:text-blueclr"
+                  onClick={() => {
+                    navigate("/blog");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Blog
+                </li>
+                <li
+                  className="cursor-pointer hover:text-blueclr"
+                  onClick={() => {
+                    navigate("/howitworks");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  How It Works
+                </li>
+                {/* <li className="cursor-pointer hover:text-blueclr">Careers</li> */}
                 <li
                   className="cursor-pointer hover:text-blueclr"
                   onClick={() => {
@@ -129,15 +147,6 @@ export default function Footer() {
             <div>
               <h3 className="font-bold mb-3">Resources</h3>
               <ul className="space-y-2.5 text-white">
-                <li
-                  className="cursor-pointer hover:text-blueclr"
-                  onClick={() => {
-                    navigate("/blog");
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                >
-                  Blog
-                </li>
                 <li
                   className="cursor-pointer hover:text-blueclr"
                   onClick={() => {
@@ -164,15 +173,6 @@ export default function Footer() {
                   }}
                 >
                   Downloadables
-                </li>
-                <li
-                  className="cursor-pointer hover:text-blueclr"
-                  onClick={() => {
-                    navigate("/howitworks");
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                >
-                  How It Works
                 </li>
                 <li
                   className="cursor-pointer hover:text-blueclr"

@@ -112,7 +112,12 @@ function Navbar() {
           >
             {isOpen ? <X size={28} /> : <AlignRight size={28} />}
           </button>
-          <ul className="hidden custom-lg:flex lg:-ml-60 lg:space-x-8 text-black">
+          <ul
+            className={`hidden custom-lg:flex 
+   ${location.pathname === "/" ? "lg:-ml-[450px]" : "lg:-ml-10"} 
+   lg:space-x-8 text-black`}
+          >
+            {" "}
             {["Services", "Solutions", "Industries", "Company"].map((label) => {
               const path = `/${label.toLowerCase()}`;
 
@@ -140,7 +145,7 @@ function Navbar() {
           </ul>
 
           <div className="hidden sm:flex">
-            <button
+            {/* <button
               onClick={() => navigate("/auth")}
               className="hidden sm:flex sm:items-center px-1 py-1.5 min-[1090px]:mb-1"
             >
@@ -157,7 +162,7 @@ function Navbar() {
               className="hidden sm:flex sm:items-center px-1 py-1.5 min-[1090px]:mb-1"
             >
               <h1 className="font-semibold z-[1050] text-[15px] px-3">Login</h1>
-            </button>
+            </button> */}
             <button
               onClick={() => navigate("/contact")}
               className="hidden ml-4 z-[1050] sm:flex sm:items-center text-white bg-yellowclr rounded-md shadow-md px-1 py-1.5 min-[1090px]:mb-1"
