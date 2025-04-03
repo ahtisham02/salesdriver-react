@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import img from "../../../assets/styled2.png";
-import img1 from "../../../assets/saas.jpg";
-import img2 from "../../../assets/consulting.jpg";
-import img3 from "../../../assets/b2b.jpg";
-import img4 from "../../../assets/estate.jpg";
-import img5 from "../../../assets/health.jpg";
-import img6 from "../../../assets/Production.jpg";
+import img1 from "../../../assets/Website_Media/Website_Media/illustrations/saastech-illustration_.png";
+import img2 from "../../../assets/Website_Media/Website_Media/illustrations/consulting-illustration_.png";
+import img3 from "../../../assets/Website_Media/Website_Media/illustrations/content-illustration.png";
+import img4 from "../../../assets/Website_Media/Website_Media/illustrations/realestate-illustration  copy.png";
+import img5 from "../../../assets/Website_Media/Website_Media/illustrations/healthcare-illustration_.png";
+import img6 from "../../../assets/Website_Media/Website_Media/illustrations/industrial-illustration.png";
 import vector from "../../../assets/Vector5.png";
 import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";

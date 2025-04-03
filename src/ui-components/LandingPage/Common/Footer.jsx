@@ -1,6 +1,11 @@
 import React from "react";
-import { Facebook, Instagram, Linkedin, Youtube, X } from "lucide-react";
-import img from "../../../assets/download-removebg-preview.png";
+import x from "../../../assets/Website_Media/Website_Media/icons/x.svg";
+import fb from "../../../assets/Website_Media/Website_Media/icons/facebook.svg";
+import yt from "../../../assets/Website_Media/Website_Media/icons/youtube.svg";
+import insta from "../../../assets/Website_Media/Website_Media/icons/instagram.svg";
+import linkedin from "../../../assets/Website_Media/Website_Media/icons/linkedin.svg";
+
+import img from "../../../assets/Website_Media/Website_Media/salesdriver_logo.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
@@ -13,7 +18,7 @@ export default function Footer() {
             <img
               src={img}
               alt="logo"
-              className="md:h-[64px] md:w-44 h-[52px] md:-mt-2.5 z-10"
+              className="md:h-[40px] cursor-pointer md:ml-[50px] mb-2 h-[32px] md:0 z-10"
             />
             <div className="flex space-x-4 mt-4 md:ml-10">
               <a
@@ -21,21 +26,55 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Linkedin className="w-5 h-5 cursor-pointer hover:text-blueclr" />
+                <img
+                  src={x}
+                  alt="LinkedIn"
+                  className="w-5 h-5 cursor-pointer hover:text-blueclr"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/salesdriver-io"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={linkedin}
+                  alt="LinkedIn"
+                  className="w-5 h-5 cursor-pointer hover:text-blueclr"
+                />
               </a>
               <a
                 href="https://www.facebook.com/salesdriver/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Facebook className="w-5 h-5 cursor-pointer hover:text-blueclr" />
+                <img
+                  src={fb}
+                  alt="Facebook"
+                  className="w-5 h-5 cursor-pointer hover:text-blueclr"
+                />
               </a>
               <a
                 href="https://www.instagram.com/salesdriver.io/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Instagram className="w-5 h-5 cursor-pointer hover:text-blueclr" />
+                <img
+                  src={insta}
+                  alt="Instagram"
+                  className="w-5 h-5 cursor-pointer hover:text-blueclr"
+                />
+              </a>
+              <a
+                href="https://www.youtube.com/salesdriver"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={yt}
+                  alt="YouTube"
+                  className="w-5 h-5 cursor-pointer hover:text-blueclr"
+                />
               </a>
             </div>
           </div>

@@ -269,7 +269,10 @@ export default function SearchSection() {
           </div>
 
           {filteredSections.map((section, sectionIndex) => (
-            <div key={sectionIndex} className="bg-white py-10 px-8 sm:px-16 rounded-[40px]">
+            <div
+              key={sectionIndex}
+              className="bg-white py-10 px-8 sm:px-16 rounded-[40px]"
+            >
               <div className="flex items-center justify-between cursor-pointer">
                 <div className="flex items-center space-x-4">
                   <img src={section.img} className="h-8 w-8 text-gray-600" />
@@ -281,7 +284,7 @@ export default function SearchSection() {
 
               <div className="space-y-4 mt-4">
                 <p className="text-gray-600">{section.description}</p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 md:gap-1 gap-4 ">
                   {section.items.map((item, itemIndex) => (
                     <div
                       key={itemIndex}
@@ -289,9 +292,12 @@ export default function SearchSection() {
                       onClick={() => toggleItem(itemIndex)}
                     >
                       <div className="flex items-center justify-between">
-                        <h3 className="font-bold text-gray-700">
-                          {item.term}
-                        </h3>
+                        <button
+                          key={item}
+                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105 text-gray-800"
+                        >
+                          {item.term}{" "}
+                        </button>
                       </div>
                     </div>
                   ))}

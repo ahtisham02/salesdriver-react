@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../../../assets/resizedi.png";
+import img from "../../../assets/Website_Media/Website_Media/designs/i_am_a_salesdriver.png";
 
 export default function Section() {
   return (

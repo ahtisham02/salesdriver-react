@@ -1,13 +1,13 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
 
-import img1 from "../../../assets/download1-removebg-preview.png";
-import img2 from "../../../assets/jsb.png";
-import img3 from "../../../assets/madscience-earth.png";
-import img4 from "../../../assets/VisitorsCoverage.png";
-import img5 from "../../../assets/incubix.webp";
-import img6 from "../../../assets/health-options.png";
-import img7 from "../../../assets/VisitorsCoverage.png";
+import img1 from "../../../assets/Website_Media/Website_Media/client_images/channelkey-logo 1.png";
+import img2 from "../../../assets/Website_Media/Website_Media/client_images/health-options.png";
+import img3 from "../../../assets/Website_Media/Website_Media/client_images/incubix.png";
+import img4 from "../../../assets/Website_Media/Website_Media/client_images/jsb.png";
+import img5 from "../../../assets/Website_Media/Website_Media/client_images/madscience-earth.png";
+import img6 from "../../../assets/Website_Media/Website_Media/client_images/VisitorsCoverage.png";
+import img7 from "../../../assets/Website_Media/Website_Media/client_images/jsb.png";
 
 const logos = [img1, img2, img3, img4, img5, img6, img7];
 

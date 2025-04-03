@@ -11,7 +11,7 @@ import {
   AlignRight,
   X,
 } from "lucide-react";
-import img from "../../../assets/download-removebg-preview.png";
+import img from "../../../assets/Website_Media/Website_Media/salesdriver_logo.svg";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,7 +104,7 @@ function Navbar() {
             onClick={() => navigate("/")}
             src={img}
             alt="logo"
-            className="md:h-[68px] cursor-pointer h-[52px] md:-mt-2.5 -ml-2 md:0 z-10"
+            className="md:h-[40px] cursor-pointer h-[32px] md:0 z-10"
           />
           <button
             onClick={toggleMenu}

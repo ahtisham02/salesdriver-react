@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import img from "../../../assets/styled.png";
-import img1 from "../../../assets/sales.jpg";
-import img2 from "../../../assets/data.jpg";
-import img3 from "../../../assets/content.jpg";
-import img4 from "../../../assets/automation.jpg";
-import img5 from "../../../assets/seo.jpg";
+import img from "../../../assets/Website_Media/Website_Media/illustrations/styled-resized-two-colleagues-making-sketches-on-the-flipchart-2024-10-16-23-01-09-utc.png";
+import img1 from "../../../assets/Website_Media/Website_Media/illustrations/sales-illustration.png";
+import img2 from "../../../assets/Website_Media/Website_Media/illustrations/data-illustration.png";
+import img3 from "../../../assets/Website_Media/Website_Media/illustrations/content-illustration.png";
+import img4 from "../../../assets/Website_Media/Website_Media/illustrations/automation-illustration_.png";
+import img5 from "../../../assets/Website_Media/Website_Media/illustrations/seoads-illustration  copy.png";
 import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
 import elipse from "../../../assets/Ellipse.png";
 import {

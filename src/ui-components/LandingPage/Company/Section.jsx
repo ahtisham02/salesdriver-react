@@ -1,7 +1,7 @@
 import React from "react";
-import img from "../../../assets/rock 2.png";
+import img from "../../../assets/Website_Media/Website_Media/designs/rock_image.png";
 import vector from "../../../assets/Vector 14.png";
-import vector1 from "../../../assets/Group.png";
+// import vector1 from "../../../assets/Group.png";
 
 export default function Section() {
   return (
@@ -41,12 +41,12 @@ export default function Section() {
       </div>
 
       <div className="relative md:w-1/2 mt-8 md:mt-0 flex justify-center">
-        <img
+        {/* <img
           src={vector1}
           alt="Glow"
           className="absolute lg:block hidden -top-10 right-0 w-96 h-96 opacity-75"
-        />
-        <img src={img} alt="Sales Expertise" className="w-full max-w-md" />
+        /> */}
+        <img src={img} alt="Sales Expertise" className="w-full max-w-md ml-28" />
 
         <div className="absolute md:block hidden top-4 left-0 bg-white shadow-lg px-4 py-2 rounded-full text-sm font-medium">
           <span className="text-blueclr font-semibold">Secured</span> 8-figure
