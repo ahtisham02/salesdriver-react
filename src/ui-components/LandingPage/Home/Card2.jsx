@@ -5,41 +5,98 @@ import img1 from "../../../assets/sl6.webp";
 import img2 from "../../../assets/sl7.png";
 
 const tabs = [
-  { name: "Blog", cards: [1, 2, 3] },
-  { name: "Whitepapers", cards: [4, 5, 6] },
-  { name: "Webinars", cards: [7, 8, 9] },
-  { name: "Downloadables", cards: [10, 11, 12] },
-  { name: "Guides", cards: [13, 14, 15] },
+  { name: "Blog", category: "blog" },
+  { name: "Whitepapers", category: "whitepapers" },
+  { name: "Webinars", category: "webinars" },
+  { name: "Downloadables", category: "downloadables" },
 ];
 
-const caseStudies = Array.from({ length: 15 }, (_, i) => ({
-  id: i + 1,
-  title: `Case Study ${i + 1}`,
-  author: `Author ${i + 1}`,
-  date: `${i + 1} Jan 2023`,
-  label: `Label ${i + 1}`,
-  description: `Description for case study ${i + 1}.`,
-  img: [img, img1, img2][i % 3],
-}));
+const categorizePosts = (posts) => {
+  const postsPerCategory = Math.ceil(posts.length / tabs.length);
+  return tabs.reduce((acc, tab, index) => {
+    const start = index * postsPerCategory;
+    const end = start + postsPerCategory;
+    acc[tab.category] = posts.slice(start, end);
+    return acc;
+  }, {});
+};
 
 export default function ExactUILayout() {
-  const [activeTab, setActiveTab] = useState(tabs[0].name);
+  const [activeTab, setActiveTab] = useState(tabs[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimationActive, setIsAnimationActive] = useState(false);
+  const [posts, setPosts] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleTabClick = (tabName) => {
-    setActiveTab(tabName);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "https://salesdriver.io/wp-json/wp/v2/posts?_embed"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch posts");
+        }
+        const data = await response.json();
+
+        const postsWithMedia = data.map((post) => {
+          const featuredMedia = post._embedded?.["wp:featuredmedia"]?.[0];
+          const imageSize =
+            featuredMedia?.media_details?.sizes?.medium?.source_url ||
+            featuredMedia?.media_details?.sizes?.large?.source_url ||
+            featuredMedia?.source_url;
+
+          return {
+            ...post,
+            featuredImage: imageSize || null,
+            featuredImageAlt: featuredMedia?.alt_text || post.title.rendered,
+          };
+        });
+
+        setPosts(categorizePosts(postsWithMedia));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
     setCurrentIndex(0);
     setIsAnimationActive(true);
   };
 
+  const handleReadMore = (url) => {
+    window.open(url, "_blank");
+  };
+
   const getVisibleCards = () => {
-    const activeTabData = tabs.find((tab) => tab.name === activeTab);
+    const categoryPosts = posts[activeTab.category] || [];
     const startIndex = currentIndex * 3;
     const endIndex = startIndex + 3;
-    return activeTabData.cards
-      .slice(startIndex, endIndex)
-      .map((id) => caseStudies.find((card) => card.id === id));
+    return categoryPosts.slice(startIndex, endIndex);
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  };
+
+  const truncateContent = (content) => {
+    const plainText = content.replace(/<[^>]*>/g, "");
+    const lines = plainText.split("\n").filter((line) => line.trim() !== "");
+    const truncated = lines.slice(0, 1).join("\n");
+    return truncated.length < plainText.length ? truncated + "..." : truncated;
   };
 
   useEffect(() => {
@@ -49,6 +106,14 @@ export default function ExactUILayout() {
       }, 700);
     }
   }, [currentIndex, isAnimationActive]);
+
+  if (loading) {
+    return <div className="text-center py-20">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center py-20 text-red-500">Error: {error}</div>;
+  }
 
   return (
     <div className="sm:px-8 px-4 py-14 bg-gray-50">
@@ -67,56 +132,70 @@ export default function ExactUILayout() {
 
       <div className="flex justify-center mb-10">
         <div className="flex bg-white border scrollbar-hide border-gray-300 rounded-full p-1 shadow-md overflow-auto whitespace-nowrap max-w-full sm:max-w-[90%]">
-          {tabs.map(({ name }) => (
+          {tabs.map((tab) => (
             <button
-              key={name}
-              onClick={() => handleTabClick(name)}
+              key={tab.name}
+              onClick={() => handleTabClick(tab)}
               className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-lg font-medium transition-all duration-300 ${
-                activeTab === name
+                activeTab.name === tab.name
                   ? "bg-blue-500 text-white shadow-md"
                   : "text-gray-600 hover:text-blue-500"
               }`}
             >
-              {name}
+              {tab.name}
             </button>
           ))}
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12">
-        {getVisibleCards().map(
-          ({ id, title, author, date, label, description, img }) => (
-            <div
-              key={id}
-              className={`bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden ${
-                isAnimationActive ? "animate-slideIn" : ""
-              }`}
-            >
-              <img
-                src={img}
-                alt={title}
-                className="w-full h-52 lg:h-56 object-cover"
-              />
-              <div className="p-5">
-                <p className="text-gray-500 text-sm">
-                  {author} • {date}
-                </p>
-                <h2 className="text-xl font-semibold text-gray-900 mt-2">
-                  {label}
-                </h2>
-                <p className="text-gray-700 mt-2">{description}</p>
-                <button className="mt-4 text-blueclr flex items-center font-semibold hover:text-blue-700 transition-all duration-300">
-                  Read More <ArrowRight className="ml-2" size={18} />
-                </button>
-              </div>
+        {getVisibleCards().map((post) => (
+          <div
+            key={post.id}
+            className={`bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden ${
+              isAnimationActive ? "animate-slideIn" : ""
+            }`}
+          >
+            <img
+              src={post.featuredImage || [img, img1, img2][post.id % 3]}
+              alt={post.featuredImageAlt}
+              className="w-full h-52 lg:h-56 object-cover"
+              onError={(e) => {
+                e.target.src = [img, img1, img2][post.id % 3];
+              }}
+            />
+            <div className="p-5">
+              <p className="text-gray-500 text-sm">
+                Author {post.author} • {formatDate(post.date)}
+              </p>
+              <h2 className="text-xl font-semibold text-gray-900 mt-2">
+                {post.title.rendered}
+              </h2>
+              <p className="text-gray-700 mt-2">
+                {truncateContent(post.content.rendered)}
+              </p>
+              <button
+                onClick={() => handleReadMore(post.link)}
+                className="mt-4 text-blueclr flex items-center font-semibold hover:text-blue-700 transition-all duration-300"
+              >
+                Read More <ArrowRight className="ml-2" size={18} />
+              </button>
             </div>
-          )
-        )}
+          </div>
+        ))}
       </div>
 
       <div className="text-center mt-8">
-        <button className="inline-flex items-center px-6 py-3 bg-blueclr text-white text-lg font-semibold rounded-xl shadow-md  transition-all duration-300">
-          View All <ArrowRight className="ml-2" size={20} />
+        <button
+          onClick={() => {
+            const categoryPosts = posts[activeTab.category] || [];
+            const maxIndex = Math.ceil(categoryPosts.length / 3) - 1;
+            setCurrentIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
+            setIsAnimationActive(true);
+          }}
+          className="inline-flex items-center px-6 py-3 bg-blueclr text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300"
+        >
+          View More <ArrowRight className="ml-2" size={20} />
         </button>
       </div>
 
