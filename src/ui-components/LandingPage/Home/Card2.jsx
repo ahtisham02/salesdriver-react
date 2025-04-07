@@ -3,12 +3,14 @@ import { ArrowRight } from "lucide-react";
 import img from "../../../assets/sl3.png";
 import img1 from "../../../assets/sl6.webp";
 import img2 from "../../../assets/sl7.png";
+import { useNavigate } from "react-router-dom";
 
 const tabs = [
   { name: "Blog", category: "blog" },
   { name: "Whitepapers", category: "whitepapers" },
   { name: "Webinars", category: "webinars" },
   { name: "Downloadables", category: "downloadables" },
+  // { name: "Guides", category: "Guides" },
 ];
 
 const categorizePosts = (posts) => {
@@ -24,6 +26,7 @@ const categorizePosts = (posts) => {
 export default function ExactUILayout() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
   const [isAnimationActive, setIsAnimationActive] = useState(false);
   const [posts, setPosts] = useState({});
   const [loading, setLoading] = useState(true);
@@ -92,11 +95,15 @@ export default function ExactUILayout() {
     });
   };
 
+  const decodeHTML = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
+
   const truncateContent = (content) => {
-    const plainText = content.replace(/<[^>]*>/g, "");
-    const lines = plainText.split("\n").filter((line) => line.trim() !== "");
-    const truncated = lines.slice(0, 1).join("\n");
-    return truncated.length < plainText.length ? truncated + "..." : truncated;
+    const decodedText = decodeHTML(content.replace(/<[^>]*>/g, ""));
+    const lines = decodedText.split("\n").filter((line) => line.trim() !== "");
+    return lines.slice(0, 1).join("\n") + "...";
   };
 
   useEffect(() => {
@@ -108,7 +115,11 @@ export default function ExactUILayout() {
   }, [currentIndex, isAnimationActive]);
 
   if (loading) {
-    return <div className="text-center py-20">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#ECF7FD]">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+      </div>
+    );
   }
 
   if (error) {
@@ -171,11 +182,11 @@ export default function ExactUILayout() {
               <h2 className="text-xl font-semibold text-gray-900 mt-2">
                 {post.title.rendered}
               </h2>
-              <p className="text-gray-700 mt-2">
+              <p className="text-gray-700 mt-2 line-clamp-3">
                 {truncateContent(post.content.rendered)}
               </p>
               <button
-                onClick={() => handleReadMore(post.link)}
+                onClick={() => navigate(`/post/${post.id}`)}
                 className="mt-4 text-blueclr flex items-center font-semibold hover:text-blue-700 transition-all duration-300"
               >
                 Read More <ArrowRight className="ml-2" size={18} />
