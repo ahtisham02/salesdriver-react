@@ -28,7 +28,7 @@ const PostDetails = () => {
         const relatedData = await responseRelated.json();
         setRelatedPosts(relatedData.filter((item) => item.id !== data.id));
 
-        const otherCategories = [categoryId + 1, categoryId + 2]; // Adjust categories as per need
+        const otherCategories = [categoryId + 1, categoryId + 2];
         const otherPostsPromises = otherCategories.map((catId) =>
           fetch(`https://salesdriver.io/wp-json/wp/v2/posts?categories=${catId}&_embed=true`)
         );

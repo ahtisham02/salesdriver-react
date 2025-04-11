@@ -87,11 +87,10 @@ export default function Section() {
         <section className="relative flex flex-col md:flex-row items-center gap-12 md:px-10 pb-10 pt-5 bg-white rounded-b-3xl shadow-sm mx-6 mb-10">
           <div className="md:w-1/2 text-center px-8 py-7 md:text-left">
             <h2 className="text-3xl md:text-4xl font-bold text-[#005895] leading-normal">
-              What is a <br /> SalesDriver?
+              What is a SalesDriver?
             </h2>
             <p className="text-gray-700 text-[16px] font-bold mt-5 leading-relaxed">
-              I am a SalesDriver, You are a SalesDriver.
-              <br /> We Drive Sales.
+              I am a SalesDriver, You are a SalesDriver. We Drive Sales.
             </p>
             <p className="text-gray-700 text-[17px] mt-4 leading-relaxed">
               A SalesDriver uses data and strategy to accelerate sales. We

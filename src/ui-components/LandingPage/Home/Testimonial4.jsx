@@ -15,27 +15,27 @@ const solutions = [
   {
     title: "Virtual Sales Reps",
     logo: "MeetNow Agency",
-    logoImg: img1,
+    logoImg: img2,
   },
   {
     title: "Web Solution",
     logo: "Web Point Digital",
-    logoImg: img2,
+    logoImg: img4,
   },
   {
     title: "Social Selling",
     logo: "SEP Marketing Services",
-    logoImg: img3,
+    logoImg: img1,
   },
   {
     title: "Lead Generation",
     logo: "B2B Marketing.biz",
-    logoImg: img4,
+    logoImg: img5,
   },
   {
     title: "Web Design",
     logo: "CompanyC Creative",
-    logoImg: img5,
+    logoImg: img3,
   },
   {
     title: "Custom Solutions",
@@ -96,7 +96,9 @@ export default function SolutionsSection() {
                   <img
                     src={solution.logoImg}
                     alt={solution.logo}
-                    className="w-40 object-contain"
+                    className={`${
+                      index === 4 ? "w-60" : index < 5 ? "w-48" : "w-40"
+                    } object-contain`}
                   />
                 </div>
                 <img

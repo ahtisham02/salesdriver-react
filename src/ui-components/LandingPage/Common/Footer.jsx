@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import x from "../../../assets/Website_Media/Website_Media/icons/x.svg";
 import fb from "../../../assets/Website_Media/Website_Media/icons/facebook.svg";
 import yt from "../../../assets/Website_Media/Website_Media/icons/youtube.svg";
@@ -10,6 +10,38 @@ import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState(null);
+
+  const handleSubscribe = async () => {
+    if (!email) {
+      setStatus({ type: "error", message: "Please enter an email address." });
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "https://salesdriver.io/wp-json/wp/v2/subscribe",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ type: "success", message: "Subscribed successfully!" });
+        setEmail("");
+      } else {
+        throw new Error(data.message || "Subscription failed.");
+      }
+    } catch (error) {
+      setStatus({ type: "error", message: error.message });
+    }
+  };
+
   return (
     <footer className="bg-[#00263A] text-white pt-10 lg:pt-16 pb-6 px-5 md:px-20">
       <div className="max-w-7xl mx-auto">
@@ -242,24 +274,44 @@ export default function Footer() {
           <div className="flex w-full lg:w-auto items-center">
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="px-4 py-2 rounded-md text-black w-full lg:w-96"
             />
-            <button className="bg-yellowclr text-white font-semibold text-sm px-6 py-2.5 rounded-md ml-2">
+            <button
+              onClick={handleSubscribe}
+              className="bg-yellowclr text-white font-semibold text-sm px-6 py-2.5 rounded-md ml-2"
+            >
               SUBSCRIBE
             </button>
           </div>
+          {status && (
+            <p
+              className={`text-${
+                status.type === "success" ? "green" : "red"
+              }-500 mt-2`}
+            >
+              {status.message}
+            </p>
+          )}
         </div>
 
         <div className="border-t mt-8 pt-6 text-white text-center text-sm">
           &copy; SalesDriver.io. {new Date().getFullYear()}{" "}
-          <a href="/privacy" className="cursor-pointer hover:text-blueclr">
+          <span
+            className="cursor-pointer hover:text-blueclr"
+            onClick={() => navigate("/privacy")}
+          >
             Privacy
-          </a>{" "}
+          </span>{" "}
           —{" "}
-          <a href="/terms" className="cursor-pointer hover:text-blueclr">
+          <span
+            className="cursor-pointer hover:text-blueclr"
+            onClick={() => navigate("/terms")}
+          >
             Terms
-          </a>
+          </span>
         </div>
       </div>
     </footer>

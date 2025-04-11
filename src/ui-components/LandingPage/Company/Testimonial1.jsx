@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import img from "../../../assets/sl4.webp";
 import img1 from "../../../assets/sl5.webp";
 import img2 from "../../../assets/sl6.webp";
 import img3 from "../../../assets/sl7.png";
 import img4 from "../../../assets/sm3.webp";
-import img5 from "../../../assets/sm1.webp";
 import vector from "../../../assets/Vector7.png";
 
 const teamMembers = [
@@ -13,7 +12,7 @@ const teamMembers = [
   { id: 3, name: "James Anderson", role: "Head of Product Development", img: img2 },
   { id: 4, name: "Olivia Wilson", role: "Lead Software Engineer", img: img3 },
   { id: 5, name: "Michael Brown", role: "Senior UX/UI Designer", img: img4 },
-  { id: 6, name: "Emma Johnson", role: "Customer Success Manager", img: img5 },
+  { id: 6, name: "Emma Johnson", role: "Customer Success Manager", img: img3 },
   { id: 7, name: "Liam Roberts", role: "Operations Director", img: img1 },
   { id: 8, name: "Ava Thompson", role: "Finance and Strategy Lead", img: img },
 ];
@@ -39,19 +38,21 @@ export default function ExactUILayout() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8 justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-center">
           {teamMembers.map(({ id, name, role, img }) => (
             <div
               key={id}
-              className="bg-white rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidde border border-gray-200 text-center"
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-blue-200 text-center overflow-hidden hover:-translate-y-2"
             >
               <img
                 src={img}
                 alt={name}
-                className="w-full h-44 object-cover rounded-t-xl mb-6"
+                className="w-full h-32 object-cover bg-gray-100 rounded-t-2xl"
               />
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 px-6">{name}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4 px-6 pb-4">{role}</p>
+              <div className="p-5">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">{name}</h3>
+                <p className="text-gray-500 text-sm">{role}</p>
+              </div>
             </div>
           ))}
         </div>

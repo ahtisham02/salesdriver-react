@@ -362,9 +362,9 @@ export default function ExactUILayout() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`cursor-pointer transition-all duration-300 rounded-3xl min-w-[200px] h-[390px] flex flex-col ${
+              className={`cursor-pointer transition-all duration-300 rounded-3xl w-[130px] h-[390px] flex flex-col ${
                 expanded === index
-                  ? "min-w-[300px] h-[390px] items-start bg-[#D9EEFA]"
+                  ? "min-w-[500px] h-[390px] items-start bg-[#D9EEFA]"
                   : "items-center bg-[#ECF7FD]"
               }`}
               onClick={() => setExpanded(expanded === index ? null : index)}
@@ -377,8 +377,10 @@ export default function ExactUILayout() {
                 {`0${index + 1}`}
               </span>
               <h3
-                className={`text-lg px-6 md:text-xl font-bold text-center transition-transform duration-300 ${
-                  expanded === index ? "rotate-0" : "rotate-90 !mt-[130px]"
+                className={`text-lg px-6 font-bold text-center transition-transform duration-300 ${
+                  expanded === index
+                    ? "rotate-0 md:text-3xl"
+                    : "rotate-90 !mt-[130px] md:text-xl"
                 }`}
               >
                 {feature.title}
@@ -395,7 +397,7 @@ export default function ExactUILayout() {
                       </li>
                     ))}
                   </ol>
-                  <button className="mt-auto px-5 py-2.5 text-white text-base font-semibold self-end rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2]">
+                  <button className="mt-auto px-5 py-2.5 text-white text-xl font-semibold self-end rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2]">
                     Learn More
                   </button>
                 </>

@@ -9,8 +9,8 @@ export default function Header() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[53%_47%] sm:mt-12 mt-4 mb-28 md:mt-2 md:mb-2 md:h-[90vh] h-screen bg-[#ecf7fd]">
       <div className="flex relative bg-white flex-col justify-center px-6 md:px-12">
-        <h1 className="text-4xl md:text-5xl px-2 font-bold text-blueclr leading-snug md:leading-tight">
-          More Leads, More Sales,{" "}
+        <h1 className="text-4xl md:text-5xl font-bold text-blueclr leading-snug md:leading-tight">
+          More Leads, More Sales,{" "}<br/>
           <span className="text-blueclr">Less Effort</span>
         </h1>
         <p className="text-gray-700 mt-4 text-lg">
@@ -36,7 +36,7 @@ export default function Header() {
       <img
         src={vector}
         alt="Vector Background"
-        className="absolute lg:block hidden -top-1 left-1/2 w-72 h-full opacity-75"
+        className="absolute lg:block hidden -top-1 left-1/2 w-64 h-full opacity-75"
       />
 
       <div className="w-full relative md:h-[85vh] h-auto my-auto flex items-center justify-center">

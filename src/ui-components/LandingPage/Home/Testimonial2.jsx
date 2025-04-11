@@ -137,16 +137,16 @@ export default function ExactUILayout() {
           </h2>
         </div>
 
-        <div className="mb-6 pb-3 md:hidden overflow-x-auto scrollbar-hide">
-          <div className="flex justify-center min-w-max">
+        <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
+          <div className="flex justify-center min-w-max space-x-6">
             {tabs.map(({ name }) => (
               <button
                 key={name}
                 onClick={() => setActiveTab(name)}
-                className={`px-6 py-2 text-lg font-semibold relative transition-all ${
+                className={`px-6 py-2 text-lg font-medium transition-all duration-300 border-b-2 ${
                   activeTab === name
-                    ? "text-blueclr font-bold border-b-[3px] border-blueclr"
-                    : "text-slate-500 hover:text-slate-700"
+                    ? "text-blueclr font-bold border-blueclr"
+                    : "text-gray-500 border-gray-300 hover:border-gray-500"
                 }`}
               >
                 {name}
@@ -155,35 +155,16 @@ export default function ExactUILayout() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
-          <div className="w-full md:w-1/4 hidden md:block">
-            {tabs.map(({ name, icon: Icon }) => (
-              <button
-                key={name}
-                onClick={() => setActiveTab(name)}
-                className={`flex items-center w-full px-5 py-4 rounded-xl mb-3 transition-all text-left shadow-md ${
-                  activeTab === name
-                    ? "bg-blue-100 text-blueclr font-semibold"
-                    : "bg-white text-slate-600 hover:bg-slate-100"
-                }`}
-              >
-                <Icon className="w-6 h-6 mr-3 text-blueclr" />
-                <span className="flex-1 text-lg">{name}</span>
-                <ChevronRight
-                  className={`w-5 h-5  ${
-                    activeTab === name ? "text-blueclr" : "text-slate-500"
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
-
-          <div className="flex flex-col w-full md:w-3/4 bg-white px-10 py-14 rounded-xl shadow-xl">
+        <div className="relative flex flex-col w-full max-w-5xl bg-white mx-auto rounded-xl shadow-lg border border-gray-200">
+          <div className="flex flex-col w-full bg-white px-10 py-14 rounded-xl shadow-lg">
             <div className="flex flex-col md:flex-row w-full">
-              <div className="md:w-1/2 pr-8">
-                <h1 className="text-3xl sm:text-4xl font-bold text-[#005895]">
+              <div className="md:w-[67%] pr-8">
+                <h2 className="text-lg mb-2.5 font-medium leading-snug text-blueclr">
+                  {activeTabData?.name}
+                </h2>
+                <h2 className="text-2xl md:text-4xl font-bold leading-snug text-[#005895]">
                   {activeTabData?.heading}
-                </h1>
+                </h2>
                 <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
                   {activeTabData?.description}
                 </p>
@@ -199,7 +180,7 @@ export default function ExactUILayout() {
                 </button>
               </div>
 
-              <div className="md:w-1/2 flex items-center mt-10 mb-5 md:mb-0 md:mt-0">
+              <div className="md:w-[33%] flex items-center mt-10 mb-5 md:mb-0 md:mt-0">
                 <div className="overflow-hidden w-full">
                   <img
                     className="w-full h-auto"

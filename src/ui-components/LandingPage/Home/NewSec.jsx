@@ -41,18 +41,21 @@ export default function NewSec() {
         className="absolute lg:block hidden top-[42%] left-0 w-full h-auto -translate-y-1/2"
       />
 
-      <div className="relative z-10 lg:w-1/2 lg:!mt-10 lg:ml-56 space-y-5">
-        <h2 className="text-xl font-semibold">Your Complete Solution</h2>
-        <p className="text-gray-700 leading-relaxed">
+      <div className="relative z-10 lg:w-1/2 lg:!mt-10 lg:ml-56 space-y-6">
+        <h2 className="text-2xl md:text-[34px] font-bold">Your Complete Solution</h2>
+        <p className="text-gray-700 text-lg leading-relaxed">
           Our goal is to help you build a repeatable, scalable sales system so
           you can focus on what matters: closing deals and growing your
           business.
         </p>
-        <p className="font-semibold">
+        <p className="font-semibold text-lg">
           <span className="text-blueclr ">100k+</span> People Join
         </p>
-        <div className="text-right">
-          <button onClick={() => navigate("/company")} className="mt-4 bg-blueclr text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-blue-700 transition">
+        <div className="flex justify-center lg:-ml-[44px]">
+          <button
+            onClick={() => navigate("/company")}
+            className="mt-4 bg-blueclr text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-blue-700 transition"
+          >
             Learn More
           </button>
         </div>
