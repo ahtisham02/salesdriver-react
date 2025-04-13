@@ -6,9 +6,10 @@ import img3 from "../../../assets/Website_Media/Website_Media/illustrations/cont
 import img4 from "../../../assets/Website_Media/Website_Media/illustrations/realestate-illustration  copy.png";
 import img5 from "../../../assets/Website_Media/Website_Media/illustrations/healthcare-illustration_.png";
 import img6 from "../../../assets/Website_Media/Website_Media/illustrations/industrial-illustration.png";
-import vector from "../../../assets/Vector5.png";
+// import vector from "../../../assets/Vector5.png";
 import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const tabs = [
   {
@@ -128,6 +129,8 @@ const tabs = [
 export default function ExactUILayout() {
   const [activeTab, setActiveTab] = useState(tabs[0].name);
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
+  // const location = useLocation();
 
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
@@ -135,7 +138,7 @@ export default function ExactUILayout() {
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
   return (
-    <div className="max-w-7xl relative mx-auto py-16 px-6 md:px-12 text-center">
+    <div className="relative mx-auto py-16 px-6 md:px-12 text-center">
       <div className="absolute inset-0 w-full h-full">
         <img
           src={HeadImg}
@@ -145,20 +148,22 @@ export default function ExactUILayout() {
         <div className="absolute inset-0 bg-white opacity-75"></div>
       </div>
       <div className="relative z-10">
-        <p className="inline-block bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
-          15+ Industries Served Worldwide{" "}
-        </p>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-[#005895] mt-3 mb-6 lg:mb-8">
+        {/* {location.pathname !== "/" && ( */}
+          <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+            15+ Industries Served Worldwide{" "}
+          </p>
+        {/* )} */}
+        <h2 className="text-3xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] md:text-5xl font-extrabold text-[#005895] mt-3 mb-6 lg:mb-8">
           For Industries
         </h2>
 
-        <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
-          <div className="flex justify-start min-w-max space-x-6">
+        <div className="mb-6 pb-3">
+          <div className="flex flex-wrap justify-center gap-y-2">
             {tabs.map(({ name }) => (
               <button
                 key={name}
                 onClick={() => setActiveTab(name)}
-                className={`px-6 py-2 text-lg font-medium transition-all duration-300 border-b-2 ${
+                className={`px-4 py-2 text-base font-medium transition-all duration-300 border-b-2 ${
                   activeTab === name
                     ? "text-blueclr font-bold border-blueclr"
                     : "text-gray-500 border-gray-300 hover:border-gray-500"
@@ -170,7 +175,7 @@ export default function ExactUILayout() {
           </div>
         </div>
 
-        <div className="relative flex flex-col w-full max-w-5xl bg-white px-6 lg:px-8 py-12 mx-auto rounded-xl shadow-lg border border-gray-200">
+        <div className="relative hover:scale-[1.02] transition-all duration-300 flex flex-col w-full bg-white px-4 lg:px-8 overflow-hidden py-6 mx-auto rounded-xl shadow-lg border border-gray-200">
           <div className="flex flex-col md:flex-row w-full bg-white rounded-xl p-6 z-10">
             <div className="md:w-1/2 pr-6 text-left">
               <h2 className="text-lg mb-2.5 font-medium leading-snug text-blueclr">
@@ -187,7 +192,10 @@ export default function ExactUILayout() {
                   {desc}
                 </p>
               ))}
-              <button className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative">
+              <button
+                onClick={() => navigate("/services")}
+                className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative"
+              >
                 <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
                   {activeTabData.button}{" "}
                 </span>
@@ -197,6 +205,37 @@ export default function ExactUILayout() {
                 />
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blueclr transition-all group-hover:w-full"></span>
               </button>
+              <div className="mt-10 w-full">
+                <h2
+                  className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
+                  onClick={handleToggle}
+                >
+                  SERVICE CATEGORY
+                  {isOpen ? (
+                    <ChevronUp className="ml-2" size={22} />
+                  ) : (
+                    <ChevronDown className="ml-2" size={22} />
+                  )}
+                </h2>
+                <div
+                  className={`overflow-hidden transition-all px-4 duration-500 ease-in-out mt-4 ${
+                    isOpen ? "max-h-screen py-4" : "max-h-0"
+                  }`}
+                >
+                  {" "}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full">
+                    {activeTabData.services.map((service, index) => (
+                      <button
+                        key={index}
+                        onClick={() => navigate("/services")}
+                        className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#ECF7FD] hover:text-[#00A7E2] shadow-md hover:shadow-lg hover:border-[#00A7E2] transition-all w-full hover:scale-105 text-gray-800"
+                      >
+                        {service}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="md:w-1/2 mt-10 mb-1 md:mb-0 md:mt-0 flex items-center justify-center relative">
@@ -206,42 +245,11 @@ export default function ExactUILayout() {
                 className="max-w-full h-auto relative z-10"
               />
 
-              <img
+              {/* <img
                 src={vector}
                 alt="Vector Background"
                 className="absolute lg:block hidden bottom-10 left-1/3 transform -translate-x-1/2 scale-[2] w-auto h-auto z-20"
-              />
-            </div>
-          </div>
-
-          <div className="mt-10 w-full">
-            <h2
-              className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
-              onClick={handleToggle}
-            >
-              SERVICE CATEGORY
-              {isOpen ? (
-                <ChevronUp className="ml-2" size={22} />
-              ) : (
-                <ChevronDown className="ml-2" size={22} />
-              )}
-            </h2>
-            <div
-              className={`overflow-hidden transition-all px-4 duration-500 ease-in-out mt-4 ${
-                isOpen ? "max-h-screen py-4" : "max-h-0"
-              }`}
-            >
-              {" "}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 w-full">
-                {activeTabData.services.map((service, index) => (
-                  <button
-                    key={index}
-                    className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105 text-gray-800"
-                  >
-                    {service}
-                  </button>
-                ))}
-              </div>
+              /> */}
             </div>
           </div>
         </div>

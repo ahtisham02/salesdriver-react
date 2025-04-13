@@ -7,8 +7,9 @@ import img4 from "../../../assets/Website_Media/Website_Media/illustrations/auto
 import img5 from "../../../assets/Website_Media/Website_Media/illustrations/seoads-illustration  copy.png";
 import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
 import elipse from "../../../assets/Ellipse.png";
+// import vector from "../../../assets/Vector5.png";
+import { useNavigate } from "react-router-dom";
 import {
-  ChevronRight,
   ChevronDown,
   Activity,
   TrendingUp,
@@ -99,6 +100,7 @@ const tabs = [
 export default function ExactUILayout() {
   const [activeTab, setActiveTab] = useState("Strategy");
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
@@ -128,17 +130,17 @@ export default function ExactUILayout() {
       />
       <div className="relative z-10">
         <div className="mb-12 text-center">
-          <p className="inline-block bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+          <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
             OUR Services
           </p>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#005895] mt-3">
+          <h2 className="text-3xl md:text-5xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] font-extrabold text-[#005895] mt-3">
             Expert-built Services,
             <br /> Built for You{" "}
           </h2>
         </div>
 
-        <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
-          <div className="flex justify-center min-w-max space-x-6">
+        <div className="mb-6 pb-3">
+          <div className="flex flex-wrap justify-center gap-y-2">
             {tabs.map(({ name }) => (
               <button
                 key={name}
@@ -155,10 +157,10 @@ export default function ExactUILayout() {
           </div>
         </div>
 
-        <div className="relative flex flex-col w-full max-w-5xl bg-white mx-auto rounded-xl shadow-lg border border-gray-200">
-          <div className="flex flex-col w-full bg-white px-10 py-14 rounded-xl shadow-lg">
+        <div className="relative flex flex-col w-full overflow-hidden px-4 lg:px-8 py-6 bg-white mx-auto rounded-xl shadow-lg border border-gray-200">
+          <div className="flex flex-col w-full bg-white p-6 rounded-xl">
             <div className="flex flex-col md:flex-row w-full">
-              <div className="md:w-[67%] pr-8">
+              <div className="md:w-1/2 pr-8">
                 <h2 className="text-lg mb-2.5 font-medium leading-snug text-blueclr">
                   {activeTabData?.name}
                 </h2>
@@ -168,7 +170,14 @@ export default function ExactUILayout() {
                 <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
                   {activeTabData?.description}
                 </p>
-                <button className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative">
+                <button
+                  onClick={() =>
+                    navigate("/services", {
+                      state: { name: activeTabData?.name },
+                    })
+                  }
+                  className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative"
+                >
                   <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
                     Learn More
                   </span>
@@ -178,64 +187,114 @@ export default function ExactUILayout() {
                   />
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blueclr transition-all group-hover:w-full"></span>
                 </button>
-              </div>
+                <div className="mt-10 w-full">
+                  <h2
+                    className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
+                    onClick={handleToggle}
+                  >
+                    Linked Services
+                    {isOpen ? (
+                      <ChevronUp className="ml-2" size={22} />
+                    ) : (
+                      <ChevronDown className="ml-2" size={22} />
+                    )}
+                  </h2>
 
-              <div className="md:w-[33%] flex items-center mt-10 mb-5 md:mb-0 md:mt-0">
-                <div className="overflow-hidden w-full">
-                  <img
-                    className="w-full h-auto"
-                    src={activeTabData?.img}
-                    alt="Service Illustration"
-                  />
+                  <div
+                    className={`overflow-hidden transition-all duration-500 px-4 ease-in-out mt-4 ${
+                      isOpen ? "max-h-screen py-4" : "max-h-0"
+                    }`}
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                      {activeTabData?.btn1 && (
+                        <button
+                          onClick={() =>
+                            navigate("/services", {
+                              state: { name: activeTabData?.name },
+                            })
+                          }
+                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                        >
+                          {activeTabData.btn1}
+                        </button>
+                      )}
+                      {activeTabData?.btn2 && (
+                        <button
+                          onClick={() =>
+                            navigate("/services", {
+                              state: { name: activeTabData?.name },
+                            })
+                          }
+                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                        >
+                          {activeTabData.btn2}
+                        </button>
+                      )}
+                      {activeTabData?.btn3 && (
+                        <button
+                          onClick={() =>
+                            navigate("/services", {
+                              state: { name: activeTabData?.name },
+                            })
+                          }
+                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                        >
+                          {activeTabData.btn3}
+                        </button>
+                      )}
+                      {activeTabData?.btn4 && (
+                        <button
+                          onClick={() =>
+                            navigate("/services", {
+                              state: { name: activeTabData?.name },
+                            })
+                          }
+                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                        >
+                          {activeTabData.btn4}
+                        </button>
+                      )}
+                      {activeTabData?.btn5 && (
+                        <button
+                          onClick={() =>
+                            navigate("/services", {
+                              state: { name: activeTabData?.name },
+                            })
+                          }
+                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                        >
+                          {activeTabData.btn5}
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-10 w-full">
-              <h2
-                className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
-                onClick={handleToggle}
-              >
-                Linked Services
-                {isOpen ? (
-                  <ChevronUp className="ml-2" size={22} />
-                ) : (
-                  <ChevronDown className="ml-2" size={22} />
-                )}
-              </h2>
-
-              <div
-                className={`overflow-hidden transition-all duration-500 px-4 ease-in-out mt-4 ${
-                  isOpen ? "max-h-screen py-4" : "max-h-0"
-                }`}
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-                  {activeTabData?.btn1 && (
-                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                      {activeTabData.btn1}
-                    </button>
-                  )}
-                  {activeTabData?.btn2 && (
-                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                      {activeTabData.btn2}
-                    </button>
-                  )}
-                  {activeTabData?.btn3 && (
-                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                      {activeTabData.btn3}
-                    </button>
-                  )}
-                  {activeTabData?.btn4 && (
-                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                      {activeTabData.btn4}
-                    </button>
-                  )}
-                  {activeTabData?.btn5 && (
-                    <button className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105">
-                      {activeTabData.btn5}
-                    </button>
-                  )}
+              <div className="md:w-1/2 flex items-center mt-10 mb-5 md:mb-0 md:mt-0 justify-center relative">
+                <img
+                  className="w-full h-auto"
+                  src={activeTabData?.img}
+                  alt="Service Illustration"
+                />
+                <div className="absolute right-20 md:right-0 bottom-[400px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                  <span className="text-blueclr font-bold mr-1">Expert</span>
+                  <span>Insights</span>
                 </div>
+
+                <div className="absolute left-20 md:-left-20 bottom-[340px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                  <span className="text-blueclr font-bold mr-1">Optimize</span>{" "}
+                  Touchoints
+                </div>
+                <div className="absolute bottom-32 right-0 md:right-44 bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                  <span className="text-blueclr font-bold mr-1">Scalable</span>{" "}
+                  Roadmap
+                </div>
+                {/* <img
+                  src={vector}
+                  alt="Vector Background"
+                  className="absolute lg:block hidden bottom-10 left-1/3 transform -translate-x-1/2 scale-[2] w-auto h-auto z-20"
+                /> */}
               </div>
             </div>
           </div>

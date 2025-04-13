@@ -88,10 +88,12 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="relative z-50">
+    <div className="relative z-30">
       <nav
         className={`fixed top-0 left-0 w-full border-gray-200 transition-all duration-500 ease-in-out ${
-          isScrolled
+          location.pathname.startsWith("/post/")
+            ? "bg-transparent"
+            : isScrolled
             ? "bg-white opacity-100"
             : location.pathname === "/"
             ? "bg-white md:bg-[linear-gradient(to_right,#fff_53%,#ecf7fd_47%)]"
@@ -114,8 +116,12 @@ function Navbar() {
           </button>
           <ul
             className={`hidden custom-lg:flex 
-   ${location.pathname === "/" ? "lg:-ml-[450px]" : "lg:-ml-10"} 
-   lg:space-x-8 text-black`}
+             ${
+               location.pathname === "/"
+                 ? "lg:-ml-[450px] 2xl:-ml-[590px]"
+                 : "lg:-ml-10"
+             } 
+             lg:space-x-8 text-black`}
           >
             {" "}
             {["Services", "Solutions", "Industries", "Company"].map((label) => {
@@ -145,27 +151,9 @@ function Navbar() {
           </ul>
 
           <div className="hidden sm:flex">
-            {/* <button
-              onClick={() => navigate("/auth")}
-              className="hidden sm:flex sm:items-center px-1 py-1.5 min-[1090px]:mb-1"
-            >
-              <h1 className="font-semibold z-[1050] text-[15px] px-3">API</h1>
-            </button>
-            <button
-              onClick={() => navigate("/auth")}
-              className="hidden sm:flex sm:items-center px-1 py-1.5 min-[1090px]:mb-1"
-            >
-              <h1 className="font-semibold z-[1050] text-[15px] px-3">Help</h1>
-            </button>
-            <button
-              onClick={() => navigate("/auth")}
-              className="hidden sm:flex sm:items-center px-1 py-1.5 min-[1090px]:mb-1"
-            >
-              <h1 className="font-semibold z-[1050] text-[15px] px-3">Login</h1>
-            </button> */}
             <button
               onClick={() => navigate("/contact")}
-              className="hidden ml-4 z-[1050] sm:flex sm:items-center text-white bg-yellowclr rounded-md shadow-md px-1 py-1.5 min-[1090px]:mb-1"
+              className="hidden ml-4 z-[1050] transform transition-all duration-300 hover:-translate-y-[2px] hover:scale-[1] hover:bg-[#DA9613] sm:flex sm:items-center text-white bg-yellowclr rounded-full shadow-md px-1 py-1.5 min-[1090px]:mb-1"
             >
               <h1 className="font-medium px-3">Start Now</h1>
             </button>

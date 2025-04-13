@@ -6,10 +6,10 @@ import img2 from "../../../assets/sl7.png";
 import { useNavigate } from "react-router-dom";
 
 const tabs = [
-  { name: "Blog", category: "blog" },
-  { name: "Whitepapers", category: "whitepapers" },
-  { name: "Webinars", category: "webinars" },
-  { name: "Downloadables", category: "downloadables" },
+  { name: "Blog", category: "blog", path: "/blog" },
+  { name: "Whitepapers", category: "whitepapers", path: "/white-papers" },
+  { name: "Webinars", category: "webinars", path: "/webinar" },
+  { name: "Downloadables", category: "downloadables", path: "/downloadables" },
   // { name: "Guides", category: "Guides" },
 ];
 
@@ -129,28 +129,28 @@ export default function ExactUILayout() {
   return (
     <div className="sm:px-8 px-4 py-14 bg-gray-50">
       <div className="text-center mb-10">
-        <p className="inline-block bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+        <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
           insights and news{" "}
         </p>
-        <h1 className="md:text-5xl text-3xl font-bold text-[#005895] mt-2">
+        <h1 className="md:text-5xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] text-3xl font-bold text-[#005895] mt-2">
           Stay Ahead in Sales
         </h1>
-        <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px]">
           Get practical insights, proven strategies, and expert guidance to
           sharpen your sales process.
         </p>
       </div>
 
       <div className="flex justify-center mb-10">
-        <div className="flex bg-white border scrollbar-hide border-gray-300 rounded-full p-1 shadow-md overflow-auto whitespace-nowrap max-w-full sm:max-w-[90%]">
+        <div className="flex bg-white border scrollbar-hide border-gray-300 rounded-full p-1.5 shadow-md overflow-auto whitespace-nowrap max-w-full sm:max-w-[90%]">
           {tabs.map((tab) => (
             <button
               key={tab.name}
               onClick={() => handleTabClick(tab)}
               className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-lg font-medium transition-all duration-300 ${
                 activeTab.name === tab.name
-                  ? "bg-blue-500 text-white shadow-md"
-                  : "text-gray-600 hover:text-blue-500"
+                  ? "bg-[#00A7E2] text-white shadow-md"
+                  : "hover:text-white text-gray-700 hover:bg-[#00A7E2]"
               }`}
             >
               {tab.name}
@@ -198,13 +198,8 @@ export default function ExactUILayout() {
 
       <div className="text-center mt-8">
         <button
-          onClick={() => {
-            const categoryPosts = posts[activeTab.category] || [];
-            const maxIndex = Math.ceil(categoryPosts.length / 3) - 1;
-            setCurrentIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
-            setIsAnimationActive(true);
-          }}
-          className="inline-flex items-center px-6 py-3 bg-blueclr text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300"
+          onClick={() => navigate(activeTab.path)}
+          className="inline-flex items-center px-6 py-3 bg-blueclr text-white text-lg hover:bg-[#0091C4] font-semibold rounded-full shadow-md hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px]"
         >
           View More <ArrowRight className="ml-2" size={20} />
         </button>

@@ -66,7 +66,7 @@ const PostDetails = () => {
   }
 
   return (
-    <div className="px-6 py-16 bg-[#ECF7FD] min-h-screen">
+    <div className="px-6 py-16 pt-20 bg-[#ECF7FD] min-h-screen">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="col-span-2 bg-white rounded-3xl shadow-xl p-6 border border-gray-200">
           <img
@@ -83,14 +83,7 @@ const PostDetails = () => {
         </div>
 
         <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-200">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Categories</h2>
-          <ol className="list-disc pl-9 mb-6 text-gray-700 border-dotted border-2 border-gray-400 p-4 rounded-xl">
-            {allCategories.map((cat) => (
-              <li key={cat.id} className="mb-2">{cat.name}</li>
-            ))}
-          </ol>
-
-          <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Related Posts</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-2">Related Posts</h2>
           {relatedPosts.length > 0 ? (
             <div className="space-y-6">
               {relatedPosts.map((relatedPost) => (

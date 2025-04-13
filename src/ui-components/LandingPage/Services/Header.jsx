@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import HeadImg from "../../../assets/Group1000001040.png";
+import { useLocation } from "react-router-dom";
 
 const tabs = [
   "Strategy",
@@ -14,7 +15,7 @@ const tabs = [
 const tabData = {
   Strategy: [
     {
-      title: "Dedicated Account and Project Manager",
+      title: "Project Manager",
       description:
         "A dedicated professional to oversee your campaign success and ensure smooth project execution.",
       points: [
@@ -108,7 +109,7 @@ const tabData = {
   ],
   Data: [
     {
-      title: "20 Domains: 60 Warmed Emails",
+      title: "60 Warmed Emails",
       description:
         "A network of domains and email accounts for high-volume outreach.",
       points: [
@@ -126,7 +127,7 @@ const tabData = {
       ],
     },
     {
-      title: "4000 Appended Leads (Buyer & Hiring Intent Data)",
+      title: "4000 Appended Leads",
       description: "High-quality lead data enriched with intent signals.",
       points: [
         "Provides enriched data for targeted outreach.",
@@ -313,12 +314,14 @@ const tabData = {
 
 export default function ExactUILayout() {
   const [expanded, setExpanded] = useState(1);
-  const [activeTab, setActiveTab] = useState("Strategy");
+  const location = useLocation();
+  const name = location.state?.name;
+  const [activeTab, setActiveTab] = useState(name || "Strategy");
 
   const features = tabData[activeTab] || [];
 
   return (
-    <div className="container relative mx-auto px-6 pt-10 lg:pt-14 my-4">
+    <div className="container relative mx-auto px-6 lg:px-14 pt-10 lg:pt-14 my-4">
       <div className="absolute inset-0 w-full h-full">
         <img
           src={HeadImg}
@@ -328,7 +331,7 @@ export default function ExactUILayout() {
       </div>
       <div className="relative z-10">
         <div className="mb-8 text-center">
-          <h1 className="lg:text-[48px] mt-2 text-3xl font-extrabold text-[#00A7E2] tracking-wide">
+          <h1 className="lg:text-[58px] my-2 text-3xl font-extrabold text-[#00A7E2] tracking-wide">
             Helping you get more for your business
           </h1>
         </div>
@@ -358,14 +361,14 @@ export default function ExactUILayout() {
           roadmap that drives predictable growth.
         </p>
 
-        <div className="flex overflow-x-auto scrollbar-custom space-x-4 py-6">
+        <div className="flex overflow-x-auto scrollbar-custom space-x-2 py-6">
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`cursor-pointer transition-all duration-300 rounded-3xl w-[130px] h-[390px] flex flex-col ${
+              className={`cursor-pointer transition-all duration-300 ease-in-out rounded-3xl w-[150px] h-[390px] flex flex-col ${
                 expanded === index
-                  ? "min-w-[500px] h-[390px] items-start bg-[#D9EEFA]"
-                  : "items-center bg-[#ECF7FD]"
+                  ? "min-w-[500px] scale-[1.01] shadow-lg h-[390px] items-start bg-[#D9EEFA]"
+                  : "items-center bg-[#ECF7FD] hover:scale-[1.04] hover:bg-[#D9EEFA] hover:shadow-lg"
               }`}
               onClick={() => setExpanded(expanded === index ? null : index)}
             >
@@ -377,7 +380,7 @@ export default function ExactUILayout() {
                 {`0${index + 1}`}
               </span>
               <h3
-                className={`text-lg px-6 font-bold text-center transition-transform duration-300 ${
+                className={`text-lg px-6 font-bold text-center transition-transform duration-500 ${
                   expanded === index
                     ? "rotate-0 md:text-3xl"
                     : "rotate-90 !mt-[130px] md:text-xl"
@@ -397,9 +400,13 @@ export default function ExactUILayout() {
                       </li>
                     ))}
                   </ol>
-                  <button className="mt-auto px-5 py-2.5 text-white text-xl font-semibold self-end rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2]">
+                  <a
+                    href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-auto px-5 py-2.5 text-white text-xl font-semibold self-end rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2] transition-all duration-300 ease-in-out hover:from-[#fbad18] hover:to-[#fbad18]"
+                  >
                     Learn More
-                  </button>
+                  </a>
                 </>
               )}
             </div>

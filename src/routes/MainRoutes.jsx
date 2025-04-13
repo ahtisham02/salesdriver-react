@@ -15,6 +15,8 @@ import DataSheetsPage from "../pages/LandingPages/DataSheets/DataSheets";
 import WhitePapersPage from "../pages/LandingPages/WhitePapers/WhitePapers";
 import DownloadablesPage from "../pages/LandingPages/Downloadables/Downloadables";
 import PostDetails from "../pages/LandingPages/PostDetails/PostDetails";
+import Privacy from "../pages/LandingPages/Privacy/Privacy";
+import Terms from "../pages/LandingPages/Terms/Terms";
 import Layout from "./LandingPageLayout";
 import ScrollToTop from "../utils/ScrollToTop";
 
@@ -39,6 +41,8 @@ const MainRoutes = () => {
           <Route path="/data-sheets" element={<DataSheetsPage />} />
           <Route path="/white-papers" element={<WhitePapersPage />} />
           <Route path="/downloadables" element={<DownloadablesPage />} />
+          <Route path="/Privacy" element={<Privacy />} />
+          <Route path="/Terms" element={<Terms />} />
           <Route path="/post/:id" element={<PostDetails />} />
         </Route>
       </Routes>

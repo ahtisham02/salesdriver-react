@@ -1,11 +1,10 @@
 import React from "react";
 import img from "../../../assets/Website_Media/Website_Media/designs/rock_image.png";
 import vector from "../../../assets/Vector 14.png";
-// import vector1 from "../../../assets/Group.png";
 
 export default function Section() {
   return (
-    <section className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12 bg-white">
+    <section className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-16 pb-12 pt-6 bg-white">
       <div className="relative md:w-1/2 space-y-5">
         <img
           src={vector}
@@ -13,7 +12,7 @@ export default function Section() {
           className="absolute lg:block hidden -top-64 -left-40 w-full h-96 object-contain"
         />
 
-        <h2 className="text-3xl md:text-4xl lg:text-[45px] font-extrabold text-[#005895] !leading-tight">
+        <h2 className="text-3xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] md:text-4xl lg:text-[45px] font-extrabold text-[#005895] !leading-tight">
           Meet Our Founder
         </h2>
         <h3 className="text-2xl font-semibold text-gray-800">
@@ -41,24 +40,23 @@ export default function Section() {
       </div>
 
       <div className="relative md:w-1/2 mt-8 md:mt-0 flex justify-center">
-        {/* <img
-          src={vector1}
-          alt="Glow"
-          className="absolute lg:block hidden -top-10 right-0 w-96 h-96 opacity-75"
-        /> */}
-        <img src={img} alt="Sales Expertise" className="w-full max-w-md ml-28" />
+        <img
+          src={img}
+          alt="Sales Expertise"
+          className="w-full max-w-md md:ml-28"
+        />
 
-        <div className="absolute md:block hidden top-4 left-0 bg-white shadow-lg px-4 py-2 rounded-full text-sm font-medium">
-          <span className="text-blueclr font-semibold">Secured</span> 8-figure
+        <div className="absolute md:block hidden top-4 left-0 bg-white shadow-lg px-4 py-2 rounded-full text-sm font-medium transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] hover:shadow-xl">
+          <span className="text-blueclr font-bold">Secured</span> 8-figure
           Contracts
         </div>
 
-        <div className="absolute md:block hidden bottom-4 left-0 bg-white shadow-lg px-4 py-2 rounded-full text-sm font-medium">
-          <span className="text-blueclr">20+</span> years of Experience
+        <div className="absolute md:block hidden bottom-4 left-0 bg-white shadow-lg px-4 py-2 rounded-full text-sm font-medium transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] hover:shadow-xl">
+          <span className="text-blueclr font-bold">20+</span> years of Experience
         </div>
 
-        <div className="absolute md:block hidden top-12 right-0 bg-white shadow-lg px-4 py-2 rounded-full text-sm font-medium">
-          <span className="text-blueclr">Omnicom</span> Experience
+        <div className="absolute md:block hidden top-12 right-0 bg-white shadow-lg px-4 py-2 rounded-full text-sm font-medium transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] hover:shadow-xl">
+          <span className="text-blueclr font-bold">Omnicom</span> Experience
         </div>
       </div>
     </section>

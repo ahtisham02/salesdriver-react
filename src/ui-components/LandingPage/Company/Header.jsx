@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import img from "../../../assets/resizedi.png";
-import vector from "../../../assets/Vector13.png";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 export default function Section() {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [ref, inView] = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  React.useEffect(() => {
+    if (inView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [inView, hasAnimated]);
+
   return (
-    <>
-      <div className="w-full py-5 mt-10 bg-gradient-to-t from-[#ECF7FD] to-[#fbfeff]">
+    <div ref={ref}>
+      <div className="w-full mt-10 bg-gradient-to-t from-[#ECF7FD] to-[#fbfeff]">
         <div className="relative flex flex-col items-center text-center py-10">
           <h1 className="text-4xl pt-5 md:text-5xl font-bold text-blueclr">
             We Are SalesDriver
@@ -14,59 +27,75 @@ export default function Section() {
             We Drive Sales
           </p>
 
-          <div className="absolute flex top-0 left-0 md:left-10 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 items-center">
-            <span className="text-blueclr font-bold">All-in-One</span> Sales and
-            Marketing Ecosystem
+          <div className="absolute sm:flex hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] hidden top-0 left-0 md:left-10 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 items-center">
+            <span className="text-blueclr font-bold mr-1">All-in-One</span>{" "}
+            Sales and Marketing Ecosystem
           </div>
-          <div className="absolute top-0 right-0 md:right-10 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
-            <span className="text-blueclr font-bold">Human-Powered</span> AI
-            Solutions
+          <div className="absolute top-0 hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] right-0 md:right-10 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+            <span className="text-blueclr font-bold mr-1">Human-Powered</span>{" "}
+            AI Solutions
           </div>
 
-          <div className="absolute bottom-0 left-0 md:left-40 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
-            <span className="text-blueclr font-bold">Data-enriched</span>{" "}
+          <div className="absolute bottom-0 hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] left-0 md:left-40 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+            <span className="text-blueclr font-bold mr-1">Data-enriched</span>{" "}
             Execution
           </div>
-          <div className="absolute bottom-0 right-0 md:right-40 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 flex items-center">
-            <span className="text-blueclr font-bold">Advanced</span> Proprietary
-            Tools
+          <div className="absolute bottom-0 hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] right- md:right-40 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+            <span className="text-blueclr font-bold mr-1">Advanced</span>{" "}
+            Proprietary Tools
           </div>
         </div>
 
-        <img
-          src={vector}
-          alt="Glow"
-          className="absolute lg:block hidden top-24 right-0 w-full h-full object-contain opacity-75 z-10"
-        />
-        <section className="relative flex flex-col items-center text-center bg-white rounded-t-3xl shadow-sm mx-6 mt-10 px-6 md:px-12 pt-9 pb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#005895] leading-normal">
+        <section className="relative flex flex-col items-center text-left md:text-center bg-white mt-10 px-6 md:px-12 pt-12 pb-6">
+          <h2 className="text-3xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] md:text-4xl font-bold text-[#005895] leading-normal">
             What We Do
           </h2>
-          <p className="text-gray-700 text-lg mt-3 leading-relaxed max-w-3xl">
+          <p className="text-gray-700 hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] text-lg mt-3 leading-relaxed max-w-3xl">
             We build sales-driven solutions by combining virtual sales teams,
             automations, and data-driven strategies that grow your revenue.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-10 w-full max-w-5xl">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center text-blueclr">
               <span className="text-3xl font-bold">
-                20<span className="text-blueclr">+</span>
+                {hasAnimated ? (
+                  <CountUp end={20} duration={2.5} className="text-black" />
+                ) : (
+                  "0+"
+                )}
+                +
               </span>
               <p className="text-gray-600 text-sm">
                 Years of Agency Experience
               </p>
             </div>
 
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center text-blueclr">
               <span className="text-3xl font-bold">
-                $100M<span className="text-blueclr">+</span>
+                <span className="text-black"> $</span>
+                {hasAnimated ? (
+                  <CountUp
+                    end={100}
+                    duration={2.5}
+                    suffix="M"
+                    className="text-black"
+                  />
+                ) : (
+                  "0M+"
+                )}
+                +
               </span>
               <p className="text-gray-600 text-sm">New Business Sales</p>
             </div>
 
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center text-blueclr">
               <span className="text-3xl font-bold">
-                15<span className="text-blueclr">+</span>
+                {hasAnimated ? (
+                  <CountUp end={15} duration={2.5} className="text-black" />
+                ) : (
+                  "0+"
+                )}
+                +
               </span>
               <p className="text-gray-600 text-sm">
                 Industries Served Worldwide
@@ -74,8 +103,18 @@ export default function Section() {
             </div>
 
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold">
-                10Ks<span className="text-blueclr">+</span>
+              <span className="text-3xl font-bold text-blueclr">
+                {hasAnimated ? (
+                  <CountUp
+                    end={10}
+                    duration={2.5}
+                    suffix="K"
+                    className="text-black"
+                  />
+                ) : (
+                  "0K+"
+                )}
+                +
               </span>
               <p className="text-gray-600 text-sm">
                 of Meetings Booked & Deals Closed
@@ -84,9 +123,9 @@ export default function Section() {
           </div>
         </section>
 
-        <section className="relative flex flex-col md:flex-row items-center gap-12 md:px-10 pb-10 pt-5 bg-white rounded-b-3xl shadow-sm mx-6 mb-10">
-          <div className="md:w-1/2 text-center px-8 py-7 md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#005895] leading-normal">
+        <section className="relative flex flex-col md:flex-row items-center gap-12 md:px-10 pb-10 pt-5 bg-white mb-10">
+          <div className="md:w-1/2 px-8 py-7 text-left">
+            <h2 className="text-3xl md:text-4xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] font-bold text-[#005895] leading-normal">
               What is a SalesDriver?
             </h2>
             <p className="text-gray-700 text-[16px] font-bold mt-5 leading-relaxed">
@@ -108,11 +147,11 @@ export default function Section() {
             <img
               src={img}
               alt="Sales Illustration"
-              className="w-full h-[360px] max-w-xl"
+              className="w-full h-full object-contain max-w-xl hover:scale-[1.03] transition-all duration-300"
             />
           </div>
         </section>
       </div>
-    </>
+    </div>
   );
 }

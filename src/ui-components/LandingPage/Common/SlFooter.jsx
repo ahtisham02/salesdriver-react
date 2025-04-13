@@ -33,13 +33,14 @@ export default function SalesInsightsSection() {
             <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-end space-y-4 sm:space-y-0 sm:space-x-4">
               <a
                 href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
-                className="bg-yellowclr text-white px-7 py-2.5 rounded-lg font-semibold text-base"
+                className="bg-yellowclr text-white hover:bg-[#DA9613] px-7 py-[11px] hover:scale-[1.04] transition-transform duration-200 rounded-full font-semibold text-base"
               >
                 Book a Call
               </a>
               <button
                 onClick={() => navigate("/services")}
-                className="border border-white text-white px-7 py-2.5 rounded-lg font-semibold text-base"
+                className="border-2 text-white px-7 py-2.5 rounded-full font-semibold text-base 
+             border-white hover:bg-white hover:border-[#fbad18] hover:scale-[1.04] hover:text-[#fbad18] transition-transform duration-300"
               >
                 Browse Services
               </button>
