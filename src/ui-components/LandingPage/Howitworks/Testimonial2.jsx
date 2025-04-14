@@ -47,7 +47,7 @@ export default function StatsSection() {
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 max-w-6xl mx-auto">
           {stats.map((stat, index) => (
-            <div key={index} className="p-6">
+            <div key={index} className="p-6 rounded-full bg-[#E0F7FA] shadow-md hover:scale-[1.04] font-semibold z-40 transition-all duration-300">
               <p className="text-3xl md:text-4xl font-bold text-blueclr mb-3">
                 {stat.value === 100 && stat.suffix === "M+" ? (
                   <>

@@ -158,7 +158,7 @@ export default function ExactUILayout() {
         </div>
 
         <div className="relative flex flex-col w-full overflow-hidden px-4 lg:px-8 py-6 bg-white mx-auto rounded-xl shadow-lg border border-gray-200">
-          <div className="flex flex-col w-full bg-white p-6 rounded-xl">
+          <div className="flex flex-col w-full bg-white p-2 md:p-6 rounded-xl">
             <div className="flex flex-col md:flex-row w-full">
               <div className="md:w-1/2 pr-8">
                 <h2 className="text-lg mb-2.5 font-medium leading-snug text-blueclr">

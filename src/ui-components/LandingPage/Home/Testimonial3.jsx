@@ -176,7 +176,7 @@ export default function ExactUILayout() {
         </div>
 
         <div className="relative hover:scale-[1.02] transition-all duration-300 flex flex-col w-full bg-white px-4 lg:px-8 overflow-hidden py-6 mx-auto rounded-xl shadow-lg border border-gray-200">
-          <div className="flex flex-col md:flex-row w-full bg-white rounded-xl p-6 z-10">
+          <div className="flex flex-col md:flex-row w-full bg-white rounded-xl p-2 md:p-6 z-10">
             <div className="md:w-1/2 pr-6 text-left">
               <h2 className="text-lg mb-2.5 font-medium leading-snug text-blueclr">
                 {activeTabData.name}

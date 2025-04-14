@@ -95,14 +95,14 @@ const ExactUILayout = () => {
 
   if (loadingCategories) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-[#ECF7FD]">
+      <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
       </div>
     );
   }
 
   return (
-    <div className="px-6 relative py-16 bg-[#ECF7FD]">
+    <div className="px-6 relative py-16 bg-white">
       <div className="text-center mb-12">
         <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
           case studies
@@ -142,7 +142,7 @@ const ExactUILayout = () => {
           <div className="relative">
             <Slider ref={setSliderRef} {...settings}>
               {posts.map((post) => (
-                <div key={post.id} className="px-2 hover:scale-105 transition-transform duration-200">
+                <div key={post.id} className="px-2 m-3 hover:scale-105 transition-transform duration-200">
                   <div className="bg-white rounded-3xl p-6 border border-gray-200 h-full">
                     <img
                       src={

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import HeadImg from "../../../assets/Group1000001040.png";
+import img1 from "../../../assets/Rectangle 35.png";
+import img2 from "../../../assets/Rectangle 35 (1).png";
+import img3 from "../../../assets/Rectangle 35 (2).png";
+import img4 from "../../../assets/Rectangle 35 (3).png";
+import img5 from "../../../assets/Rectangle 35 (4).png";
+import img6 from "../../../assets/Rectangle 35 (5).png";
 
 const tabs = [
   "Strategy",
@@ -14,48 +20,81 @@ const tabs = [
 const tabData = {
   Strategy: [
     {
-      title: "Virtual Sales",
+      title: "Virtual Sales Reps",
+      logo: "MeetNow Agency",
+      logoImg: img2,
+      path: "https://meetnow.agency/",
       description:
-        "A dedicated professional to oversee your campaign success and ensure smooth project execution.",
+        "Virtual sales reps that handle outreach, book meetings, and close deals, reducing overhead and scaling sales difficulty.",
       points: [
-        "Keeps your campaigns organized and on track.",
-        "Provides expert guidance for smooth execution.",
+        "Lower costs compared to hiring in-house sales reps",
+        "Consistent pipeline of qualified meetings",
+        "Scalable feature to grow without extra overhead",
       ],
     },
     {
       title: "Social Selling",
+      logo: "SEP Marketing Services",
+      logoImg: img1,
+      path: "https://companycmarketing.com/home",
       description:
         "AI-powered social selling that connects businesses with the right prospects and turns social media into a sales engine.",
       points: [
         "Automated outreach to target ideal customers",
         "AI-driven engagement to increase response rates",
+        "More leads generated through LinkedIn and other platforms",
       ],
     },
     {
       title: "Web Design",
+      logo: "CompanyC Creative",
+      logoImg: img3,
+      path: "https://info.b2bmarketing.biz/home",
       description:
-        "Mapping out the entire customer experience to enhance engagement and conversion.",
+        "Conversion focused web design that enhances user experience and drives measurable business growth.",
       points: [
-        "Improves customer experience with strategic touchpoints.",
-        "Identifies gaps in the conversion process.",
+        "Strategically designed websites for higher conversions",
+        "Optimized layouts to enhance user experience",
+        "Data-driven approach to maximize online sales",
       ],
     },
     {
       title: "Web Solution",
+      logo: "Web Point Digital",
+      logoImg: img4,
+      path: "https://info.sepmarketingservices.com/home",
       description:
-        "Advanced tracking to measure and optimize each stage of the sales funnel.",
+        "High-converting websites built to attract, engage, and convert customers, ensuring businesses stand out online",
       points: [
-        "Provides insights for data-driven decision-making.",
-        "Measures marketing and sales success.",
+        "Custom website design optimized for conversions",
+        "Seamless user experience to improve engagement",
+        "Scalable web solutions tailored to business growth",
       ],
     },
     {
       title: "Lead Generation",
+      logo: "B2B Marketing.biz",
+      logoImg: img5,
+      path: "https://webpointdigital.com/home",
       description:
-        "Regular check-ins to evaluate performance and refine strategies.",
+        "Automated B2B lead generation that delivers high-quality, sales-ready prospects straight to your pipeline.",
       points: [
-        "Ensures continuous campaign improvement.",
-        "Keeps you updated with progress reports.",
+        "Consistent stream of qualified B2B leads",
+        "AI-powered automation to reduce manual prospecting",
+        "Faster deal closures with pre-qualified opportunities",
+      ],
+    },
+    {
+      title: "Custom Solutions",
+      logo: "Icon Devs",
+      logoImg: img6,
+      path: "https://icondevs.com/home",
+      description:
+        "Custom software solutions built to streamline operations, improve efficiency, and support business growth.",
+      points: [
+        "Custom software to fit specific business needs",
+        "Automation to eliminate inefficiencies and manual work",
+        "Scalable solutions that grow with your company",
       ],
     },
   ],
@@ -82,56 +121,109 @@ export default function ExactUILayout() {
             Comprehensive Solutions{" "}
           </h1>
         </div>
+        <div className="sm:block absolute hidden left-0 top-0 h-full w-24 pointer-events-none bg-gradient-to-r from-white/70 via-white/40 to-transparent z-10"></div>
 
-        <div className="flex overflow-x-auto scrollbar-custom space-x-2 py-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`cursor-pointer transition-all duration-300 ease-in-out rounded-3xl w-[150px] h-[390px] flex flex-col ${
-                expanded === index
-                  ? "min-w-[500px] h-[390px] scale-[1.01] shadow-lg items-start bg-[#D9EEFA]"
-                  : "items-center bg-[#ECF7FD] hover:scale-[1.03] hover:bg-[#D9EEFA] hover:shadow-lg"
-              }`}
-              onClick={() => setExpanded(expanded === index ? null : index)}
-            >
-              <span
-                className={`text-lg px-6 pt-6 font-bold text-gray-700 ${
-                  expanded === index ? "self-start mb-5" : ""
+        <div className="relative flex flex-col sm:flex-row items-start sm:overflow-x-auto sm:space-x-3 sm:p-6">
+          <div className="flex sm:hidden flex-col items-center justify-center px-2 pt-4 space-y-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div
+                key={i}
+                onClick={() => setExpanded(i)}
+                className={`w-[7px] rounded-full transition-all duration-300 ${
+                  expanded === i
+                    ? "bg-gradient-to-b h-40 from-[#00AEEF] to-[#005895] shadow-md opacity-80"
+                    : "bg-gray-300 h-16 opacity-50"
                 }`}
-              >
-                {`0${index + 1}`}
-              </span>
-              <h3
-                className={`text-lg px-6 font-bold text-center transition-transform duration-500 ${
+              />
+            ))}
+          </div>
+          <div className="flex sm:flex-row scrollbar-hide flex-col -mt-[540px] sm:-mt-0 sm:pl-0 pl-16 space-y-3 sm:space-y-0 sm:space-x-3 w-full overflow-y-auto sm:overflow-x-auto p-2 sm:p-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className={`cursor-pointer transition-all duration-300 ease-in-out rounded-3xl w-[95%] sm:w-[130px] sm:h-[390px] flex flex-col ${
                   expanded === index
-                    ? "rotate-0 md:text-3xl"
-                    : "rotate-90 !mt-[130px] md:text-xl"
+                    ? "min-h-[395px] sm:min-w-[500px] scale-[1.01] p-4 mb-4 sm:mb-0 sm:pl-2 shadow-lg items-start bg-[#D9EEFA]"
+                    : "bg-[#ECF7FD] hover:scale-[1.03] hover:bg-[#D9EEFA] hover:shadow-lg"
                 }`}
+                onClick={() => setExpanded(expanded === index ? null : index)}
               >
-                {feature.title}
-              </h3>
-              {expanded === index && (
-                <>
-                  <p className="text-gray-600 mt-3 p-6 text-sm leading-relaxed text-center md:text-left">
-                    {feature.description}
-                  </p>
-                  <ol className="list-disc list-inside px-6 text-gray-700 text-sm">
-                    {feature.points.map((point, i) => (
-                      <li key={i} className="mt-1">
-                        {point}
-                      </li>
-                    ))}
-                  </ol>
-                  <a
-                    href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
-                    onClick={(e) => e.stopPropagation()}
-                    className="mt-auto px-5 py-2.5 text-white text-xl font-semibold self-end rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2] transition-all duration-300 ease-in-out hover:from-[#fbad18] hover:to-[#fbad18]"
-                  >
-                    Learn More
-                  </a>
-                </>
-              )}
-            </div>
+                <span
+                  className={`text-lg px-6 text-center pt-6 font-bold text-gray-700 ${
+                    expanded === index ? "self-start mb-5" : ""
+                  }`}
+                >
+                  {`0${index + 1}`}
+                </span>
+                <h3
+                  className={`text-lg px-6 font-bold text-center transition-transform duration-500 ${
+                    expanded === index
+                      ? "rotate-0 md:text-3xl"
+                      : "sm:rotate-90 !mt-[20px] !mb-[26px] sm:!mb-[0px] sm:!mt-[70px] text-nowrap md:text-xl"
+                  }`}
+                >
+                  {feature.title}
+                </h3>
+                {expanded === index && (
+                  <>
+                    <p className="text-gray-600 mt-3 p-6 text-sm leading-relaxed text-center md:text-left">
+                      {feature.description}
+                    </p>
+                    <ul className="space-y-2 ml-9">
+                      {feature.points.map((point, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="text-gray-500 mr-2">•</span>
+                          <span className="text-gray-600">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex items-center justify-between ml-9">
+                      <div className="flex items-center space-x-2 mt-3">
+                        <img
+                          src={feature.logoImg}
+                          alt={feature.logo}
+                          className={`${
+                            index === 4
+                              ? "md:w-60 w-52"
+                              : index < 5
+                              ? "md:w-48 w-40"
+                              : "md:w-40 w-32"
+                          } object-contain`}
+                        />
+                      </div>
+                    </div>
+                    <a
+                      href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
+                      onClick={(e) => e.stopPropagation()}
+                      className={`${
+                        index === 4
+                          ? "lg:-mt-[22px]"
+                          : index === 3 || index === 2 || index === 0
+                          ? "lg:-mt-[14px]"
+                          : index === 1
+                          ? "lg:-mt-[38px] -mt-4"
+                          : "lg:-mt-[8px] mt-1"
+                      } mt-auto -mb-4 sm:-mb-0 -mr-4 px-5 py-2.5 text-white text-xl font-semibold self-end rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2] transition-all duration-300 ease-in-out hover:from-[#fbad18] hover:to-[#fbad18]`}
+                    >
+                      Learn More
+                    </a>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="sm:block absolute hidden right-0 top-0 h-full w-24 pointer-events-none bg-gradient-to-l from-white/85 via-white/60 to-transparent z-10"></div>
+        <div className="sm:flex hidden justify-center space-x-2">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className={`h-[7px] rounded-full transition-all duration-300 ${
+                expanded === i
+                  ? "w-52 bg-gradient-to-r from-[#00AEEF] to-[#005895]"
+                  : "w-20 bg-gray-300"
+              }`}
+            />
           ))}
         </div>
       </div>

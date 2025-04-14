@@ -45,7 +45,7 @@ export default function SLFooter() {
       <div>
         <Marquee speed={40} pauseOnHover direction="right">
           {logos.map((logo, index) => (
-            <div key={index} className="mx-6">
+            <div key={index} className="mx-6 overflow-hidden">
               <img
                 src={logo}
                 alt={`Logo ${index + 1}`}

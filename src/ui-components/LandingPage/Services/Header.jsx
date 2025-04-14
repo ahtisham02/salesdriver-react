@@ -361,55 +361,86 @@ export default function ExactUILayout() {
           roadmap that drives predictable growth.
         </p>
 
-        <div className="flex overflow-x-auto scrollbar-custom space-x-2 py-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`cursor-pointer transition-all duration-300 ease-in-out rounded-3xl w-[150px] h-[390px] flex flex-col ${
-                expanded === index
-                  ? "min-w-[500px] scale-[1.01] shadow-lg h-[390px] items-start bg-[#D9EEFA]"
-                  : "items-center bg-[#ECF7FD] hover:scale-[1.04] hover:bg-[#D9EEFA] hover:shadow-lg"
-              }`}
-              onClick={() => setExpanded(expanded === index ? null : index)}
-            >
-              <span
-                className={`text-lg px-6 pt-6 font-bold text-gray-700 ${
-                  expanded === index ? "self-start mb-5" : ""
+        <div className="sm:block absolute hidden left-0 top-0 h-full w-24 pointer-events-none bg-gradient-to-r from-white/70 via-white/40 to-transparent z-10"></div>
+
+        <div className="relative flex flex-col sm:flex-row items-start sm:overflow-x-auto sm:space-x-3 sm:p-6">
+          <div className="flex sm:hidden flex-col items-center justify-center px-2 pt-4 space-y-3">
+            {Array.from({ length: features.length }).map((_, i) => (
+              <div
+                key={i}
+                onClick={() => setExpanded(i)}
+                className={`w-[7px] rounded-full transition-all duration-300 ${
+                  expanded === i
+                    ? "bg-gradient-to-b h-40 from-[#00AEEF] to-[#005895] shadow-md opacity-80"
+                    : "bg-gray-300 h-16 opacity-50"
                 }`}
-              >
-                {`0${index + 1}`}
-              </span>
-              <h3
-                className={`text-lg px-6 font-bold text-center transition-transform duration-500 ${
+              />
+            ))}
+          </div>
+          <div className="flex sm:flex-row scrollbar-hide flex-col -mt-[540px] sm:-mt-0 sm:pl-0 pl-16 space-y-3 sm:space-y-0 sm:space-x-3 w-full overflow-y-auto sm:overflow-x-auto p-2 sm:p-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className={`cursor-pointer transition-all duration-300 ease-in-out rounded-3xl w-[95%] sm:w-[130px] sm:h-[390px] flex flex-col ${
                   expanded === index
-                    ? "rotate-0 md:text-3xl"
-                    : "rotate-90 !mt-[130px] md:text-xl"
+                    ? "min-h-[395px] sm:min-w-[500px] scale-[1.01] p-4 mb-4 sm:mb-0 sm:pl-2 shadow-lg items-start bg-[#D9EEFA]"
+                    : "bg-[#ECF7FD] hover:scale-[1.03] hover:bg-[#D9EEFA] hover:shadow-lg"
                 }`}
+                onClick={() => setExpanded(expanded === index ? null : index)}
               >
-                {feature.title}
-              </h3>
-              {expanded === index && (
-                <>
-                  <p className="text-gray-600 mt-3 p-6 text-sm leading-relaxed text-center md:text-left">
-                    {feature.description}
-                  </p>
-                  <ol className="list-disc list-inside px-6 text-gray-700 text-sm">
-                    {feature.points.map((point, i) => (
-                      <li key={i} className="mt-1">
-                        {point}
-                      </li>
-                    ))}
-                  </ol>
-                  <a
-                    href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
-                    onClick={(e) => e.stopPropagation()}
-                    className="mt-auto px-5 py-2.5 text-white text-xl font-semibold self-end rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2] transition-all duration-300 ease-in-out hover:from-[#fbad18] hover:to-[#fbad18]"
-                  >
-                    Learn More
-                  </a>
-                </>
-              )}
-            </div>
+                <span
+                  className={`text-lg px-6 pt-6 font-bold text-gray-700 ${
+                    expanded === index ? "self-start mb-5" : ""
+                  }`}
+                >
+                  {`0${index + 1}`}
+                </span>
+                <h3
+                  className={`text-lg px-6 font-bold text-center transition-transform duration-500 ${
+                    expanded === index
+                      ? "rotate-0 md:text-3xl"
+                      : "sm:rotate-90 !mb-[44px] sm:!mb-[0px] sm:!mt-[65px] text-nowrap md:text-xl"
+                  }`}
+                >
+                  {feature.title}
+                </h3>
+                {expanded === index && (
+                  <>
+                    <p className="text-gray-600 mt-3 p-6 text-sm leading-relaxed text-center md:text-left">
+                      {feature.description}
+                    </p>
+                    <ul className="space-y-2 ml-9">
+                      {feature.points.map((point, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="text-gray-500 mr-2">•</span>
+                          <span className="text-gray-600">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute bottom-0 right-0 px-5 py-2.5 text-white text-xl font-semibold rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2] transition-all duration-300 ease-in-out hover:from-[#fbad18] hover:to-[#fbad18]"
+                    >
+                      Learn More
+                    </a>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="sm:block absolute hidden right-0 top-0 h-full w-24 pointer-events-none bg-gradient-to-l from-white/85 via-white/60 to-transparent z-10"></div>
+        </div>
+        <div className="sm:flex hidden justify-center space-x-2">
+          {Array.from({ length: features.length }).map((_, i) => (
+            <div
+              key={i}
+              className={`h-[7px] rounded-full transition-all duration-300 ${
+                expanded === i
+                  ? "w-52 bg-gradient-to-r from-[#00AEEF] to-[#005895]"
+                  : "w-20 bg-gray-300"
+              }`}
+            />
           ))}
         </div>
       </div>
