@@ -1,7 +1,10 @@
 import React from "react";
-import img1 from "../../../assets/user3.jpeg";
-import img2 from "../../../assets/user4.jpeg";
-import img3 from "../../../assets/user5.jpeg";
+import img1 from "../../../assets/users/1.webp";
+import img3 from "../../../assets/users/2.webp";
+import img2 from "../../../assets/users/3.webp";
+// import img1 from "../../../assets/user3.jpeg";
+// import img2 from "../../../assets/user4.jpeg";
+// import img3 from "../../../assets/user5.jpeg";
 import HeadImg from "../../../assets/Rectangle12.png";
 
 const testimonials = [
@@ -54,7 +57,7 @@ export default function Testimonials() {
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-12 h-12 rounded-full border border-gray-300 mr-4"
+                    className="w-14 h-14 rounded-full border border-gray-300 mr-4"
                   />
                   <div className="text-left">
                     <p className="text-gray-900 font-semibold text-lg">
