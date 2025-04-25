@@ -37,7 +37,7 @@ export default function ExactUILayout() {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://salesdriver.io/wp-json/wp/v2/posts?_embed"
+          "https://sales-driver-f29297.ingress-earth.ewp.live//wp-json/wp/v2/posts?_embed"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch posts");

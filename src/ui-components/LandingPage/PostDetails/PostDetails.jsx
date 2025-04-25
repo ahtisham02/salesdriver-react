@@ -15,7 +15,7 @@ const PostDetails = () => {
     const fetchPost = async () => {
       try {
         const response = await fetch(
-          `https://salesdriver.io/wp-json/wp/v2/posts/${id}?_embed=true`
+          `https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts/${id}?_embed=true`
         );
         const data = await response.json();
         setPost(data);
@@ -23,14 +23,14 @@ const PostDetails = () => {
         const categoryId = data.categories[0];
 
         const responseRelated = await fetch(
-          `https://salesdriver.io/wp-json/wp/v2/posts?categories=${categoryId}&_embed=true`
+          `https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?categories=${categoryId}&_embed=true`
         );
         const relatedData = await responseRelated.json();
         setRelatedPosts(relatedData.filter((item) => item.id !== data.id));
 
         const otherCategories = [categoryId + 1, categoryId + 2];
         const otherPostsPromises = otherCategories.map((catId) =>
-          fetch(`https://salesdriver.io/wp-json/wp/v2/posts?categories=${catId}&_embed=true`)
+          fetch(`https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?categories=${catId}&_embed=true`)
         );
 
         const otherPostsResponses = await Promise.all(otherPostsPromises);
@@ -39,7 +39,7 @@ const PostDetails = () => {
 
         // Fetch all categories
         const categoriesResponse = await fetch(
-          "https://salesdriver.io/wp-json/wp/v2/categories"
+          "https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/categories"
         );
         const categoriesData = await categoriesResponse.json();
         setAllCategories(categoriesData);

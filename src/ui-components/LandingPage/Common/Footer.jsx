@@ -21,7 +21,7 @@ export default function Footer() {
 
     try {
       const response = await fetch(
-        "https://salesdriver.io/wp-json/wp/v2/subscribe",
+        "https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/subscribe",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
