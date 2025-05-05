@@ -313,12 +313,17 @@ const tabData = {
 };
 
 export default function ExactUILayout() {
-  const [expanded, setExpanded] = useState(1);
+  const [expanded, setExpanded] = useState(0); // Default to the first item (index 0)
+
   const location = useLocation();
   const name = location.state?.name;
-  const [activeTab, setActiveTab] = useState(name || "Strategy");
+  const [activeTab, setActiveTab] = useState(name || tabs[0]);
 
   const features = tabData[activeTab] || [];
+
+  React.useEffect(() => {
+    setExpanded(0);
+  }, [activeTab]);
 
   return (
     <div className="container relative mx-auto px-6 lg:px-14 pt-10 lg:pt-14 my-4">
@@ -326,9 +331,10 @@ export default function ExactUILayout() {
         <img
           src={HeadImg}
           alt="Header Background"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-30"
         />
       </div>
+
       <div className="relative z-10">
         <div className="mb-8 text-center">
           <h1 className="lg:text-[58px] my-2 text-3xl font-extrabold text-[#00A7E2] tracking-wide">
@@ -336,109 +342,121 @@ export default function ExactUILayout() {
           </h1>
         </div>
 
+        {/* Tabs */}
         <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
           <div className="flex justify-center min-w-max space-x-4">
-            {tabs.map((name) => (
+            {tabs.map((tabName) => (
               <button
-                key={name}
-                onClick={() => setActiveTab(name)}
-                className={`px-6 py-2 text-base sm:text-lg font-medium transition ${
-                  activeTab === name
+                key={tabName}
+                onClick={() => {
+                  setActiveTab(tabName);
+                }}
+                className={`px-6 py-2 text-base sm:text-lg font-medium transition whitespace-nowrap ${
+                  activeTab === tabName
                     ? "text-blueclr font-bold border-b-2 border-blueclr"
                     : "text-gray-600 border-b-2 border-transparent hover:border-gray-400"
                 }`}
               >
-                {name}
+                {tabName}
               </button>
             ))}
           </div>
         </div>
 
-        <p className="text-sm max-w-3xl mx-auto text-center font-medium text-gray-700">
+        <p className="text-sm max-w-3xl mx-auto text-center font-medium text-gray-700 mb-8">
           SalesDriver’s strategy services provide agencies with a structured,
           data-driven approach to acquiring new clients. Our experts analyze the
           customer journey, optimize touchpoints, and create a scalable sales
-          roadmap that drives predictable growth.
+          roadmap that drives predictable growth.{" "}
         </p>
 
-        <div className="sm:block absolute hidden left-0 top-0 h-full w-24 pointer-events-none bg-gradient-to-r from-white/70 via-white/40 to-transparent z-10"></div>
-
-        <div className="relative flex flex-col sm:flex-row items-start sm:overflow-x-auto sm:space-x-3 sm:p-6">
-          <div className="flex sm:hidden flex-col items-center justify-center px-2 pt-4 space-y-3">
+        <div className="relative flex flex-row items-start sm:space-x-3 w-full">
+          <div className="flex-shrink-0 sm:hidden flex flex-col items-center justify-start pt-6 space-y-3 w-16">
             {Array.from({ length: features.length }).map((_, i) => (
               <div
                 key={i}
-                onClick={() => setExpanded(i)}
-                className={`w-[7px] rounded-full transition-all duration-300 ${
+                onClick={() => setExpanded(i === expanded ? null : i)}
+                className={`w-[7px] rounded-full transition-all duration-300 cursor-pointer ${
                   expanded === i
                     ? "bg-gradient-to-b h-40 from-[#00AEEF] to-[#005895] shadow-md opacity-80"
-                    : "bg-gray-300 h-16 opacity-50"
+                    : "bg-gray-300 h-16 opacity-50 hover:opacity-75"
                 }`}
               />
             ))}
           </div>
-          <div className="flex sm:flex-row scrollbar-hide flex-col -mt-[540px] sm:-mt-0 sm:pl-0 pl-16 space-y-3 sm:space-y-0 sm:space-x-3 w-full overflow-y-auto sm:overflow-x-auto p-2 sm:p-6">
+
+          <div className="flex-grow flex sm:flex-row scrollbar-hide flex-col space-y-3 sm:space-y-0 sm:space-x-3 w-full overflow-y-auto sm:overflow-x-auto p-2 sm:p-0">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className={`cursor-pointer transition-all duration-300 ease-in-out rounded-3xl w-[95%] sm:w-[130px] sm:h-[390px] flex flex-col ${
+                className={`pb-6 sm:pb-0 cursor-pointer transition-all duration-300 ease-in-out rounded-3xl w-[95%] sm:w-[130px] sm:h-[390px] flex flex-col flex-shrink-0 relative overflow-hidden ${
                   expanded === index
-                    ? "min-h-[395px] sm:min-w-[500px] scale-[1.01] p-4 mb-4 sm:mb-0 sm:pl-2 shadow-lg items-start bg-[#D9EEFA]"
-                    : "bg-[#ECF7FD] hover:scale-[1.03] hover:bg-[#D9EEFA] hover:shadow-lg"
+                    ? "min-h-[395px] sm:min-w-[500px] scale-[1.01] p-4 sm:p-6 shadow-lg items-start bg-[#D9EEFA]" // Expanded: Align items to start
+                    : "bg-[#ECF7FD] hover:scale-[1.03] hover:bg-[#D9EEFA] hover:shadow-lg items-center sm:items-stretch" // Unexpanded: Center items on mobile, stretch on desktop
                 }`}
                 onClick={() => setExpanded(expanded === index ? null : index)}
               >
                 <span
                   className={`text-lg px-6 pt-6 font-bold text-gray-700 ${
-                    expanded === index ? "self-start mb-5" : ""
+                    expanded === index
+                      ? "self-start mb-5" // Expanded: Align self to start
+                      : "self-center sm:self-auto" // Unexpanded: Center self on mobile, auto (stretch/start) on desktop
                   }`}
                 >
                   {`0${index + 1}`}
                 </span>
                 <h3
-                  className={`text-lg px-6 font-bold text-center transition-transform duration-500 ${
+                  className={`text-lg px-6 font-bold transition-all duration-500 ease-in-out text-nowrap ${
+                    // Base styles + nowrap
                     expanded === index
-                      ? "rotate-0 md:text-3xl"
-                      : "sm:rotate-90 !mb-[44px] sm:!mb-[0px] sm:!mt-[65px] text-nowrap md:text-xl"
+                      ? "rotate-0 md:text-3xl text-center md:text-left mt-2" // EXPANDED STATE: Horizontal, large text, specific alignment, margin
+                      : "sm:rotate-90 text-center sm:mt-[65px] md:text-xl origin-center" // UNEXPANDED STATE: Rotated (on sm+), centered, pushed down, specific size, rotate around center
                   }`}
                 >
                   {feature.title}
                 </h3>
                 {expanded === index && (
-                  <>
-                    <p className="text-gray-600 mt-3 p-6 text-sm leading-relaxed text-center md:text-left">
+                  <div className="flex flex-col flex-grow mt-3 p-6 pt-0">
+                    <p className="text-gray-600 text-sm leading-relaxed text-center md:text-left">
                       {feature.description}
                     </p>
-                    <ul className="space-y-2 ml-9">
+                    <ul className="space-y-2 ml-3 mt-4">
                       {feature.points.map((point, i) => (
                         <li key={i} className="flex items-start">
-                          <span className="text-gray-500 mr-2">•</span>
+                          <span className="text-blueclr mr-2 text-lg font-bold">
+                            •
+                          </span>
                           <span className="text-gray-600">{point}</span>
                         </li>
                       ))}
                     </ul>
                     <a
                       href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className="absolute bottom-0 right-0 px-5 py-2.5 text-white text-xl font-semibold rounded-tl-3xl rounded-br-3xl bg-gradient-to-r from-[#005895] to-[#00A7E2] transition-all duration-300 ease-in-out hover:from-[#fbad18] hover:to-[#fbad18]"
                     >
                       Learn More
                     </a>
-                  </>
+                  </div>
                 )}
               </div>
             ))}
           </div>
-          <div className="sm:block absolute hidden right-0 top-0 h-full w-24 pointer-events-none bg-gradient-to-l from-white/85 via-white/60 to-transparent z-10"></div>
+
+          <div className="sm:block absolute hidden right-0 top-0 bottom-0 w-24 pointer-events-none bg-gradient-to-l from-white via-white/80 to-transparent z-10"></div>
         </div>
-        <div className="sm:flex hidden justify-center space-x-2">
+
+        <div className="sm:flex relative hidden justify-center space-x-2 mt-8">
           {Array.from({ length: features.length }).map((_, i) => (
             <div
               key={i}
-              className={`h-[7px] rounded-full transition-all duration-300 ${
+              onClick={() => setExpanded(i === expanded ? null : i)} // Allow clicking dots
+              className={`h-[7px] rounded-full transition-all duration-300 cursor-pointer ${
                 expanded === i
-                  ? "w-52 bg-gradient-to-r from-[#00AEEF] to-[#005895]"
-                  : "w-20 bg-gray-300"
+                  ? "w-32 sm:w-40 md:w-52 bg-gradient-to-r from-[#00AEEF] to-[#005895]"
+                  : "w-12 sm:w-16 md:w-20 bg-gray-300 hover:bg-gray-400"
               }`}
             />
           ))}

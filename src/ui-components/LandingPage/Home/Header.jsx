@@ -20,7 +20,7 @@ export default function Header() {
         <div className="my-6 flex flex-col sm:flex-row gap-4">
           <a
             href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
-            className="md:px-9 px-6 py-2 md:py-3 text-white hover:bg-[#DA9613] hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-yellowclr rounded-3xl font-semibold shadow-md hover:bg-opacity-90"
+            className="md:px-9 px-6 py-2 md:py-3 text-white hover:bg-[#DA9613] hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-yellowclr rounded-3xl font-semibold shadow-md hover:bg-opacity-90 text-center"
           >
             Work with Us
           </a>

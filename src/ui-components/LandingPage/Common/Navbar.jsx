@@ -41,21 +41,21 @@ function Navbar() {
         path: "/company",
         icon: <Users2 className="size-5 transition-all" />,
       },
-      {
-        label: "API",
-        path: "/api",
-        icon: <Code className="size-5 transition-all" />,
-      },
-      {
-        label: "Help",
-        path: "/help",
-        icon: <HelpCircle className="size-5 transition-all" />,
-      },
-      {
-        label: "Login",
-        path: "/login",
-        icon: <LogIn className="size-5 transition-all" />,
-      },
+      // {
+      //   label: "API",
+      //   path: "/api",
+      //   icon: <Code className="size-5 transition-all" />,
+      // },
+      // {
+      //   label: "Help",
+      //   path: "/help",
+      //   icon: <HelpCircle className="size-5 transition-all" />,
+      // },
+      // {
+      //   label: "Login",
+      //   path: "/login",
+      //   icon: <LogIn className="size-5 transition-all" />,
+      // },
     ],
     []
   );
