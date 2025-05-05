@@ -18,15 +18,15 @@ if (
   );
 }
 root.render(
-  <GoogleReCaptchaProvider
-    reCaptchaKey={RECAPTCHA_V3_SITE_KEY}
-    scriptProps={{
-      async: true,
-      defer: true,
-      appendTo: "head",
-      nonce: undefined,
-    }}
-  >
+  // <GoogleReCaptchaProvider
+  //   reCaptchaKey={RECAPTCHA_V3_SITE_KEY}
+  //   scriptProps={{
+  //     async: true,
+  //     defer: true,
+  //     appendTo: "head",
+  //     nonce: undefined,
+  //   }}
+  // >
     <BrowserRouter>
       <MainRoutes />
       <ToastContainer
@@ -35,5 +35,5 @@ root.render(
         hideProgressBar={false}
       />
     </BrowserRouter>
-  </GoogleReCaptchaProvider>
+  // </GoogleReCaptchaProvider>
 );
