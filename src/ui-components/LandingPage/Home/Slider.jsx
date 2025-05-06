@@ -3,17 +3,13 @@ import Marquee from "react-fast-marquee";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
-import meetnow from "../../../assets/Rectangle 35.png";
-import cc from "../../../assets/Rectangle 35 (2).png";
-import webpoint from "../../../assets/Website_Media/Website_Media/client_images/web.png";
-import scp from "../../../assets/Rectangle 35 (1).png";
-import icon from "../../../assets/Rectangle 35 (5).png";
+import img from "../../../assets/Website_Media/Website_Media/client_images/logo.png";
+import img1 from "../../../assets/Website_Media/Website_Media/client_images/logo1.png";
+import img2 from "../../../assets/Website_Media/Website_Media/client_images/logo2.png";
+import img3 from "../../../assets/Website_Media/Website_Media/client_images/logo4.png";
+import img4 from "../../../assets/Website_Media/Website_Media/client_images/DEEPLY GOOD_logo_original.png";
 
-import tre from "../../../assets/Website_Media/Website_Media/client_images/tres.png";
-import health from "../../../assets/Website_Media/Website_Media/client_images/health-options.png";
-import forum from "../../../assets/Website_Media/Website_Media/client_images/forum.png";
-
-const logos = [meetnow, cc, webpoint, scp, icon, tre, health, forum];
+const logos = [img, img1, img2, img3, img4];
 
 export default function SLFooter() {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -47,20 +43,13 @@ export default function SLFooter() {
       <div>
         <Marquee speed={40} pauseOnHover direction="right">
           {logos.map((logo, index) => {
-            const isLarge = logo === cc || logo === scp;
-            const issmall = logo === webpoint
 
             return (
               <div key={index} className="mx-6 overflow-hidden">
                 <img
                   src={logo}
                   alt={`Logo ${index + 1}`}
-                  className={`object-contain hover:scale-105 transition duration-200 ${
-                    isLarge
-                      ? "w-40 h-40 md:w-48 md:h-48"
-                      : issmall ? "w-28 h-28"
-                      : "w-32 h-32 md:w-36 md:h-36"
-                  }`}
+                  className={`object-contain hover:scale-105 transition duration-200 w-40 h-40 md:w-48 md:h-48}`}
                 />
               </div>
             );
