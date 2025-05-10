@@ -284,7 +284,7 @@ export default function Form() {
 
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-purple-50 py-16 px-6">
+    <div className="bg-white py-16 px-6">
       <div className="bg-white p-10 rounded-2xl border border-gray-200 max-w-[1150px] mx-auto shadow-lg">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
           Contact Us

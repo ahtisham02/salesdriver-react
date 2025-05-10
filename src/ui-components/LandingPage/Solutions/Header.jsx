@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Added useEffect
+import { useLocation } from "react-router-dom"; // Added useLocation
 import HeadImg from "../../../assets/Group1000001040.png";
 import img1 from "../../../assets/Rectangle 35.png";
 import img2 from "../../../assets/Rectangle 35 (1).png";
@@ -98,11 +99,74 @@ const tabData = {
       ],
     },
   ],
+  Sales: [], // Placeholder
+  Data: [], // Placeholder
+  Content: [], // Placeholder
+  Automation: [], // Placeholder
+  "SEO/Ads": [], // Placeholder
+  Support: [], // Placeholder
 };
 
 export default function ExactUILayout() {
-  const [expanded, setExpanded] = useState(1);
-  const [activeTab, setActiveTab] = useState("Strategy");
+  const location = useLocation(); // Get location object
+
+  const [activeTab, setActiveTab] = useState(() => {
+    const navState = location.state;
+    if (navState?.activeTab && tabData.hasOwnProperty(navState.activeTab)) {
+      return navState.activeTab;
+    }
+    return "Strategy"; // Default tab
+  });
+
+  const [expanded, setExpanded] = useState(() => {
+    const navState = location.state;
+    const tabToConsider = (navState?.activeTab && tabData.hasOwnProperty(navState.activeTab)) 
+                          ? navState.activeTab 
+                          : "Strategy";
+    const featuresForExpansion = tabData[tabToConsider] || [];
+
+    if (navState?.activeSolution && featuresForExpansion.length > 0) {
+      const solutionIndex = featuresForExpansion.findIndex(
+        (feature) => feature.title === navState.activeSolution
+      );
+      if (solutionIndex !== -1) {
+        return solutionIndex;
+      }
+    }
+    if (navState?.activeTab && tabData.hasOwnProperty(navState.activeTab) && !navState?.activeSolution) {
+      return 0;
+    }
+    return 1; // Your original default if no specific state dictates otherwise
+  });
+
+  useEffect(() => {
+    const navState = location.state;
+    if (navState) {
+      let tabNeedsUpdate = false;
+      let newTab = activeTab;
+
+      if (navState.activeTab && tabData.hasOwnProperty(navState.activeTab) && navState.activeTab !== activeTab) {
+        setActiveTab(navState.activeTab);
+        newTab = navState.activeTab;
+        tabNeedsUpdate = true;
+      }
+
+      const currentFeatures = tabData[newTab] || [];
+
+      if (navState.activeSolution && currentFeatures.length > 0) {
+        const solutionIndex = currentFeatures.findIndex(
+          (feature) => feature.title === navState.activeSolution
+        );
+        if (solutionIndex !== -1) {
+          setExpanded(solutionIndex);
+        } else {
+          setExpanded(0); // Fallback to first item if solution title not found in the (new/current) tab
+        }
+      } else if (tabNeedsUpdate) {
+        setExpanded(0);
+      }
+    }
+  }, [location.state]); // Rerun effect if location.state changes
 
   const features = tabData[activeTab] || [];
 
@@ -125,7 +189,7 @@ export default function ExactUILayout() {
 
         <div className="relative flex flex-col sm:flex-row items-start sm:overflow-x-auto sm:space-x-3 sm:p-6">
           <div className="flex sm:hidden flex-col items-center justify-center px-2 pt-4 space-y-3">
-            {Array.from({ length: 6 }).map((_, i) => (
+            {Array.from({ length: features.length || 0 }).map((_, i) => (
               <div
                 key={i}
                 onClick={() => setExpanded(i)}
@@ -183,7 +247,7 @@ export default function ExactUILayout() {
                           src={feature.logoImg}
                           alt={feature.logo}
                           className={`${
-                            index === 4
+                            index === 4 // This condition might need to be dynamic if 'Web Solution' isn't always index 4
                               ? "md:w-60 w-52"
                               : index < 5
                               ? "md:w-48 w-40"
@@ -196,7 +260,7 @@ export default function ExactUILayout() {
                       href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
                       onClick={(e) => e.stopPropagation()}
                       className={`${
-                        index === 4
+                        index === 4 // This condition might need to be dynamic
                           ? "lg:-mt-[22px]"
                           : index === 3 || index === 2 || index === 0
                           ? "lg:-mt-[14px]"
@@ -215,7 +279,7 @@ export default function ExactUILayout() {
         </div>
         <div className="sm:block absolute hidden right-0 top-0 h-full w-24 pointer-events-none bg-gradient-to-l from-white/85 via-white/60 to-transparent z-10"></div>
         <div className="sm:flex hidden justify-center space-x-2">
-          {Array.from({ length: 6 }).map((_, i) => (
+          {Array.from({ length: features.length || 0 }).map((_, i) => (
             <div
               key={i}
               className={`h-[7px] rounded-full transition-all duration-300 ${

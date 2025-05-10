@@ -39,9 +39,6 @@ export default function ExactUILayout() {
         const response = await fetch(
           "https://sales-driver-f29297.ingress-earth.ewp.live//wp-json/wp/v2/posts?_embed"
         );
-        if (!response.ok) {
-          throw new Error("Failed to fetch posts");
-        }
         const data = await response.json();
 
         const postsWithMedia = data.map((post) => {
@@ -122,14 +119,10 @@ export default function ExactUILayout() {
     );
   }
 
-  if (error) {
-    return <div className="text-center py-20 text-red-500">Error: {error}</div>;
-  }
-
   return (
     <div className="sm:px-8 px-4 py-14 bg-gray-50">
       <div className="text-center mb-10">
-        <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+        <p className="inline-block uppercase hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
           insights and news{" "}
         </p>
         <h1 className="md:text-5xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] text-3xl font-bold text-[#005895] mt-2">
@@ -159,42 +152,53 @@ export default function ExactUILayout() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12">
-        {getVisibleCards().map((post) => (
-          <div
-            key={post.id}
-            className={`bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden ${
-              isAnimationActive ? "animate-slideIn" : ""
-            }`}
-          >
-            <img
-              src={post.featuredImage || [img, img1, img2][post.id % 3]}
-              alt={post.featuredImageAlt}
-              className="w-full h-52 lg:h-56 object-cover"
-              onError={(e) => {
-                e.target.src = [img, img1, img2][post.id % 3];
-              }}
-            />
-            <div className="p-5">
-              <p className="text-gray-500 text-sm">
-                Author {post.author} • {formatDate(post.date)}
-              </p>
-              <h2 className="text-xl font-semibold text-gray-900 mt-2">
-                {post.title.rendered}
-              </h2>
-              <p className="text-gray-700 mt-2 line-clamp-3">
-                {truncateContent(post.content.rendered)}
-              </p>
-              <button
-                onClick={() => navigate(`/post/${post.id}`)}
-                className="mt-4 text-blueclr flex items-center font-semibold hover:text-blue-700 transition-all duration-300"
+      <>
+        {getVisibleCards().length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12">
+            {getVisibleCards().map((post) => (
+              <div
+                key={post.id}
+                className={`bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden ${
+                  isAnimationActive ? "animate-slideIn" : ""
+                }`}
               >
-                Read More <ArrowRight className="ml-2" size={18} />
-              </button>
-            </div>
+                <img
+                  src={post.featuredImage || [img, img1, img2][post.id % 3]}
+                  alt={post.featuredImageAlt}
+                  className="w-full h-52 lg:h-56 object-cover"
+                  onError={(e) => {
+                    e.target.src = [img, img1, img2][post.id % 3];
+                  }}
+                />
+                <div className="p-5">
+                  <p className="text-gray-500 text-sm">
+                    Author {post.author} • {formatDate(post.date)}
+                  </p>
+                  <h2 className="text-xl font-semibold text-gray-900 mt-2">
+                    {post.title.rendered}
+                  </h2>
+                  <p className="text-gray-700 mt-2 line-clamp-3">
+                    {truncateContent(post.content.rendered)}
+                  </p>
+                  <button
+                    onClick={() => navigate(`/post/${post.id}`)}
+                    className="mt-4 text-blueclr flex items-center font-semibold hover:text-blue-700 transition-all duration-300"
+                  >
+                    Read More <ArrowRight className="ml-2" size={18} />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center h-[25vh] text-center">
+            <h2 className="text-xl font-semibold text-gray-700">
+              No posts available
+            </h2>
+            <p className="text-gray-500 mt-2">Please check back later!</p>
+          </div>
+        )}
+      </>
 
       <div className="text-center mt-8">
         <button

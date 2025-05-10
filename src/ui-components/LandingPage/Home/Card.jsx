@@ -104,7 +104,7 @@ const ExactUILayout = () => {
   return (
     <div className="px-6 relative py-16 bg-white">
       <div className="text-center mb-12">
-        <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+        <p className="inline-block uppercase hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
           case studies
         </p>
         <h2 className="text-3xl hover:scale-[1.03] transition-all duration-300 md:text-5xl font-extrabold text-[#005895] mt-3">
@@ -134,15 +134,21 @@ const ExactUILayout = () => {
       {loadingPosts ? (
         <div className="text-center py-16">Loading Posts...</div>
       ) : posts.length === 0 ? (
-        <div className="text-center py-16 text-gray-500">
-          No posts found for this category.
+        <div className="flex flex-col items-center justify-center h-[20vh] text-center">
+          <h2 className="text-xl font-semibold text-gray-700">
+            No posts available
+          </h2>
+          <p className="text-gray-500 mt-2">Please check back later!</p>
         </div>
       ) : (
         <>
           <div className="relative">
             <Slider ref={setSliderRef} {...settings}>
               {posts.map((post) => (
-                <div key={post.id} className="px-2 m-3 hover:scale-105 transition-transform duration-200">
+                <div
+                  key={post.id}
+                  className="px-2 m-3 hover:scale-105 transition-transform duration-200"
+                >
                   <div className="bg-white rounded-3xl p-6 border border-gray-200 h-full">
                     <img
                       src={

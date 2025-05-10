@@ -72,35 +72,35 @@ export default function HowWeWork() {
           className="absolute lg:block hidden top-1/2 left-0 w-full h-auto -translate-y-1/2"
         />
 
-        <div className="relative px-6 md:px-12 z-10 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-20">
+        <div className="relative px-6 md:px-12 z-10 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-[105px] max-w-7xl mx-auto">
           {[
             {
               id: "1",
-              title: "Strategy First",
-              description: "Data-driven plans to turn leads into buyers.",
+              title: "Expert-Led Strategy First",
+              description: "Map customer journeys and build data-driven sales programs that convert prospects into buyers.",
             },
             {
               id: "2",
               title: "AI Automation That Works",
-              description: "Data-driven plans to turn leads into buyers.",
+              description: "Maximize brand interactions at all touchpoints with tailored solutions reporting directly to your CRM.",
             },
             {
               id: "3",
               title: "Target The Right People",
-              description: "Data-driven plans to turn leads into buyers.",
+              description: "Deliver precise messaging to ideal prospects at optimal times based on identified pain points and needs.",
             },
           ].map((step) => (
             <div
               key={step.id}
-              className="relative hover:border hover:border-[#fbad18] transition-transform duration-200 hover:scale-105 bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-left"
+              className="relative hover:border hover:border-[#fbad18] transition-transform duration-200 hover:scale-105 bg-white p-8 rounded-3xl shadow-lg border border-gray-200 text-left"
             >
               <span className="absolute top-5 left-5 bg-[#FFEFDA] text-yellowclr font-bold text-sm px-3 py-1 rounded-lg">
                 {step.id}
               </span>
-              <h3 className="text-2xl font-bold text-gray-900 mt-10">
+              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mt-10">
                 {step.title}
               </h3>
-              <p className="text-gray-600 mt-2.5">{step.description}</p>
+              <p className="text-gray-700 text-base mt-3">{step.description}</p>
             </div>
           ))}
         </div>

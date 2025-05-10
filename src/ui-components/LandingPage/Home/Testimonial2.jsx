@@ -58,7 +58,7 @@ const tabs = [
     btn3: "4000 Appended Leads (Buyer & Hiring Intent Data)",
     btn4: "CRM",
     description:
-      "SalesDriver integrates data intelligence and CRM solutions to track, manage, and score leads, ensuring sales teams focus on high-priority prospects with the highest likelihood of conversion.",
+      "All of your data is compiled into one streamlined system connected to your CRM which provides reporting, tracking, data appending, and data list services.",
   },
   {
     name: "Content",
@@ -70,7 +70,7 @@ const tabs = [
     btn3: "Social Media Management",
     btn4: "Content Creation",
     description:
-      "High-quality content fuels successful sales. Our content and branding services help agencies attract, educate, and convert prospects through compelling storytelling, design, and digital engagement.",
+      "We provide design support for each of your campaigns including social media/post creation, targeted landing pages, and overall website design.  We help you create focused, targeted, and branded content to be used for social media, ad retargeting press releases, and blog articles.",
   },
   {
     name: "Automation",
@@ -81,7 +81,7 @@ const tabs = [
     btn2: "Email,and Social Media Outreach: 12-touch setup",
     btn3: "Campaign Automation",
     description:
-      "SalesDriver’s AI-powered automation services remove manual work, allowing agencies to scale lead generation and client engagement efficiently.",
+      "Our many automations and integrations save your team time and money utilizing Sales(Driver's 12 touch process, automations and CRM integrations.",
   },
   {
     name: "SEO/Ads",
@@ -93,7 +93,7 @@ const tabs = [
     btn3: "PPC Management",
     btn4: "Backlinks package",
     description:
-      "High-quality content fuels successful sales. Our content and branding services help agencies attract, educate, and convert prospects through compelling storytelling, design, and digital engagement.",
+      "Our Google Certified, white hat process helps build your brand awareness and domain authority through link building and SEO content optimization.",
   },
 ];
 
@@ -109,7 +109,7 @@ export default function ExactUILayout() {
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
   return (
-    <div className="px-8 relative pt-10 pb-20 bg-slate-50 min-h-screen">
+    <div className="px-6 relative pt-10 pb-20 bg-slate-50 min-h-screen">
       <div className="absolute inset-0 w-full h-full">
         <img
           src={HeadImg}
@@ -126,26 +126,26 @@ export default function ExactUILayout() {
       <img
         src={elipse}
         alt="Glow"
-        className="absolute lg:block hidden bottom-0 right-0 w-96 h-96"
+        className="absolute lg:block rotate-180 hidden bottom-0 right-0 w-96 h-96"
       />
       <div className="relative z-10">
         <div className="mb-12 text-center">
-          <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+          <p className="inline-block uppercase hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
             OUR Services
           </p>
-          <h2 className="text-3xl md:text-5xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] font-extrabold text-[#005895] mt-3">
+          <h2 className="text-3xl md:text-5xl hover:scale-[1.03] transition-all duration-300 hover:-translate-y-[2px] font-extrabold text-[#005895] mt-3">
             Expert-built Services,
             <br /> Built for You{" "}
           </h2>
         </div>
 
-        <div className="mb-6 pb-3">
+        <div className="mb-5">
           <div className="flex flex-wrap justify-center gap-y-2">
             {tabs.map(({ name }) => (
               <button
                 key={name}
                 onClick={() => setActiveTab(name)}
-                className={`px-6 py-2 text-lg font-medium transition-all duration-300 border-b-2 ${
+                className={`px-6 py-2 uppercase text-lg font-medium transition-all duration-300 border-b-2 ${
                   activeTab === name
                     ? "text-blueclr font-bold border-blueclr"
                     : "text-gray-500 border-gray-300 hover:border-gray-500"
@@ -157,19 +157,29 @@ export default function ExactUILayout() {
           </div>
         </div>
 
-        <div className="relative flex flex-col w-full overflow-hidden px-4 lg:px-8 py-6 bg-white mx-auto rounded-xl shadow-lg border border-gray-200">
-          <div className="flex flex-col w-full bg-white p-2 md:p-6 rounded-xl">
+        <div className="relative flex flex-col w-full overflow-hidden px-4 mx-auto">
+          <div className="flex flex-col w-full p-2 md:p-6 rounded-xl">
             <div className="flex flex-col md:flex-row w-full">
-              <div className="md:w-1/2 pr-8">
-                <h2 className="text-lg mb-2.5 font-medium leading-snug text-blueclr">
-                  {activeTabData?.name}
-                </h2>
+              <div className="md:w-1/2 px-8 py-10 lg:mr-4 bg-white rounded-2xl border border-gray-100">
                 <h2 className="text-2xl md:text-4xl font-bold leading-snug text-[#005895]">
                   {activeTabData?.heading}
                 </h2>
                 <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
-                  {activeTabData?.description}
+                  {activeTab === "Sales" || activeTab === "Content" ? (
+                    <>
+                      {activeTabData.description.split(". ")[0] + "."}
+                      <br />
+                      <br />
+                      {activeTabData.description
+                        .split(". ")
+                        .slice(1)
+                        .join(". ")}
+                    </>
+                  ) : (
+                    activeTabData?.description
+                  )}
                 </p>
+
                 <button
                   onClick={() =>
                     navigate("/services", {
@@ -178,7 +188,7 @@ export default function ExactUILayout() {
                   }
                   className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative"
                 >
-                  <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
+                  <span className="relative uppercase z-10 group-hover:translate-y-[-2px] transition-all">
                     Learn More
                   </span>
                   <ArrowRight
@@ -213,7 +223,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn1}
                         </button>
@@ -225,7 +235,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn2}
                         </button>
@@ -237,7 +247,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn3}
                         </button>
@@ -249,7 +259,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn4}
                         </button>
@@ -261,7 +271,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#dbeafe] shadow-md hover:shadow-lg hover:border-blue-500 transition-all w-full hover:scale-105"
+                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn5}
                         </button>
@@ -277,24 +287,134 @@ export default function ExactUILayout() {
                   src={activeTabData?.img}
                   alt="Service Illustration"
                 />
-                <div className="absolute right-20 md:right-0 bottom-[400px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
-                  <span className="text-blueclr font-bold mr-1">Expert</span>
-                  <span>Insights</span>
-                </div>
+                {activeTab === "Strategy" ? (
+                  <>
+                    <div className="absolute right-20 md:right-52 bottom-[440px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Expert
+                      </span>
+                      <span>Insights</span>
+                    </div>
 
-                <div className="absolute left-20 md:-left-20 bottom-[340px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
-                  <span className="text-blueclr font-bold mr-1">Optimize</span>{" "}
-                  Touchoints
-                </div>
-                <div className="absolute bottom-32 right-0 md:right-44 bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
-                  <span className="text-blueclr font-bold mr-1">Scalable</span>{" "}
-                  Roadmap
-                </div>
-                {/* <img
-                  src={vector}
-                  alt="Vector Background"
-                  className="absolute lg:block hidden bottom-10 left-1/3 transform -translate-x-1/2 scale-[2] w-auto h-auto z-20"
-                /> */}
+                    <div className="absolute left-20 md:-left-14 bottom-[395px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Optimize
+                      </span>{" "}
+                      Touchpoints
+                    </div>
+                    <div className="absolute bottom-40 right-0 md:right-[360px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Scalable
+                      </span>{" "}
+                      Roadmap
+                    </div>
+                  </>
+                ) : activeTab === "Sales" ? (
+                  <>
+                    <div className="absolute right-20 md:right-1 bottom-[440px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Expert
+                      </span>
+                      <span>Support</span>
+                    </div>
+
+                    <div className="absolute left-20 md:-left-14 bottom-[355px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">AI</span>{" "}
+                      Automation
+                    </div>
+                    <div className="absolute bottom-32 right-0 md:right-[280px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">Lead</span>{" "}
+                      Engagement
+                    </div>
+                  </>
+                ) : activeTab === "Data" ? (
+                  <>
+                    <div className="absolute right-20 md:right-10 bottom-[450px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                      Lead
+                      </span>
+                      <span>Management</span>
+                    </div>
+
+                    <div className="absolute left-20 md:-left-20 bottom-[385px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Data
+                      </span>{" "}
+                      Intelligence
+                    </div>
+                    <div className="absolute bottom-52 right-0 md:right-[285px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        CRM
+                      </span>{" "}
+                      Solutions
+                    </div>
+                  </>
+                ) : activeTab === "Content" ? (
+                  <>
+                    <div className="absolute right-20 md:right-0 bottom-[370px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Expert
+                      </span>
+                      <span>Website Design</span>
+                    </div>
+
+                    <div className="absolute left-20 md:left-8 bottom-[415px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+Social                      </span>{" "}
+                      Content
+                    </div>
+                    <div className="absolute bottom-[185px] right-0 md:right-[190px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        High-Conversation
+                      </span>{" "}
+                      Landing Pages
+                    </div>
+                  </>
+                ) : activeTab === "Automation" ? (
+                  <>
+                    <div className="absolute right-20 md:right-80 bottom-[460px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        AI
+                      </span>
+                      <span>Technologies</span>
+                    </div>
+
+                    <div className="absolute right-20 md:right-0 bottom-[365px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Compaign
+                      </span>{" "}
+                      Automations
+                    </div>
+                    <div className="absolute bottom-64 right-0 md:right-[410px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Proprietary
+                      </span>{" "}
+                      Solutions
+                    </div>
+                  </>
+                ) : (
+                  <>
+                  <div className="absolute left-20 md:left-0 top-[80px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      AI
+                    </span>
+                    <span>Technologies</span>
+                  </div>
+
+                  <div className="absolute right-20 bottom-[455px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Compaign
+                    </span>{" "}
+                    Automations
+                  </div>
+                  <div className="absolute bottom-48 right-0 md:right-[410px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Proprietary
+                    </span>{" "}
+                    Solutions
+                  </div>
+                </>
+                )}
               </div>
             </div>
           </div>

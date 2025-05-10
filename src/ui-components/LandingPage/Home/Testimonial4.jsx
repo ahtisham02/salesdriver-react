@@ -1,100 +1,119 @@
+// SolutionsSection.js
 import React from "react";
 import { ArrowRight } from "lucide-react";
-import img1 from "../../../assets/Rectangle 35.png";
-import img2 from "../../../assets/Rectangle 35 (1).png";
-import img3 from "../../../assets/Rectangle 35 (2).png";
-import img4 from "../../../assets/Rectangle 35 (3).png";
-import img5 from "../../../assets/Rectangle 35 (4).png";
-import img6 from "../../../assets/Rectangle 35 (5).png";
-import vector from "../../../assets/Group.png";
-import RightArrow from "../../../assets/Path.png";
 import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
+import vector from "../../../assets/Group.png";
 import vector23 from "../../../assets/vector23.png";
 import { useNavigate } from "react-router-dom";
 
 const solutions = [
   {
-    title: "Virtual Sales Reps",
-    logo: "MeetNow Agency",
-    logoImg: img2,
-    path: "https://meetnow.agency/",
-    description:
-      "Virtual sales reps that handle outreach, book meetings, and close deals, reducing overhead and scaling sales difficulty.",
-    points: [
-      "Lower costs compared to hiring in-house sales reps",
-      "Consistent pipeline of qualified meetings",
-      "Scalable solution to grow without extra overhead",
-    ],
-  },
-  {
-    title: "Web Solution",
-    logo: "Web Point Digital",
-    logoImg: img4,
-    path: "https://info.sepmarketingservices.com/home",
-    description:
-      "High-converting websites built to attract, engage, and convert customers, ensuring businesses stand out online",
-    points: [
-      "Custom website design optimized for conversions",
-      "Seamless user experience to improve engagement",
-      "Scalable web solutions tailored to business growth",
-    ],
-  },
-  {
     title: "Social Selling",
-    logo: "SEP Marketing Services",
-    logoImg: img1,
-    path: "https://companycmarketing.com/home",
+    category: "Strategy",
+    description:
+      "Virtual sales reps that handle outreach, book meetings, and close deals, reducing overhead and scaling sales effortlessly.",
+    points: [
+      "Daily outreach to 50 high-quality leads",
+      "Expert-managed avatars",
+      "Direct appointment booking",
+    ],
+    isInternalLink: true,
+    internalNavPath: "/solutions",
+    targetTab: "Strategy",
+    targetSolutionTitle: "Social Selling",
+  },
+  {
+    title: "Virtual Sales Reps",
+    category: "Strategy",
     description:
       "AI-powered social selling that connects businesses with the right prospects and turns social media into a sales engine.",
     points: [
-      "Automated outreach to target ideal customers",
-      "AI-driven engagement to increase response rates",
-      "More leads generated through LinkedIn and other platforms",
+      "Targeted outreach to decision-makers",
+      "AI-powered analytics and insights",
+      "Dedicated Sales Development Representative",
+    ],
+    isInternalLink: true,
+    internalNavPath: "/solutions",
+    targetTab: "Strategy",
+    targetSolutionTitle: "Virtual Sales Reps",
+  },
+  {
+    title: "Web Design",
+    category: "Strategy",
+    description:
+      "Conversion-focused web design that enhances user experience and drives measurable business growth.",
+    points: [
+      "Custom design and development",
+      "Data-driven approach for optimal results",
+      "Proactive support and maintenance",
+    ],
+    isInternalLink: true,
+    internalNavPath: "/solutions",
+    targetTab: "Strategy",
+    targetSolutionTitle: "Web Design",
+  },
+  {
+    title: "Web Solution",
+    isInternalLink: true,
+    internalNavPath: "/solutions",
+    targetTab: "Strategy",
+    targetSolutionTitle: "Web Solution",
+    description:
+      "High-converting websites built to attract, engage, and convert customers, ensuring businesses stand out online.",
+    points: [
+      "Custom responsive website (up to 10 pages)",
+      "Search engine optimization basics",
+      "Expert-led strategy development",
     ],
   },
   {
     title: "Lead Generation",
-    logo: "B2B Marketing.biz",
-    logoImg: img5,
-    path: "https://webpointdigital.com/home",
+    category: "Strategy",
     description:
       "Automated B2B lead generation that delivers high-quality, sales-ready prospects straight to your pipeline.",
     points: [
-      "Consistent stream of qualified B2B leads",
-      "AI-powered automation to reduce manual prospecting",
-      "Faster deal closures with pre-qualified opportunities",
+      "AI-driven lead tracking and scoring",
+      "Multi-channel outreach automation",
+      "Real-time analytics dashboard",
     ],
-  },
-  {
-    title: "Web Design",
-    logo: "CompanyC Creative",
-    logoImg: img3,
-    path: "https://info.b2bmarketing.biz/home",
-    description:
-      "Conversion focused web design that enhances user experience and drives measurable business growth.",
-    points: [
-      "Strategically designed websites for higher conversions",
-      "Optimized layouts to enhance user experience",
-      "Data-driven approach to maximize online sales",
-    ],
+    isInternalLink: true,
+    internalNavPath: "/solutions",
+    targetTab: "Strategy",
+    targetSolutionTitle: "Lead Generation",
   },
   {
     title: "Custom Solutions",
-    logo: "Icon Devs",
-    logoImg: img6,
-    path: "https://icondevs.com/home",
+    category: "Strategy",
     description:
       "Custom software solutions built to streamline operations, improve efficiency, and support business growth.",
     points: [
-      "Custom software to fit specific business needs",
-      "Automation to eliminate inefficiencies and manual work",
-      "Scalable solutions that grow with your company",
+      "Business needs analysis",
+      "Agile development process",
+      "Ongoing support and maintenance",
     ],
+    isInternalLink: true,
+    internalNavPath: "/solutions",
+    targetTab: "Strategy",
+    targetSolutionTitle: "Custom Solutions",
   },
 ];
 
 export default function SolutionsSection() {
   const navigate = useNavigate();
+
+  const handleLearnMoreClick = (solution) => {
+    if (solution.isInternalLink) {
+      navigate(solution.internalNavPath, {
+        state: {
+          activeTab: solution.targetTab,
+          activeSolution: solution.targetSolutionTitle,
+        },
+      });
+    } else if (solution.path) {
+      window.open(solution.path, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <div className="pt-10 relative pb-20 min-h-screen">
       <div className="px-8 absolute inset-0 w-full h-full">
@@ -106,6 +125,7 @@ export default function SolutionsSection() {
         <div className="absolute inset-0 bg-white opacity-75"></div>
       </div>
       <div className="relative z-10">
+        {/* ... (header section with "View All" button - no change) ... */}
         <div className="flex px-8 justify-between items-center mb-8">
           <div>
             <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
@@ -142,51 +162,41 @@ export default function SolutionsSection() {
           alt="Glow"
           className="absolute bottom-0 left-0 w-96 h-96 opacity-55"
         />
-        <div className="grid grid-cols-1 px-8 md:grid-cols-3 z-10 relative gap-6 md:gap-12">
+
+        <div className="grid grid-cols-1 px-8 md:grid-cols-2 lg:grid-cols-3 z-10 relative gap-6 md:gap-10">
           {solutions.map((solution, index) => (
-            <a
+            <div // Changed from <a> to <div> to handle conditional logic for button
               key={index}
-              href={solution.path}
-              // target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white rounded-xl p-6 md:p-8 shadow-md flex flex-col space-y-4 hover:shadow-lg transition-all duration-300 group hover:bg-[#ECF7FD] h-full"
+              className="bg-[#F4F9FD] rounded-xl px-8 py-10 shadow-md flex flex-col hover:shadow-lg transition-shadow duration-300 h-full"
             >
-              <h2 className="text-[23px] md:text-3xl font-extrabold text-[#005895] hover:pb-2 group-hover:border-blue-200">
-                {solution.title}
-              </h2>
-              <div className="group-hover:max-h-[500px] max-h-0 overflow-hidden transition-all duration-500 ease-in-out pt-0 group-hover:pt-4">
-                <p className="text-gray-700 mb-3">{solution.description}</p>
-                <ul className="space-y-2">
+              <div>
+                <h2 className="text-xl md:text-[26px] font-bold text-[#005895]">
+                  {solution.title}
+                </h2>
+                <p className="text-gray-600 text-[15px] mt-5 mb-4 border-b-[3px] border-gray-200 pb-4">
+                  {solution.description}
+                </p>
+                
+                <p className="text-gray-800 font-semibold text-sm mb-3">Popular Features</p>
+                <ul className="space-y-3 text-sm list-none pl-0">
                   {solution.points.map((point, i) => (
                     <li key={i} className="flex items-start">
-                      <span className="text-gray-500 mr-2">•</span>
+                      <span className="text-[#4B9EDA] mr-2 text-lg leading-none pt-px">•</span>
                       <span className="text-gray-600">{point}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2 mt-3">
-                  <img
-                    src={solution.logoImg}
-                    alt={solution.logo}
-                    className={`${
-                      index === 4
-                        ? "md:w-60 w-52"
-                        : index < 5
-                        ? "md:w-48 w-40"
-                        : "md:w-40 w-32"
-                    } object-contain`}
-                  />
-                </div>
-                <img
-                  src={RightArrow}
-                  alt="Header Background"
-                  className="md:w-6 md:h-6 w-5 h-5 object-contain"
-                />
+              <div className="mt-auto pt-10">
+                <button
+                  onClick={() => handleLearnMoreClick(solution)}
+                  className="bg-[#4491ba] text-white font-semibold py-2.5 px-4 rounded-md hover:bg-[#3b7e9f] transition-colors w-full text-xs uppercase tracking-wider text-center"
+                >
+                  LEARN MORE
+                </button>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>

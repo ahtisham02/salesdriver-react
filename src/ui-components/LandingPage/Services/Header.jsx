@@ -351,7 +351,7 @@ export default function ExactUILayout() {
                 onClick={() => {
                   setActiveTab(tabName);
                 }}
-                className={`px-6 py-2 text-base sm:text-lg font-medium transition whitespace-nowrap ${
+                className={`px-6 py-2 uppercase text-base sm:text-lg font-medium transition whitespace-nowrap ${
                   activeTab === tabName
                     ? "text-blueclr font-bold border-b-2 border-blueclr"
                     : "text-gray-600 border-b-2 border-transparent hover:border-gray-400"

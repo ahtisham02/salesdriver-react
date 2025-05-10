@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import img from "../../../assets/styled2.png";
 import img1 from "../../../assets/Website_Media/Website_Media/illustrations/saastech-illustration_.png";
 import img2 from "../../../assets/Website_Media/Website_Media/illustrations/consulting-illustration_.png";
-import img3 from "../../../assets/Website_Media/Website_Media/illustrations/content-illustration.png";
+import img3 from "../../../assets/Website_Media/Website_Media/illustrations/8ecb01d53d7ff291c6f13be8280b4bccb7422a05.png";
 import img4 from "../../../assets/Website_Media/Website_Media/illustrations/realestate-illustration  copy.png";
 import img5 from "../../../assets/Website_Media/Website_Media/illustrations/healthcare-illustration_.png";
 import img6 from "../../../assets/Website_Media/Website_Media/illustrations/industrial-illustration.png";
@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const tabs = [
   {
-    name: "B2B Service Providers",
+    name: "MARKETING",
     headline: "Scalable Lead Generation, On-Demand",
     img: img,
     description: [
@@ -29,7 +29,7 @@ const tabs = [
     ],
   },
   {
-    name: "SaaS & Technology",
+    name: "SAAS AND TECH",
     headline: "Automate Growth with Smarter Outreach",
     img: img1,
     description: [
@@ -45,7 +45,7 @@ const tabs = [
     ],
   },
   {
-    name: "Business Consulting & Professional Services",
+    name: "CONSULTING",
     headline: "Close More High-Value Clients",
     img: img2,
     description: [
@@ -61,7 +61,7 @@ const tabs = [
     ],
   },
   {
-    name: "Marketing & Advertising Agencies",
+    name: "B2B AGENCIES",
     headline: "More Clients, Less Prospecting",
     img: img3,
     description: [
@@ -77,7 +77,7 @@ const tabs = [
     ],
   },
   {
-    name: "Real Estate & Commercial Development",
+    name: "REAL ESTATE",
     headline: "More Investors & Tenants, Greater Conversions",
     img: img4,
     description: [
@@ -93,7 +93,7 @@ const tabs = [
     ],
   },
   {
-    name: "Healthcare & Medical Services",
+    name: "HEALTHCARE",
     headline: "Build Trust, Grow Patient & Provider Networks",
     img: img5,
     description: [
@@ -109,7 +109,7 @@ const tabs = [
     ],
   },
   {
-    name: "Manufacturing & Industrial Services",
+    name: "INDUSTRIAL",
     headline: "Manage Complex Sales Cycles with Precision",
     img: img6,
     description: [
@@ -130,7 +130,6 @@ export default function ExactUILayout() {
   const [activeTab, setActiveTab] = useState(tabs[0].name);
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
-  // const location = useLocation();
 
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
@@ -138,7 +137,7 @@ export default function ExactUILayout() {
   const activeTabData = tabs.find((tab) => tab.name === activeTab);
 
   return (
-    <div className="relative mx-auto py-16 px-6 md:px-12 text-center">
+    <div className="relative mx-auto py-16 text-center">
       <div className="absolute inset-0 w-full h-full">
         <img
           src={HeadImg}
@@ -148,22 +147,20 @@ export default function ExactUILayout() {
         <div className="absolute inset-0 bg-white opacity-75"></div>
       </div>
       <div className="relative z-10">
-        {/* {location.pathname !== "/" && ( */}
-          <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
-            15+ Industries Served Worldwide{" "}
-          </p>
-        {/* )} */}
-        <h2 className="text-3xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] md:text-5xl font-extrabold text-[#005895] mt-3 mb-6 lg:mb-8">
+        <p className="inline-block uppercase hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
+          15+ Industries Served Worldwide{" "}
+        </p>
+        <h2 className="text-3xl transition-all duration-300 hover:-translate-y-[2px] md:text-5xl font-extrabold text-[#005895] mt-3 mb-6 lg:mb-8">
           For Industries
         </h2>
 
-        <div className="mb-6 pb-3">
+        <div className="mb-5">
           <div className="flex flex-wrap justify-center gap-y-2">
             {tabs.map(({ name }) => (
               <button
                 key={name}
                 onClick={() => setActiveTab(name)}
-                className={`px-4 py-2 text-base font-medium transition-all duration-300 border-b-2 ${
+                className={`px-4 py-2 uppercase text-base font-medium transition-all duration-300 border-b-2 ${
                   activeTab === name
                     ? "text-blueclr font-bold border-blueclr"
                     : "text-gray-500 border-gray-300 hover:border-gray-500"
@@ -175,9 +172,9 @@ export default function ExactUILayout() {
           </div>
         </div>
 
-        <div className="relative hover:scale-[1.02] transition-all duration-300 flex flex-col w-full bg-white px-4 lg:px-8 overflow-hidden py-6 mx-auto rounded-xl shadow-lg border border-gray-200">
-          <div className="flex flex-col md:flex-row w-full bg-white rounded-xl p-2 md:p-6 z-10">
-            <div className="md:w-1/2 pr-6 text-left">
+        <div className="relative flex flex-col w-full px-4 lg:px-8 overflow-hidden py-6 mx-auto">
+          <div className="flex flex-col md:flex-row w-full rounded-xl p-2 md:p-6 z-10">
+            <div className="md:w-1/2 px-8 py-10 text-left bg-white rounded-xl border border-gray-100">
               <h2 className="text-lg mb-2.5 font-medium leading-snug text-blueclr">
                 {activeTabData.name}
               </h2>
@@ -194,7 +191,7 @@ export default function ExactUILayout() {
               ))}
               <button
                 onClick={() => navigate("/services")}
-                className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative"
+                className="text-blueclr uppercase mt-6 text-base sm:text-lg flex items-center font-medium group relative"
               >
                 <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
                   {activeTabData.button}{" "}
@@ -228,7 +225,7 @@ export default function ExactUILayout() {
                       <button
                         key={index}
                         onClick={() => navigate("/services")}
-                        className="py-3 px-6 rounded-lg text-[16px] font-medium border border-gray-300 backdrop-blur-lg bg-white/30 hover:bg-[#ECF7FD] hover:text-[#00A7E2] shadow-md hover:shadow-lg hover:border-[#00A7E2] transition-all w-full hover:scale-105 text-gray-800"
+                        className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                       >
                         {service}
                       </button>
@@ -242,14 +239,188 @@ export default function ExactUILayout() {
               <img
                 src={activeTabData?.img}
                 alt="Industry"
-                className="max-w-full h-auto relative z-10"
+                className="max-w-full h-auto relative z-0"
               />
+              {activeTab === "MARKETING" ? (
+                <>
+                  <div className="absolute right-20 md:right-52 bottom-[440px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">Expert</span>
+                    <span>Insights</span>
+                  </div>
 
-              {/* <img
-                src={vector}
-                alt="Vector Background"
-                className="absolute lg:block hidden bottom-10 left-1/3 transform -translate-x-1/2 scale-[2] w-auto h-auto z-20"
-              /> */}
+                  <div className="absolute left-20 md:-left-14 bottom-[395px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Optimize
+                    </span>{" "}
+                    Touchpoints
+                  </div>
+                  <div className="absolute bottom-40 right-0 md:right-[360px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Scalable
+                    </span>{" "}
+                    Roadmap
+                  </div>
+                </>
+              ) : activeTab === "SAAS AND TECH" ? (
+                <>
+                  <div className="absolute right-20 md:right-1 bottom-[470px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Personalized
+                    </span>
+                    <span>Sales</span>
+                  </div>
+
+                  <div className="absolute left-20 md:left-44 bottom-[395px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">Team</span>{" "}
+                    Engagement
+                  </div>
+                  <div className="absolute bottom-40 left-0 md:left-[45px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">Lead</span>{" "}
+                    Nurturing
+                  </div>
+                </>
+              ) : activeTab === "CONSULTING" ? (
+                <>
+                  <div className="absolute right-20 md:right-52 bottom-[445px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-2xl px-4 py-3 text-sm md:text-base font-medium text-gray-700 sm:flex hidden flex-col items-center space-y-2">
+                    <div className="text-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Virtual
+                      </span>
+                      <span>Sales Reps</span>
+                    </div>
+                    <button className="rounded-full px-4 py-2 text-base bg-[#00a7e2] text-white">
+                      Learn More
+                    </button>
+                  </div>
+                  <div className="absolute right-0 md:right-0 bottom-[360px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-2xl px-4 py-3 text-sm md:text-base font-medium text-gray-700 sm:flex hidden flex-col items-center space-y-2">
+                    <div className="text-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Social
+                      </span>
+                      <span>Selling</span>
+                    </div>
+                    <button className="rounded-full px-4 py-2 text-base bg-[#00a7e2] text-white">
+                      Learn More
+                    </button>
+                  </div>
+                  <div className="absolute bottom-32 left-0 md:left-[5px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Increased
+                    </span>{" "}
+                    Credibility
+                  </div>
+                </>
+              ) : activeTab === "B2B AGENCIES" ? (
+                <>
+                  <div className="absolute left-20 md:left-6 bottom-[110px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-2xl px-4 py-3 text-sm md:text-base font-medium text-gray-700 sm:flex hidden flex-col items-center space-y-2">
+                    <div className="text-center">
+                      <span className="text-blueclr font-bold mr-1">Lead</span>
+                      <span>Generation</span>
+                    </div>
+                    <button className="rounded-full px-4 py-2 text-base bg-[#00a7e2] text-white">
+                      Learn More
+                    </button>
+                  </div>
+                  <div className="absolute right-20 md:right-60 top-[55px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-2xl px-4 py-3 text-sm md:text-base font-medium text-gray-700 sm:flex hidden flex-col items-center space-y-2">
+                    <div className="text-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Virtual
+                      </span>
+                      <span>Sales Reps</span>
+                    </div>
+                    <button className="rounded-full px-4 py-2 text-base bg-[#00a7e2] text-white">
+                      Learn More
+                    </button>
+                  </div>
+                  <div className="absolute right-0 md:right-0 bottom-[400px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-2xl px-4 py-3 text-sm md:text-base font-medium text-gray-700 sm:flex hidden flex-col items-center space-y-2">
+                    <div className="text-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Social
+                      </span>
+                      <span>Selling</span>
+                    </div>
+                    <button className="rounded-full px-4 py-2 text-base bg-[#00a7e2] text-white">
+                      Learn More
+                    </button>
+                  </div>
+                </>
+              ) : activeTab === "REAL ESTATE" ? (
+                <>
+                  <div className="absolute right-20 md:right-52 top-[42px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Automated
+                    </span>
+                    <span>Outreach</span>
+                  </div>
+
+                  <div className="absolute right-0 md:right-0 top-[120px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-2xl px-4 py-3 text-sm md:text-base font-medium text-gray-700 sm:flex hidden flex-col items-center space-y-2">
+                    <div className="text-center">
+                      <span className="text-blueclr font-bold mr-1">
+                        Social
+                      </span>
+                      <span>Selling</span>
+                    </div>
+                    <button className="rounded-full px-4 py-2 text-base bg-[#00a7e2] text-white">
+                      Learn More
+                    </button>
+                  </div>
+                  <div className="absolute left-20 md:left-6 top-[180px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-2xl px-4 py-3 text-sm md:text-base font-medium text-gray-700 sm:flex hidden flex-col items-center space-y-2">
+                    <div className="text-center">
+                      <span className="text-blueclr font-bold mr-1">Lead</span>
+                      <span>Generation</span>
+                    </div>
+                    <button className="rounded-full px-4 py-2 text-base bg-[#00a7e2] text-white">
+                      Learn More
+                    </button>
+                  </div>
+                  <div className="absolute bottom-24 right-0 md:right-[410px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">Lead</span>{" "}
+                    Management
+                  </div>
+                </>
+              ) : activeTab === "HEALTHCARE" ? (
+                <>
+                  <div className="absolute right-20 md:-right-6 top-[130px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Targeted
+                    </span>
+                    <span>AI Solutions</span>
+                  </div>
+
+                  <div className="absolute left-20 md:-left-10 bottom-[355px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Optimized
+                    </span>{" "}
+                    CRM
+                  </div>
+                  <div className="absolute bottom-44 right-0 md:right-[310px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Personalized
+                    </span>{" "}
+                    Outreach
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="absolute left-20 md:left-10 top-[210px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Simplified
+                    </span>
+                    <span>Sales</span>
+                  </div>
+
+                  <div className="absolute right-0 top-[105px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">
+                      Targeted
+                    </span>{" "}
+                    Outreach
+                  </div>
+                  <div className="absolute bottom-48 right-0 md:right-[470px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <span className="text-blueclr font-bold mr-1">Lead</span>{" "}
+                    Management
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
