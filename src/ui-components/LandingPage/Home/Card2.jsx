@@ -37,7 +37,7 @@ export default function ExactUILayout() {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://sales-driver-f29297.ingress-earth.ewp.live//wp-json/wp/v2/posts?_embed"
+          "https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?_embed"
         );
         const data = await response.json();
 
