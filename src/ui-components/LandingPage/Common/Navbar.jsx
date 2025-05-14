@@ -41,11 +41,11 @@ function Navbar() {
         path: "/company",
         icon: <Users2 className="size-5 transition-all" />,
       },
-      // {
-      //   label: "API",
-      //   path: "/api",
-      //   icon: <Code className="size-5 transition-all" />,
-      // },
+      {
+        label: "Blog",
+        path: "/blog",
+        icon: <Code className="size-5 transition-all" />,
+      },
       // {
       //   label: "Help",
       //   path: "/help",
@@ -124,7 +124,7 @@ function Navbar() {
              lg:space-x-8 text-black`}
           >
             {" "}
-            {["Services", "Solutions", "Industries", "Company"].map((label) => {
+            {["Services", "Solutions", "Industries", "Company", "Blog"].map((label) => {
               const path = `/${label.toLowerCase()}`;
 
               return (

@@ -172,7 +172,7 @@ const ExactUILayout = () => {
                     />
 
                     <button
-                      onClick={() => navigate(`/post/${post.id}`)}
+                    onClick={() => navigate(`/post/${post.slug}`)}
                       className="mt-3 text-blueclr flex items-center font-semibold hover:text-blue-700 transition-all duration-300"
                     >
                       Read More <ArrowRight className="ml-2" size={18} />

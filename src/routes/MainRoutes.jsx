@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/LandingPages/Home/Home";
 import ServicesPage from "../pages/LandingPages/Services/Services";
@@ -43,7 +42,7 @@ const MainRoutes = () => {
           <Route path="/downloadables" element={<DownloadablesPage />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="/Terms" element={<Terms />} />
-          <Route path="/post/:id" element={<PostDetails />} />
+          <Route path="/post/:slug" element={<PostDetails />} />
         </Route>
       </Routes>
     </>
