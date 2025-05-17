@@ -11,7 +11,7 @@ export default function CompanyPage() {
       <Header />
       <Slider />
       <Section />
-      <Testimonial1 />
+      {/* <Testimonial1 /> */}
       <Reviews />
     </div>
   );

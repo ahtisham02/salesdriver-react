@@ -1058,7 +1058,7 @@ const terms = [
           Based on the applicable laws of your country, you may have the right
           to request access to the personal information we collect from you,
           change that information, or delete it. To request to review, update,
-          or delete your personal information, please visit: __________.
+          or delete your personal information, please visit: info@salesdriver.io.
         </p>
         <p className="text-[#333] text-sm italic">
           This privacy policy was created using Termly's Privacy Policy
@@ -1073,7 +1073,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-sm">
       <div className="text-center mb-14">
-        <h1 className="text-3xl md:text-5xl font-black text-[#a2c3cf] mt-2">
+        <h1 className="text-3xl md:text-5xl font-black text-[#25b4e6] mt-2">
           Privacy Policy
         </h1>
         <p className="text-[#666] font-medium text-sm mt-6">

@@ -7,7 +7,6 @@ import img4 from "../../../assets/Website_Media/Website_Media/illustrations/auto
 import img5 from "../../../assets/Website_Media/Website_Media/illustrations/seoads-illustration  copy.png";
 import HeadImg from "../../../assets/69c37d04d3feadc39b5681a70e9d7638.png";
 import elipse from "../../../assets/Ellipse.png";
-// import vector from "../../../assets/Vector5.png";
 import { useNavigate } from "react-router-dom";
 import {
   ChevronDown,
@@ -157,14 +156,14 @@ export default function ExactUILayout() {
           </div>
         </div>
 
-        <div className="relative flex flex-col w-full overflow-hidden px-4 mx-auto">
-          <div className="flex flex-col w-full p-2 md:p-6 rounded-xl">
+        <div className="relative flex flex-col w-full overflow-hidden px-2 mx-auto">
+          <div className="flex flex-col w-full p-1 md:p-2 rounded-xl">
             <div className="flex flex-col md:flex-row w-full">
-              <div className="md:w-1/2 px-8 py-10 lg:mr-4 bg-white rounded-2xl border border-gray-100">
-                <h2 className="text-2xl md:text-4xl font-bold leading-snug text-[#005895]">
+              <div className="md:w-1/2 px-4 pt-6 lg:mr-2 bg-white rounded-2xl border border-gray-100">
+                <h2 className="text-2xl md:text-3xl font-bold leading-snug text-[#005895]">
                   {activeTabData?.heading}
                 </h2>
-                <p className="text-slate-600 mt-5 text-base sm:text-lg leading-relaxed">
+                <p className="text-slate-600 mt-4 text-sm sm:text-base leading-relaxed">
                   {activeTab === "Sales" || activeTab === "Content" ? (
                     <>
                       {activeTabData.description.split(". ")[0] + "."}
@@ -186,36 +185,36 @@ export default function ExactUILayout() {
                       state: { name: activeTabData?.name },
                     })
                   }
-                  className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative"
+                  className="text-blueclr mt-5 text-sm sm:text-base flex items-center font-medium group relative"
                 >
                   <span className="relative uppercase z-10 group-hover:translate-y-[-2px] transition-all">
                     Learn More
                   </span>
                   <ArrowRight
                     className="ml-2 relative z-10 group-hover:translate-y-[-2px] transition-all"
-                    size={20}
+                    size={18}
                   />
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blueclr transition-all group-hover:w-full"></span>
                 </button>
-                <div className="mt-10 w-full">
+                <div className="mt-8 w-full">
                   <h2
-                    className="text-xl font-semibold text-slate-800 flex items-center cursor-pointer"
+                    className="text-lg font-semibold text-slate-800 flex items-center cursor-pointer"
                     onClick={handleToggle}
                   >
                     Linked Services
                     {isOpen ? (
-                      <ChevronUp className="ml-2" size={22} />
+                      <ChevronUp className="ml-2" size={20} />
                     ) : (
-                      <ChevronDown className="ml-2" size={22} />
+                      <ChevronDown className="ml-2" size={20} />
                     )}
                   </h2>
 
                   <div
-                    className={`overflow-hidden transition-all duration-500 px-4 ease-in-out mt-4 ${
-                      isOpen ? "max-h-screen py-4" : "max-h-0"
+                    className={`overflow-hidden transition-all duration-500 px-3 ease-in-out mt-3 ${
+                      isOpen ? "max-h-screen py-3" : "max-h-0"
                     }`}
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
                       {activeTabData?.btn1 && (
                         <button
                           onClick={() =>
@@ -223,7 +222,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
+                          className="py-2 px-1 text-[15px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn1}
                         </button>
@@ -235,7 +234,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
+                          className="py-2 px-1 text-[15px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn2}
                         </button>
@@ -247,7 +246,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
+                          className="py-2 px-1 text-[15px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn3}
                         </button>
@@ -259,7 +258,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
+                          className="py-2 px-1 text-[15px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn4}
                         </button>
@@ -271,7 +270,7 @@ export default function ExactUILayout() {
                               state: { name: activeTabData?.name },
                             })
                           }
-                          className="py-3 px-1 text-[16px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
+                          className="py-2 px-1 text-[15px] text-left font-medium transition-all hover:text-[#00a7e2] w-full hover:scale-105 text-gray-800"
                         >
                           {activeTabData.btn5}
                         </button>
@@ -281,28 +280,27 @@ export default function ExactUILayout() {
                 </div>
               </div>
 
-              <div className="md:w-1/2 flex items-center mt-10 mb-5 md:mb-0 md:mt-0 justify-center relative">
+              <div className="md:w-1/2 flex items-center mt-6 mb-4 md:mb-0 md:mt-0 justify-center relative">
                 <img
-                  className="w-full h-auto"
+                  className="w-10/12 mx-auto h-auto"
                   src={activeTabData?.img}
                   alt="Service Illustration"
                 />
                 {activeTab === "Strategy" ? (
                   <>
-                    <div className="absolute right-20 md:right-52 bottom-[440px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute right-16 md:right-40 bottom-[380px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         Expert
                       </span>
                       <span>Insights</span>
                     </div>
-
-                    <div className="absolute left-20 md:-left-14 bottom-[395px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute left-16 md:-left-8 bottom-[345px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         Optimize
                       </span>{" "}
                       Touchpoints
                     </div>
-                    <div className="absolute bottom-40 right-0 md:right-[360px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute bottom-32 right-0 md:right-[300px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         Scalable
                       </span>{" "}
@@ -311,38 +309,36 @@ export default function ExactUILayout() {
                   </>
                 ) : activeTab === "Sales" ? (
                   <>
-                    <div className="absolute right-20 md:right-1 bottom-[440px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute right-16 md:right-[-10px] bottom-[380px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         Expert
                       </span>
                       <span>Support</span>
                     </div>
-
-                    <div className="absolute left-20 md:-left-14 bottom-[355px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute left-16 md:-left-8 bottom-[315px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">AI</span>{" "}
                       Automation
                     </div>
-                    <div className="absolute bottom-32 right-0 md:right-[280px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute bottom-28 right-0 md:right-[230px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">Lead</span>{" "}
                       Engagement
                     </div>
                   </>
                 ) : activeTab === "Data" ? (
                   <>
-                    <div className="absolute right-20 md:right-10 bottom-[450px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute right-16 md:right-5 bottom-[390px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                       Lead
                       </span>
                       <span>Management</span>
                     </div>
-
-                    <div className="absolute left-20 md:-left-20 bottom-[385px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute left-16 md:-left-16 bottom-[335px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         Data
                       </span>{" "}
                       Intelligence
                     </div>
-                    <div className="absolute bottom-52 right-0 md:right-[285px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute bottom-44 right-0 md:right-[235px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         CRM
                       </span>{" "}
@@ -351,19 +347,18 @@ export default function ExactUILayout() {
                   </>
                 ) : activeTab === "Content" ? (
                   <>
-                    <div className="absolute right-20 md:right-0 bottom-[370px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute right-16 md:right-[-20px] bottom-[320px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         Expert
                       </span>
                       <span>Website Design</span>
                     </div>
-
-                    <div className="absolute left-20 md:left-8 bottom-[415px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute left-16 md:left-2 bottom-[360px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
 Social                      </span>{" "}
                       Content
                     </div>
-                    <div className="absolute bottom-[185px] right-0 md:right-[190px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute bottom-[150px] right-0 md:right-[150px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         High-Conversation
                       </span>{" "}
@@ -372,46 +367,44 @@ Social                      </span>{" "}
                   </>
                 ) : activeTab === "Automation" ? (
                   <>
-                    <div className="absolute right-20 md:right-80 bottom-[460px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute right-16 md:right-60 bottom-[400px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         AI
                       </span>
                       <span>Technologies</span>
                     </div>
-
-                    <div className="absolute right-20 md:right-0 bottom-[365px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute right-16 md:right-[-20px] bottom-[315px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         Compaign
                       </span>{" "}
                       Automations
                     </div>
-                    <div className="absolute bottom-64 right-0 md:right-[410px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                    <div className="absolute bottom-52 right-0 md:right-[340px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                       <span className="text-blueclr font-bold mr-1">
                         Proprietary
                       </span>{" "}
                       Solutions
                     </div>
                   </>
-                ) : (
+                ) : ( // SEO/Ads
                   <>
-                  <div className="absolute left-20 md:left-0 top-[80px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                  <div className="absolute left-16 md:left-[-20px] top-[60px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                     <span className="text-blueclr font-bold mr-1">
-                      AI
+                      On-Page
                     </span>
-                    <span>Technologies</span>
+                    <span>SEO</span>
                   </div>
-
-                  <div className="absolute right-20 bottom-[455px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                  <div className="absolute right-16 md:right-[-10px] bottom-[395px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                     <span className="text-blueclr font-bold mr-1">
-                      Compaign
+                      PPC
                     </span>{" "}
-                    Automations
+                    Management
                   </div>
-                  <div className="absolute bottom-48 right-0 md:right-[410px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-4 py-1.5 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
+                  <div className="absolute bottom-40 right-0 md:right-[350px] bg-white transform transition-all duration-300 hover:-translate-y-1 hover:scale-[1] shadow-lg rounded-full px-3 py-1 text-xs md:text-sm font-medium text-gray-700 sm:flex hidden items-center">
                     <span className="text-blueclr font-bold mr-1">
-                      Proprietary
+                      Link
                     </span>{" "}
-                    Solutions
+                    Building
                   </div>
                 </>
                 )}

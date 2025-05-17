@@ -40,7 +40,7 @@ export default function Testimonials() {
         <div className="absolute inset-0 bg-white opacity-45"></div>
       </div>
       <div className="relative z-10">
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-[1440px] mx-auto text-center">
           <h2 className="text-3xl lg:text-5xl font-bold text-[#005895]">
             What Our Clients Say
           </h2>

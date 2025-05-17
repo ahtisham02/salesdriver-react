@@ -44,7 +44,7 @@ export default function ExactUILayout() {
     dots: false,
     arrows: false,
     infinite: true,
-    speed: 8000,
+    speed: 10000,
     autoplay: true,
     autoplaySpeed: 0,
     cssEase: "linear",

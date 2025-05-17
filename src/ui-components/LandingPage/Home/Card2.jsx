@@ -121,7 +121,7 @@ export default function ExactUILayout() {
 
   return (
     <div className="sm:px-8 px-4 py-14 bg-gray-50">
-      <div className="text-center mb-10">
+      <div className="text-center mb-10 max-w-[1440px] mx-auto">
         <p className="inline-block uppercase hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
           insights and news{" "}
         </p>
@@ -134,7 +134,7 @@ export default function ExactUILayout() {
         </p>
       </div>
 
-      <div className="flex justify-center mb-10">
+      <div className="flex justify-center mb-10 max-w-[1440px] mx-auto">
         <div className="flex bg-white border scrollbar-hide border-gray-300 rounded-full p-1.5 shadow-md overflow-auto whitespace-nowrap max-w-full sm:max-w-[90%]">
           {tabs.map((tab) => (
             <button
@@ -152,7 +152,7 @@ export default function ExactUILayout() {
         </div>
       </div>
 
-      <>
+      <div className="max-w-[1440px] mx-auto">
         {getVisibleCards().length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12">
             {getVisibleCards().map((post) => (
@@ -198,7 +198,7 @@ export default function ExactUILayout() {
             <p className="text-gray-500 mt-2">Please check back later!</p>
           </div>
         )}
-      </>
+      </div>
 
       <div className="text-center mt-8">
         <button

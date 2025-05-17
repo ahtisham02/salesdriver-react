@@ -3,7 +3,7 @@ import img from "../../../assets/Website_Media/Website_Media/designs/i_am_a_sale
 
 export default function Section() {
   return (
-    <section className="flex flex-col md:flex-row items-center gap-12 py-10 md:px-10 bg-[#ebf5ff] rounded-3xl mx-8 my-10">
+    <section className="flex flex-col max-w-[1440px] mx-auto md:flex-row items-center gap-12 py-10 md:px-10 bg-[#ebf5ff] rounded-3xl mx-8 my-10">
       <div className="md:w-1/2 text-center bg-white px-4 py-6 rounded-3xl md:text-left">
         <h2 className="text-3xl md:text-4xl font-bold text-blueclr leading-normal">
           What is a <br /> SalesDriver?

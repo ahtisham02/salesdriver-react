@@ -124,8 +124,7 @@ export default function SolutionsSection() {
         />
         <div className="absolute inset-0 bg-white opacity-75"></div>
       </div>
-      <div className="relative z-10">
-        {/* ... (header section with "View All" button - no change) ... */}
+      <div className="relative z-10 max-w-[1440px] mx-auto">
         <div className="flex px-8 justify-between items-center mb-8">
           <div>
             <p className="inline-block hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
@@ -138,19 +137,6 @@ export default function SolutionsSection() {
               Built for the most common issues.
             </p>
           </div>
-          <button
-            onClick={() => navigate("/solutions")}
-            className="text-blueclr mt-6 text-base sm:text-lg flex items-center font-medium group relative"
-          >
-            <span className="relative z-10 group-hover:translate-y-[-2px] transition-all">
-              View All{" "}
-            </span>
-            <ArrowRight
-              className="ml-2 relative z-10 group-hover:translate-y-[-2px] transition-all"
-              size={20}
-            />
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blueclr transition-all group-hover:w-full"></span>
-          </button>
         </div>
         <img
           src={vector}

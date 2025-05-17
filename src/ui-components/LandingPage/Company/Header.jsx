@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import img from "../../../assets/resizedi.png";
+import React, { useState, useEffect } from "react"; // Added useEffect
+import img from "../../../assets/resizedi.png"; // Ensure this path is correct
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
 export default function Section() {
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [ref, inView] = useInView({
+  const { ref, inView } = useInView({ // Destructure ref from useInView
     threshold: 0.3,
     triggerOnce: true,
   });
 
-  React.useEffect(() => {
+  useEffect(() => { // Changed React.useEffect to useEffect
     if (inView && !hasAnimated) {
       setHasAnimated(true);
     }
@@ -18,8 +18,8 @@ export default function Section() {
 
   return (
     <div ref={ref}>
-      <div className="w-full mt-10 bg-gradient-to-t from-[#ECF7FD] to-[#fbfeff]">
-        <div className="relative flex flex-col items-center text-center py-10">
+      <div className="w-full py-10 bg-gradient-to-t from-[#ECF7FD] to-[#fbfeff]">
+        <div className="relative max-w-[1440px] mx-auto flex flex-col items-center text-center py-10 px-6 md:px-12"> {/* Added px for horizontal padding */}
           <h1 className="text-4xl pt-5 md:text-5xl font-bold text-blueclr">
             We Are SalesDriver
           </h1>
@@ -35,7 +35,6 @@ export default function Section() {
             <span className="text-blueclr font-bold mr-1">Human-Powered</span>{" "}
             AI Solutions
           </div>
-
           <div className="absolute bottom-0 hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] left-0 md:left-40 bg-white shadow-lg rounded-full px-4 py-2 text-sm md:text-base font-medium text-gray-700 sm:flex hidden items-center">
             <span className="text-blueclr font-bold mr-1">Data-enriched</span>{" "}
             Execution
@@ -45,8 +44,10 @@ export default function Section() {
             Proprietary Tools
           </div>
         </div>
+      </div>
 
-        <section className="relative flex flex-col items-center text-left md:text-center bg-white mt-10 px-6 md:px-12 pt-12 pb-6">
+      <div className="w-full bg-white mt-10"> {/* mt-10 provides spacing from the gradient section above */}
+        <section className="relative max-w-[1440px] mx-auto flex flex-col items-center text-left md:text-center px-6 md:px-12 pt-12 pb-6">
           <h2 className="text-3xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] md:text-4xl font-bold text-[#005895] leading-normal">
             What We Do
           </h2>
@@ -61,7 +62,7 @@ export default function Section() {
                 {hasAnimated ? (
                   <CountUp end={20} duration={2.5} className="text-black" />
                 ) : (
-                  "0+"
+                  "0" // More accurate starting point for CountUp
                 )}
                 +
               </span>
@@ -81,7 +82,7 @@ export default function Section() {
                     className="text-black"
                   />
                 ) : (
-                  "0M+"
+                  "0M" // More accurate starting point
                 )}
                 +
               </span>
@@ -93,7 +94,7 @@ export default function Section() {
                 {hasAnimated ? (
                   <CountUp end={15} duration={2.5} className="text-black" />
                 ) : (
-                  "0+"
+                  "0" // More accurate starting point
                 )}
                 +
               </span>
@@ -112,7 +113,7 @@ export default function Section() {
                     className="text-black"
                   />
                 ) : (
-                  "0K+"
+                  "0K" // More accurate starting point
                 )}
                 +
               </span>
@@ -122,9 +123,11 @@ export default function Section() {
             </div>
           </div>
         </section>
+      </div>
 
-        <section className="relative flex flex-col md:flex-row items-center gap-12 md:px-10 pb-10 pt-5 bg-white mb-10">
-          <div className="md:w-1/2 px-8 py-7 text-left">
+      <div className="w-full bg-white mb-10"> {/* mb-10 provides spacing after this section */}
+        <section className="relative max-w-[1440px] mx-auto flex flex-col md:flex-row items-center gap-12 px-6 md:px-10 pb-10 pt-5"> {/* Added consistent px-6 */}
+          <div className="md:w-1/2 py-7 text-left"> {/* Removed px-8 as parent handles horizontal padding */}
             <h2 className="text-3xl md:text-4xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] font-bold text-[#005895] leading-normal">
               What is a SalesDriver?
             </h2>
@@ -143,7 +146,7 @@ export default function Section() {
             </p>
           </div>
 
-          <div className="md:w-1/2 flex justify-center">
+          <div className="md:w-1/2 flex justify-center px-4 md:px-0"> {/* Added some padding for image on mobile if needed */}
             <img
               src={img}
               alt="Sales Illustration"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import HeadImg from "../../../assets/Group1000001040.png";
 import { useLocation } from "react-router-dom";
 
@@ -11,6 +11,16 @@ const tabs = [
   "SEO/Ads",
   "Support",
 ];
+
+const tabParagraphs = {
+  Strategy: "SalesDriver’s strategy services provide agencies with a structured, data-driven approach to acquiring new clients. Our experts analyze the customer journey, optimize touchpoints, and create a scalable sales roadmap that drives predictable growth.",
+  Sales: "Our sales services focus on engaging, nurturing, and converting leads into paying clients. We combine AI-driven automation with human expertise to create an efficient, scalable sales funnel.",
+  Data: "SalesDriver integrates data intelligence and CRM solutions to track, manage, and score leads, ensuring sales teams focus on high-priority prospects with the highest likelihood of conversion.",
+  Content: "High-quality content fuels successful sales. Our content and branding services help agencies attract, educate, and convert prospects through compelling storytelling, design, and digital engagement.",
+  Automation: "SalesDriver’s AI-powered automation services remove manual work, allowing agencies to scale lead generation and client engagement efficiently.",
+  "SEO/Ads": "Gain the tools you need to stand out online. Connect with your ideal target audience at crucial touch points. Join your audience where they are already.",
+  Support: "For agencies that want a fully outsourced sales team, we offer additional sales resources to boost engagement and conversions."
+};
 
 const tabData = {
   Strategy: [
@@ -312,18 +322,136 @@ const tabData = {
   ],
 };
 
-export default function ExactUILayout() {
-  const [expanded, setExpanded] = useState(0); // Default to the first item (index 0)
+const FADE_DURATION = 300; 
+const CARD_CONTENT_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'; // Tailwind's default ease-in-out
 
+export default function ExactUILayout() {
+  const [expanded, setExpanded] = useState(0); 
   const location = useLocation();
   const name = location.state?.name;
   const [activeTab, setActiveTab] = useState(name || tabs[0]);
 
-  const features = tabData[activeTab] || [];
+  const [cardContentOpacity, setCardContentOpacity] = useState(1);
+  const [isCardAnimating, setIsCardAnimating] = useState(false);
 
-  React.useEffect(() => {
+  const features = tabData[activeTab] || [];
+  const currentParagraph = tabParagraphs[activeTab] || "";
+
+  const scrollContainerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftStart, setScrollLeftStart] = useState(0);
+  const hasDraggedRef = useRef(false);
+  const DRAG_THRESHOLD = 10;
+
+  useEffect(() => {
     setExpanded(0);
+    setCardContentOpacity(1); 
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = 0;
+    }
   }, [activeTab]);
+
+  const handleCardClick = (clickedIndex) => {
+    if (isCardAnimating) return;
+    setIsCardAnimating(true);
+
+    const previouslyExpandedIndex = expanded;
+
+    if (previouslyExpandedIndex === clickedIndex) { 
+        setCardContentOpacity(0); 
+        setTimeout(() => {
+            setExpanded(null); 
+            setIsCardAnimating(false);
+        }, FADE_DURATION);
+    } else { 
+        if (previouslyExpandedIndex !== null) { 
+            setCardContentOpacity(0); 
+            setTimeout(() => {
+                setExpanded(clickedIndex); 
+                requestAnimationFrame(() => { 
+                    setCardContentOpacity(1); 
+                    setTimeout(() => {
+                        setIsCardAnimating(false);
+                    }, FADE_DURATION);
+                });
+            }, FADE_DURATION); 
+        } else { 
+            setExpanded(clickedIndex); 
+            setCardContentOpacity(0);   
+            requestAnimationFrame(() => { 
+                requestAnimationFrame(() => { 
+                    setCardContentOpacity(1);
+                    setTimeout(() => {
+                        setIsCardAnimating(false);
+                    }, FADE_DURATION);
+                });
+            });
+        }
+    }
+  };
+
+  const getClientX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
+
+  const handleDragStart = (e) => {
+    if (!scrollContainerRef.current || isCardAnimating) return;
+    if (e.button && e.button !== 0) return;
+
+    setIsDragging(true);
+    setStartX(getClientX(e));
+    setScrollLeftStart(scrollContainerRef.current.scrollLeft);
+    hasDraggedRef.current = false;
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.cursor = "grabbing";
+    }
+    document.body.style.userSelect = "none";
+  };
+
+  const handleDragMove = useCallback(
+    (e) => {
+      if (!isDragging || !scrollContainerRef.current) return;
+      const currentX = getClientX(e);
+      const walk = currentX - startX;
+      if (!hasDraggedRef.current && Math.abs(walk) > DRAG_THRESHOLD) {
+        hasDraggedRef.current = true;
+      }
+      if (hasDraggedRef.current && e.cancelable) {
+        e.preventDefault();
+      }
+      scrollContainerRef.current.scrollLeft = scrollLeftStart - walk;
+    },
+    [isDragging, startX, scrollLeftStart]
+  );
+
+  const handleDragEnd = useCallback(() => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.cursor = "grab";
+    }
+    document.body.style.userSelect = "";
+  }, [isDragging]);
+
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener("mousemove", handleDragMove);
+      document.addEventListener("mouseup", handleDragEnd);
+      document.addEventListener("touchmove", handleDragMove, { passive: false });
+      document.addEventListener("touchend", handleDragEnd);
+    } else {
+      document.removeEventListener("mousemove", handleDragMove);
+      document.removeEventListener("mouseup", handleDragEnd);
+      document.removeEventListener("touchmove", handleDragMove);
+      document.removeEventListener("touchend", handleDragEnd);
+    }
+    return () => {
+      document.removeEventListener("mousemove", handleDragMove);
+      document.removeEventListener("mouseup", handleDragEnd);
+      document.removeEventListener("touchmove", handleDragMove);
+      document.removeEventListener("touchend", handleDragEnd);
+      document.body.style.userSelect = "";
+    };
+  }, [isDragging, handleDragMove, handleDragEnd]);
 
   return (
     <div className="container relative mx-auto px-6 lg:px-14 pt-10 lg:pt-14 my-4">
@@ -334,21 +462,19 @@ export default function ExactUILayout() {
           className="w-full h-full object-cover opacity-30"
         />
       </div>
-
       <div className="relative z-10">
         <div className="mb-8 text-center">
           <h1 className="lg:text-[58px] my-2 text-3xl font-extrabold text-[#00A7E2] tracking-wide">
             Helping you get more for your business
           </h1>
         </div>
-
-        {/* Tabs */}
         <div className="mb-6 pb-3 overflow-x-auto scrollbar-hide">
           <div className="flex justify-center min-w-max space-x-4">
             {tabs.map((tabName) => (
               <button
                 key={tabName}
                 onClick={() => {
+                  if (isCardAnimating) return; 
                   setActiveTab(tabName);
                 }}
                 className={`px-6 py-2 uppercase text-base sm:text-lg font-medium transition whitespace-nowrap ${
@@ -356,26 +482,22 @@ export default function ExactUILayout() {
                     ? "text-blueclr font-bold border-b-2 border-blueclr"
                     : "text-gray-600 border-b-2 border-transparent hover:border-gray-400"
                 }`}
+                disabled={isCardAnimating}
               >
                 {tabName}
               </button>
             ))}
           </div>
         </div>
-
         <p className="text-sm max-w-3xl mx-auto text-center font-medium text-gray-700 mb-8">
-          SalesDriver’s strategy services provide agencies with a structured,
-          data-driven approach to acquiring new clients. Our experts analyze the
-          customer journey, optimize touchpoints, and create a scalable sales
-          roadmap that drives predictable growth.{" "}
+          {currentParagraph}
         </p>
-
         <div className="relative flex flex-row items-start sm:space-x-3 w-full">
           <div className="flex-shrink-0 sm:hidden flex flex-col items-center justify-start pt-6 space-y-3 w-16">
             {Array.from({ length: features.length }).map((_, i) => (
               <div
-                key={i}
-                onClick={() => setExpanded(i === expanded ? null : i)}
+                key={`mobile-dot-${activeTab}-${i}`}
+                onClick={() => handleCardClick(i)}
                 className={`w-[7px] rounded-full transition-all duration-300 cursor-pointer ${
                   expanded === i
                     ? "bg-gradient-to-b h-40 from-[#00AEEF] to-[#005895] shadow-md opacity-80"
@@ -384,39 +506,52 @@ export default function ExactUILayout() {
               />
             ))}
           </div>
-
-          <div className="flex-grow flex sm:flex-row scrollbar-hide flex-col space-y-3 sm:space-y-0 sm:space-x-3 w-full overflow-y-auto sm:overflow-x-auto p-2 sm:p-0">
+          <div
+            ref={scrollContainerRef}
+            className="flex-grow flex sm:flex-row scrollbar-hide flex-col space-y-3 sm:space-y-0 sm:space-x-3 w-full overflow-y-auto sm:overflow-x-auto p-2 sm:p-0"
+            style={{ cursor: "grab" }}
+            onMouseDown={handleDragStart}
+            onTouchStart={handleDragStart}
+          >
             {features.map((feature, index) => (
               <div
-                key={index}
-                className={`pb-6 sm:pb-0 cursor-pointer transition-all duration-300 ease-in-out rounded-3xl w-[95%] sm:w-[130px] sm:h-[390px] flex flex-col flex-shrink-0 relative overflow-hidden ${
+                key={feature.title ? `${activeTab}-${feature.title}` : `${activeTab}-feature-${index}`}
+                className={`pb-6 sm:pb-0 cursor-pointer transition-all duration-300 ease-in-out rounded-3xl scrollbar-hide w-[95%] sm:w-[130px] sm:h-[390px] flex flex-col flex-shrink-0 relative overflow-hidden ${
                   expanded === index
-                    ? "min-h-[395px] sm:min-w-[500px] scale-[1.01] p-4 sm:p-6 shadow-lg items-start bg-[#D9EEFA]" // Expanded: Align items to start
-                    : "bg-[#ECF7FD] hover:scale-[1.03] hover:bg-[#D9EEFA] hover:shadow-lg items-center sm:items-stretch" // Unexpanded: Center items on mobile, stretch on desktop
+                    ? "min-h-[395px] sm:min-w-[500px] scale-[1.01] p-4 sm:p-6 shadow-lg items-start bg-[#D9EEFA]"
+                    : "bg-[#ECF7FD] hover:scale-[1.03] hover:bg-[#D9EEFA] hover:shadow-lg items-center sm:items-stretch"
                 }`}
-                onClick={() => setExpanded(expanded === index ? null : index)}
+                onClick={() => {
+                  if (hasDraggedRef.current) return;
+                  handleCardClick(index);
+                }}
               >
                 <span
                   className={`text-lg px-6 pt-6 font-bold text-gray-700 ${
                     expanded === index
-                      ? "self-start mb-5" // Expanded: Align self to start
-                      : "self-center sm:self-auto" // Unexpanded: Center self on mobile, auto (stretch/start) on desktop
+                      ? "self-start mb-5"
+                      : "self-center sm:self-auto"
                   }`}
                 >
                   {`0${index + 1}`}
                 </span>
                 <h3
                   className={`text-lg px-6 font-bold transition-all duration-500 ease-in-out text-nowrap ${
-                    // Base styles + nowrap
                     expanded === index
-                      ? "rotate-0 md:text-3xl text-center md:text-left mt-2" // EXPANDED STATE: Horizontal, large text, specific alignment, margin
-                      : "sm:rotate-90 text-center sm:mt-[65px] md:text-xl origin-center" // UNEXPANDED STATE: Rotated (on sm+), centered, pushed down, specific size, rotate around center
+                      ? "rotate-0 md:text-3xl text-center md:text-left mt-2"
+                      : "sm:rotate-90 text-center sm:mt-[65px] md:text-xl origin-center"
                   }`}
                 >
                   {feature.title}
                 </h3>
                 {expanded === index && (
-                  <div className="flex flex-col flex-grow mt-3 p-6 pt-0">
+                  <div
+                    className="flex flex-col flex-grow mt-3 p-6 pt-0"
+                    style={{
+                      opacity: cardContentOpacity,
+                      transition: `opacity ${FADE_DURATION / 1000}s ${CARD_CONTENT_EASING}`,
+                    }}
+                  >
                     <p className="text-gray-600 text-sm leading-relaxed text-center md:text-left">
                       {feature.description}
                     </p>
@@ -444,15 +579,13 @@ export default function ExactUILayout() {
               </div>
             ))}
           </div>
-
           <div className="sm:block absolute hidden right-0 top-0 bottom-0 w-24 pointer-events-none bg-gradient-to-l from-white via-white/80 to-transparent z-10"></div>
         </div>
-
         <div className="sm:flex relative hidden justify-center space-x-2 mt-8">
           {Array.from({ length: features.length }).map((_, i) => (
             <div
-              key={i}
-              onClick={() => setExpanded(i === expanded ? null : i)} // Allow clicking dots
+              key={`desktop-dot-${activeTab}-${i}`}
+              onClick={() => handleCardClick(i)}
               className={`h-[7px] rounded-full transition-all duration-300 cursor-pointer ${
                 expanded === i
                   ? "w-32 sm:w-40 md:w-52 bg-gradient-to-r from-[#00AEEF] to-[#005895]"

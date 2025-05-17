@@ -102,7 +102,7 @@ const ExactUILayout = () => {
   }
 
   return (
-    <div className="px-6 relative py-16 bg-white">
+    <div className="px-6 relative py-16 bg-white max-w-[1440px] mx-auto">
       <div className="text-center mb-12">
         <p className="inline-block uppercase hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] bg-[#ECF7FD] text-blueclr text-xs font-semibold px-4 py-1.5 border border-blueclr rounded-full">
           case studies

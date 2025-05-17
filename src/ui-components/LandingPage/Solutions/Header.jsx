@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"; // Added useEffect
-import { useLocation } from "react-router-dom"; // Added useLocation
+import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import HeadImg from "../../../assets/Group1000001040.png";
 import img1 from "../../../assets/Rectangle 35.png";
 import img2 from "../../../assets/Rectangle 35 (1).png";
@@ -99,29 +99,29 @@ const tabData = {
       ],
     },
   ],
-  Sales: [], // Placeholder
-  Data: [], // Placeholder
-  Content: [], // Placeholder
-  Automation: [], // Placeholder
-  "SEO/Ads": [], // Placeholder
-  Support: [], // Placeholder
+  Sales: [],
+  Data: [],
+  Content: [],
+  Automation: [],
+  "SEO/Ads": [],
+  Support: [],
 };
 
 export default function ExactUILayout() {
-  const location = useLocation(); // Get location object
+  const location = useLocation();
 
   const [activeTab, setActiveTab] = useState(() => {
     const navState = location.state;
     if (navState?.activeTab && tabData.hasOwnProperty(navState.activeTab)) {
       return navState.activeTab;
     }
-    return "Strategy"; // Default tab
+    return "Strategy";
   });
 
   const [expanded, setExpanded] = useState(() => {
     const navState = location.state;
-    const tabToConsider = (navState?.activeTab && tabData.hasOwnProperty(navState.activeTab)) 
-                          ? navState.activeTab 
+    const tabToConsider = (navState?.activeTab && tabData.hasOwnProperty(navState.activeTab))
+                          ? navState.activeTab
                           : "Strategy";
     const featuresForExpansion = tabData[tabToConsider] || [];
 
@@ -133,10 +133,10 @@ export default function ExactUILayout() {
         return solutionIndex;
       }
     }
-    if (navState?.activeTab && tabData.hasOwnProperty(navState.activeTab) && !navState?.activeSolution) {
+    if (navState?.activeTab && tabData.hasOwnProperty(navState.activeTab) && !navState?.activeSolution && featuresForExpansion.length > 0) {
       return 0;
     }
-    return 1; // Your original default if no specific state dictates otherwise
+    return featuresForExpansion.length > 0 ? 0 : 1; // Fallback to original 1 if needed or 0 if items exist
   });
 
   useEffect(() => {
@@ -160,15 +160,89 @@ export default function ExactUILayout() {
         if (solutionIndex !== -1) {
           setExpanded(solutionIndex);
         } else {
-          setExpanded(0); // Fallback to first item if solution title not found in the (new/current) tab
+          setExpanded(currentFeatures.length > 0 ? 0 : null);
         }
       } else if (tabNeedsUpdate) {
-        setExpanded(0);
+        setExpanded(currentFeatures.length > 0 ? 0 : null);
       }
     }
-  }, [location.state]); // Rerun effect if location.state changes
+  }, [location.state, activeTab]);
 
   const features = tabData[activeTab] || [];
+
+  const scrollContainerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftStart, setScrollLeftStart] = useState(0);
+  const hasDraggedRef = useRef(false);
+
+  const DRAG_THRESHOLD = 10;
+
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = 0;
+    }
+  }, [activeTab]);
+
+  const getClientX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
+
+  const handleDragStart = (e) => {
+    if (!scrollContainerRef.current) return;
+    if (e.button && e.button !== 0) return;
+
+    setIsDragging(true);
+    setStartX(getClientX(e));
+    setScrollLeftStart(scrollContainerRef.current.scrollLeft);
+    hasDraggedRef.current = false;
+    scrollContainerRef.current.style.cursor = "grabbing";
+    document.body.style.userSelect = 'none';
+  };
+
+  const handleDragMove = (e) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+
+    const currentX = getClientX(e);
+    const walk = currentX - startX;
+
+    if (!hasDraggedRef.current && Math.abs(walk) > DRAG_THRESHOLD) {
+        hasDraggedRef.current = true;
+    }
+    
+    if (hasDraggedRef.current && e.cancelable) {
+        e.preventDefault();
+    }
+
+    scrollContainerRef.current.scrollLeft = scrollLeftStart - walk;
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    setIsDragging(false);
+    scrollContainerRef.current.style.cursor = "grab";
+    document.body.style.userSelect = '';
+  };
+  
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleDragMove);
+      document.addEventListener('mouseup', handleDragEnd);
+      document.addEventListener('touchmove', handleDragMove, { passive: false });
+      document.addEventListener('touchend', handleDragEnd);
+    } else {
+      document.removeEventListener('mousemove', handleDragMove);
+      document.removeEventListener('mouseup', handleDragEnd);
+      document.removeEventListener('touchmove', handleDragMove);
+      document.removeEventListener('touchend', handleDragEnd);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleDragMove);
+      document.removeEventListener('mouseup', handleDragEnd);
+      document.removeEventListener('touchmove', handleDragMove);
+      document.removeEventListener('touchend', handleDragEnd);
+      document.body.style.userSelect = '';
+    };
+  }, [isDragging, startX, scrollLeftStart]); // Added startX, scrollLeftStart for completeness in closure
 
   return (
     <div className="container relative mx-auto px-6 lg:px-14 pt-10 lg:pt-14 my-4">
@@ -187,7 +261,7 @@ export default function ExactUILayout() {
         </div>
         <div className="sm:block absolute hidden left-0 top-0 h-full w-24 pointer-events-none bg-gradient-to-r from-white/70 via-white/40 to-transparent z-10"></div>
 
-        <div className="relative flex flex-col sm:flex-row items-start sm:overflow-x-auto sm:space-x-3 sm:p-6">
+        <div className="relative flex flex-col sm:flex-row items-start">
           <div className="flex sm:hidden flex-col items-center justify-center px-2 pt-4 space-y-3">
             {Array.from({ length: features.length || 0 }).map((_, i) => (
               <div
@@ -201,7 +275,13 @@ export default function ExactUILayout() {
               />
             ))}
           </div>
-          <div className="flex sm:flex-row scrollbar-hide flex-col -mt-[540px] sm:-mt-0 sm:pl-0 pl-16 space-y-3 sm:space-y-0 sm:space-x-3 w-full overflow-y-auto sm:overflow-x-auto p-2 sm:p-6">
+          <div
+            ref={scrollContainerRef}
+            className="flex sm:flex-row scrollbar-hide flex-col -mt-[540px] sm:-mt-0 sm:pl-0 pl-16 space-y-3 sm:space-y-0 sm:space-x-3 w-full overflow-y-auto sm:overflow-x-auto p-2 sm:p-6"
+            style={{ cursor: "grab" }}
+            onMouseDown={handleDragStart}
+            onTouchStart={handleDragStart}
+          >
             {features.map((feature, index) => (
               <div
                 key={index}
@@ -210,7 +290,12 @@ export default function ExactUILayout() {
                     ? "min-h-[395px] sm:min-w-[500px] scale-[1.01] p-4 mb-4 sm:mb-0 sm:pl-2 shadow-lg items-start bg-[#D9EEFA]"
                     : "bg-[#ECF7FD] hover:scale-[1.03] hover:bg-[#D9EEFA] hover:shadow-lg"
                 }`}
-                onClick={() => setExpanded(expanded === index ? null : index)}
+                onClick={() => {
+                  if (hasDraggedRef.current) {
+                    return;
+                  }
+                  setExpanded(expanded === index ? null : index);
+                }}
               >
                 <span
                   className={`text-lg px-6 text-center pt-6 font-bold text-gray-700 ${
@@ -247,7 +332,7 @@ export default function ExactUILayout() {
                           src={feature.logoImg}
                           alt={feature.logo}
                           className={`${
-                            index === 4 // This condition might need to be dynamic if 'Web Solution' isn't always index 4
+                            index === 4
                               ? "md:w-60 w-52"
                               : index < 5
                               ? "md:w-48 w-40"
@@ -257,10 +342,12 @@ export default function ExactUILayout() {
                       </div>
                     </div>
                     <a
-                      href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
+                      href={feature.path || "https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className={`${
-                        index === 4 // This condition might need to be dynamic
+                        index === 4
                           ? "lg:-mt-[22px]"
                           : index === 3 || index === 2 || index === 0
                           ? "lg:-mt-[14px]"
@@ -282,7 +369,8 @@ export default function ExactUILayout() {
           {Array.from({ length: features.length || 0 }).map((_, i) => (
             <div
               key={i}
-              className={`h-[7px] rounded-full transition-all duration-300 ${
+              onClick={() => setExpanded(i === expanded ? null : i)}
+              className={`h-[7px] rounded-full transition-all duration-300 cursor-pointer ${
                 expanded === i
                   ? "w-52 bg-gradient-to-r from-[#00AEEF] to-[#005895]"
                   : "w-20 bg-gray-300"

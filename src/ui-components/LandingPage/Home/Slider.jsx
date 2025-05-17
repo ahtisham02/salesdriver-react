@@ -8,8 +8,10 @@ import img1 from "../../../assets/Website_Media/Website_Media/client_images/logo
 import img2 from "../../../assets/Website_Media/Website_Media/client_images/logo2.png";
 import img3 from "../../../assets/Website_Media/Website_Media/client_images/logo4.png";
 import img4 from "../../../assets/Website_Media/Website_Media/client_images/DEEPLY GOOD_logo_original.png";
+import img5 from "../../../assets/Website_Media/Website_Media/client_images/logo122.png";
+import img6 from "../../../assets/Website_Media/Website_Media/client_images/logo123.png";
 
-const logos = [img, img1, img2, img3, img4];
+const logos = [img1, img3, img5, img4, img, img2, img6];
 
 export default function SLFooter() {
   const [hasAnimated, setHasAnimated] = useState(false);

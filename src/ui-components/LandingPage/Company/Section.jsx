@@ -4,7 +4,7 @@ import vector from "../../../assets/Vector 14.png";
 
 export default function Section() {
   return (
-    <section className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-16 pb-12 pt-6 bg-white">
+    <section className="relative flex flex-col max-w-[1440px] mx-auto md:flex-row items-center justify-between px-6 md:px-16 pb-12 pt-6 bg-white">
       <div className="relative md:w-1/2 space-y-5">
         <img
           src={vector}
