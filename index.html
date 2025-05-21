@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,22 +7,210 @@
     <title>SalesDriver.io</title>
 
     <!-- Nytro SEO Snippet -->
-    <script src="https://plugin.nytsys.com/api/site/39980dd2-3ea8-44c0-b9a3-50987d83fcb7/nytsys.min.js" ></script>
+    <script src="https://plugin.nytsys.com/api/site/39980dd2-3ea8-44c0-b9a3-50987d83fcb7/nytsys.min.js"></script>
 
     <!-- TruConversion for salesdriver.io -->
     <script type="text/javascript">
-        var _tip = _tip || [];
-        (function(d,s,id){
-            var js, tjs = d.getElementsByTagName(s)[0];
-            if(d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.async = true;
-            js.src = d.location.protocol + '//app.truconversion.com/ti-js/21606/bcf3f.js';
-            tjs.parentNode.insertBefore(js, tjs);
-        }(document, 'script', 'ti-js'));
+      var _tip = _tip || [];
+      (function (d, s, id) {
+        var js,
+          tjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.async = true;
+        js.src =
+          d.location.protocol + "//app.truconversion.com/ti-js/21606/bcf3f.js";
+        tjs.parentNode.insertBefore(js, tjs);
+      })(document, "script", "ti-js");
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
+    <script>
+      (function () {
+        "use strict"; // Enforce stricter parsing and error handling
+
+        // --- Helper Functions ---
+        function getUTMs() {
+          const utms = {};
+          const params = new URLSearchParams(window.location.search);
+          const utmKeys = [
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
+            "utm_term",
+            "utm_content",
+          ];
+          utmKeys.forEach(function (key) {
+            const value = params.get(key);
+            if (value) {
+              utms[key] = value;
+            }
+          });
+          return utms;
+        }
+
+        function getPageTitle() {
+          return document.title;
+        }
+
+        function getScrollDepth() {
+          // Ensure scrollHeight is not zero to prevent DivisionByZero
+          const scrollHeight = document.documentElement.scrollHeight;
+          if (scrollHeight === 0) return 0;
+
+          const scrollPosition = window.scrollY + window.innerHeight; // Modern browsers
+          // Fallback for older browsers if needed, though scrollY is widely supported
+          // const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          // const scrollPosition = scrollTop + window.innerHeight;
+
+          return Math.min(1, Math.max(0, scrollPosition / scrollHeight)); // Clamp between 0 and 1
+        }
+
+        // Closure to track clicks
+        function initializeClickTracking() {
+          let clickCount = 0;
+          document.addEventListener(
+            "click",
+            function () {
+              clickCount += 1;
+            },
+            { capture: true, passive: true }
+          ); // Use capture and passive for wider compatibility/performance
+          return function () {
+            return clickCount;
+          };
+        }
+
+        const getClickCount = initializeClickTracking();
+        const scriptStartTime = Date.now();
+
+        // --- Main Logic ---
+        // Check if FingerprintJS is loaded
+        if (typeof FingerprintJS === "undefined") {
+          console.error(
+            "FingerprintJS library not loaded. Aborting tracking script."
+          );
+          return; // Exit if the main library is missing
+        }
+
+        FingerprintJS.load()
+          .then((fp) => fp.get())
+          .then((result) => {
+            const dataCollectionTimeMs = Date.now() - scriptStartTime;
+
+            const data = {
+              url: window.location.href,
+              referrer: document.referrer || null, // Ensure null if empty
+              user_agent: navigator.userAgent,
+              fingerprint: result.visitorId,
+              // Consider if you really need the full 'extra' object. It can be large.
+              // If you only need specific components, pick them. Otherwise, it's fine.
+              extra_fingerprint_details: result.components, // More specific than just 'result'
+              browser_name: result.components?.browserName?.value,
+              browser_version: result.components?.browserVersion?.value,
+              os: result.components?.os?.value,
+              os_version: result.components?.osVersion?.value,
+              device_type: result.components?.device?.value, // Usually 'desktop', 'mobile', 'tablet'
+              screen_resolution: `${window.screen.width}x${window.screen.height}`,
+              viewport_resolution: `${window.innerWidth}x${window.innerHeight}`,
+              timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+              language: navigator.language || navigator.userLanguage, // Fallback for older IE
+              // Ensure fonts component exists and is an array
+              fonts:
+                result.components?.fonts?.value &&
+                Array.isArray(result.components.fonts.value)
+                  ? result.components.fonts.value.join(",")
+                  : "",
+              webgl_vendor:
+                result.components?.webglVendorAndRenderer?.value?.vendor,
+              webgl_renderer:
+                result.components?.webglVendorAndRenderer?.value?.renderer,
+              // Canvas, Audio hash are usually part of `visitorId` calculation,
+              // but if you need them separately:
+              canvas_hash: result.components?.canvas?.value,
+              audio_hash: result.components?.audio?.value,
+              page_title: getPageTitle(),
+              scroll_depth_on_load: getScrollDepth(), // Scroll depth at the time of this script execution
+              data_collection_duration_ms: dataCollectionTimeMs, // Time taken for FP and initial data
+              click_count_on_load: getClickCount(), // Clicks up to this point
+              ...getUTMs(),
+            };
+
+            // Try to get email from forms (best effort, not guaranteed)
+            // This only gets pre-filled values or values present at script execution time.
+            const emailInput = document.querySelector('input[type="email"]');
+            if (emailInput && emailInput.value) {
+              data.email_from_form = emailInput.value;
+            }
+
+            // Custom events (example)
+            data.custom_events = window.__customEvents || null;
+
+            // Fetch client IP from ipify
+            fetch("https://api.ipify.org?format=json")
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(
+                    `IPify request failed with status: ${response.status}`
+                  );
+                }
+                return response.json();
+              })
+              .then((ipData) => {
+                data.client_ip = ipData.ip;
+                sendData(data);
+              })
+              .catch((error) => {
+                console.warn("Failed to fetch client IP:", error);
+                // Decide if you still want to send data without IP
+                sendData(data); // Sending data even if IP fetch fails
+              });
+          })
+          .catch((error) => {
+            console.error(
+              "Error during FingerprintJS processing or data collection:",
+              error
+            );
+            // Optionally send a minimal error report here
+            // sendData({ error: "FingerprintJS failed", message: error.message, stack: error.stack });
+          });
+
+        function sendData(data) {
+          const xhr = new XMLHttpRequest();
+          // Replace with your actual endpoint
+          const endpoint =
+            "/api/auth/pixel/collect/fdce878b-32ae-464e-9bde-814cbebb8e47";
+          xhr.open("POST", endpoint, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+
+          xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              // console.log('Data sent successfully:', xhr.responseText);
+            } else {
+              console.error(
+                "Error sending data:",
+                xhr.status,
+                xhr.statusText,
+                xhr.responseText
+              );
+            }
+          };
+          xhr.onerror = function () {
+            console.error("Network error occurred while sending data.");
+          };
+
+          try {
+            xhr.send(JSON.stringify(data));
+          } catch (error) {
+            console.error("Error stringifying data for sending:", error, data);
+          }
+        }
+      })();
     </script>
     <!-- End TruConversion Snippet -->
-
   </head>
   <body>
     <div id="root"></div>
