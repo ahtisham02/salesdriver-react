@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SalesDriver.io</title>
 
-    <!-- Nytro SEO Snippet -->
     <script src="https://plugin.nytsys.com/api/site/39980dd2-3ea8-44c0-b9a3-50987d83fcb7/nytsys.min.js"></script>
 
-    <!-- TruConversion for salesdriver.io -->
     <script type="text/javascript">
       var _tip = _tip || [];
       (function (d, s, id) {
@@ -30,9 +28,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
     <script>
       (function () {
-        "use strict"; // Enforce stricter parsing and error handling
+        "use strict";
 
-        // --- Helper Functions ---
         function getUTMs() {
           const utms = {};
           const params = new URLSearchParams(window.location.search);
@@ -57,19 +54,12 @@
         }
 
         function getScrollDepth() {
-          // Ensure scrollHeight is not zero to prevent DivisionByZero
           const scrollHeight = document.documentElement.scrollHeight;
           if (scrollHeight === 0) return 0;
-
-          const scrollPosition = window.scrollY + window.innerHeight; // Modern browsers
-          // Fallback for older browsers if needed, though scrollY is widely supported
-          // const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-          // const scrollPosition = scrollTop + window.innerHeight;
-
-          return Math.min(1, Math.max(0, scrollPosition / scrollHeight)); // Clamp between 0 and 1
+          const scrollPosition = window.scrollY + window.innerHeight;
+          return Math.min(1, Math.max(0, scrollPosition / scrollHeight));
         }
 
-        // Closure to track clicks
         function initializeClickTracking() {
           let clickCount = 0;
           document.addEventListener(
@@ -78,7 +68,7 @@
               clickCount += 1;
             },
             { capture: true, passive: true }
-          ); // Use capture and passive for wider compatibility/performance
+          );
           return function () {
             return clickCount;
           };
@@ -87,13 +77,11 @@
         const getClickCount = initializeClickTracking();
         const scriptStartTime = Date.now();
 
-        // --- Main Logic ---
-        // Check if FingerprintJS is loaded
         if (typeof FingerprintJS === "undefined") {
           console.error(
             "FingerprintJS library not loaded. Aborting tracking script."
           );
-          return; // Exit if the main library is missing
+          return;
         }
 
         FingerprintJS.load()
@@ -103,22 +91,19 @@
 
             const data = {
               url: window.location.href,
-              referrer: document.referrer || null, // Ensure null if empty
+              referrer: document.referrer || null,
               user_agent: navigator.userAgent,
               fingerprint: result.visitorId,
-              // Consider if you really need the full 'extra' object. It can be large.
-              // If you only need specific components, pick them. Otherwise, it's fine.
-              extra_fingerprint_details: result.components, // More specific than just 'result'
+              extra_fingerprint_details: result.components,
               browser_name: result.components?.browserName?.value,
               browser_version: result.components?.browserVersion?.value,
               os: result.components?.os?.value,
               os_version: result.components?.osVersion?.value,
-              device_type: result.components?.device?.value, // Usually 'desktop', 'mobile', 'tablet'
+              device_type: result.components?.device?.value,
               screen_resolution: `${window.screen.width}x${window.screen.height}`,
               viewport_resolution: `${window.innerWidth}x${window.innerHeight}`,
               timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-              language: navigator.language || navigator.userLanguage, // Fallback for older IE
-              // Ensure fonts component exists and is an array
+              language: navigator.language || navigator.userLanguage,
               fonts:
                 result.components?.fonts?.value &&
                 Array.isArray(result.components.fonts.value)
@@ -128,28 +113,22 @@
                 result.components?.webglVendorAndRenderer?.value?.vendor,
               webgl_renderer:
                 result.components?.webglVendorAndRenderer?.value?.renderer,
-              // Canvas, Audio hash are usually part of `visitorId` calculation,
-              // but if you need them separately:
               canvas_hash: result.components?.canvas?.value,
               audio_hash: result.components?.audio?.value,
               page_title: getPageTitle(),
-              scroll_depth_on_load: getScrollDepth(), // Scroll depth at the time of this script execution
-              data_collection_duration_ms: dataCollectionTimeMs, // Time taken for FP and initial data
-              click_count_on_load: getClickCount(), // Clicks up to this point
+              scroll_depth_on_load: getScrollDepth(),
+              data_collection_duration_ms: dataCollectionTimeMs,
+              click_count_on_load: getClickCount(),
               ...getUTMs(),
             };
 
-            // Try to get email from forms (best effort, not guaranteed)
-            // This only gets pre-filled values or values present at script execution time.
             const emailInput = document.querySelector('input[type="email"]');
             if (emailInput && emailInput.value) {
               data.email_from_form = emailInput.value;
             }
 
-            // Custom events (example)
             data.custom_events = window.__customEvents || null;
 
-            // Fetch client IP from ipify
             fetch("https://api.ipify.org?format=json")
               .then((response) => {
                 if (!response.ok) {
@@ -165,8 +144,7 @@
               })
               .catch((error) => {
                 console.warn("Failed to fetch client IP:", error);
-                // Decide if you still want to send data without IP
-                sendData(data); // Sending data even if IP fetch fails
+                sendData(data);
               });
           })
           .catch((error) => {
@@ -174,13 +152,10 @@
               "Error during FingerprintJS processing or data collection:",
               error
             );
-            // Optionally send a minimal error report here
-            // sendData({ error: "FingerprintJS failed", message: error.message, stack: error.stack });
           });
 
         function sendData(data) {
           const xhr = new XMLHttpRequest();
-          // Replace with your actual endpoint
           const endpoint =
             "/api/auth/pixel/collect/fdce878b-32ae-464e-9bde-814cbebb8e47";
           xhr.open("POST", endpoint, true);
@@ -188,7 +163,6 @@
 
           xhr.onload = function () {
             if (xhr.status >= 200 && xhr.status < 300) {
-              // console.log('Data sent successfully:', xhr.responseText);
             } else {
               console.error(
                 "Error sending data:",
@@ -210,42 +184,10 @@
         }
       })();
     </script>
-    <!-- End TruConversion Snippet -->
+
     <script>
-      !(function (e, r) {
-        try {
-          if (e.vector)
-            return void console.log("Vector snippet included more than once.");
-          var t = {};
-          t.q = t.q || [];
-          for (
-            var o = ["load", "identify", "on"],
-              n = function (e) {
-                return function () {
-                  var r = Array.prototype.slice.call(arguments);
-                  t.q.push([e, r]);
-                };
-              },
-              c = 0;
-            c < o.length;
-            c++
-          ) {
-            var a = o[c];
-            t[a] = n(a);
-          }
-          if (((e.vector = t), !t.loaded)) {
-            var i = r.createElement("script");
-            (i.type = "text/javascript"),
-              (i.async = !0),
-              (i.src = "https://cdn.vector.co/pixel.js");
-            var l = r.getElementsByTagName("script")[0];
-            l.parentNode.insertBefore(i, l), (t.loaded = !0);
-          }
-        } catch (e) {
-          console.error("Error loading Vector:", e);
-        }
-      })(window, document);
-      vector.load("43eae314-6799-4cc9-90a7-cd66b355b149");
+    !function(e,r){try{if(e.vector)return void console.log("Vector snippet\n    included more than once.");var t={};t.q=t.q||[];for(var\n    o=["load","identify","on"],n=function(e){return function(){var\n    r=Array.prototype.slice.call(arguments);t.q.push([e,r])}},c=0;c<o.length;c++){var\n    a=o[c];t[a]=n(a)}if(e.vector=t,!t.loaded){var\n    i=r.createElement("script");i.type="text/javascript",i.async=!0,i.src="https://cdn.vector.co/pixel.js";var\n    l=r.getElementsByTagName("script")[0];l.parentNode.insertBefore(i,l),t.loaded=!0}}catch(e){console.error("Error\n    loading Vector:",e)}}(window,document);
+    vector.load("43eae314-6799-4cc9-90a7-cd66b355b149");
     </script>
   </head>
   <body>
