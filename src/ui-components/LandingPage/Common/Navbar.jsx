@@ -124,35 +124,43 @@ function Navbar() {
              lg:space-x-8 text-black`}
           >
             {" "}
-            {["Services", "Solutions", "Industries", "Company", "Blog"].map((label) => {
-              const path = `/${label.toLowerCase()}`;
+            {["Services", "Solutions", "Industries", "Company", "Blog"].map(
+              (label) => {
+                const path = `/${label.toLowerCase()}`;
 
-              return (
-                <li
-                  key={label}
-                  className="relative group"
-                  onMouseEnter={undefined}
-                  onMouseLeave={undefined}
-                >
-                  <button
-                    onClick={() => navigate(path)}
-                    className={`relative group flex items-center justify-between w-full px-3 py-2 min-[1090px]:p-0 transition duration-300 ease-in-out ${
-                      activeItem === label
-                        ? "text-blueclr"
-                        : "hover:text-blueclr"
-                    }`}
+                return (
+                  <li
+                    key={label}
+                    className="relative group"
+                    onMouseEnter={undefined}
+                    onMouseLeave={undefined}
                   >
-                    <span className="font-semibold">{label}</span>
-                    <span className="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-blueclr rounded-full transition-all duration-300 group-hover:w-full"></span>
-                  </button>
-                </li>
-              );
-            })}
+                    <button
+                      onClick={() => navigate(path)}
+                      className={`relative group flex items-center justify-between w-full px-3 py-2 min-[1090px]:p-0 transition duration-300 ease-in-out ${
+                        activeItem === label
+                          ? "text-blueclr"
+                          : "hover:text-blueclr"
+                      }`}
+                    >
+                      <span className="font-semibold">{label}</span>
+                      <span className="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-blueclr rounded-full transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                  </li>
+                );
+              }
+            )}
           </ul>
 
           <div className="hidden sm:flex">
             <button
-              onClick={() => navigate("/contact")}
+              onClick={() =>
+                window.open(
+                  "https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx",
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }
               className="hidden ml-4 z-[1050] transform transition-all duration-300 hover:-translate-y-[2px] hover:scale-[1] hover:bg-[#DA9613] sm:flex sm:items-center text-white bg-yellowclr rounded-full shadow-md px-1 py-1.5 min-[1090px]:mb-1"
             >
               <h1 className="font-medium px-3">Start Now</h1>

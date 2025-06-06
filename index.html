@@ -186,9 +186,57 @@
     </script>
 
     <script>
-    !function(e,r){try{if(e.vector)return void console.log("Vector snippet\n    included more than once.");var t={};t.q=t.q||[];for(var\n    o=["load","identify","on"],n=function(e){return function(){var\n    r=Array.prototype.slice.call(arguments);t.q.push([e,r])}},c=0;c<o.length;c++){var\n    a=o[c];t[a]=n(a)}if(e.vector=t,!t.loaded){var\n    i=r.createElement("script");i.type="text/javascript",i.async=!0,i.src="https://cdn.vector.co/pixel.js";var\n    l=r.getElementsByTagName("script")[0];l.parentNode.insertBefore(i,l),t.loaded=!0}}catch(e){console.error("Error\n    loading Vector:",e)}}(window,document);
-    vector.load("43eae314-6799-4cc9-90a7-cd66b355b149");
+      (function (window, document) {
+        try {
+          if (window.vector) {
+            console.log("Vector snippet included more than once.");
+            return;
+          }
+
+          var vector = {};
+          vector.q = [];
+
+          var methods = ["load", "identify", "on"];
+
+          var createMethod = function (methodName) {
+            return function () {
+              var args = Array.prototype.slice.call(arguments);
+              vector.q.push([methodName, args]);
+            };
+          };
+
+          for (var i = 0; i < methods.length; i++) {
+            var methodName = methods[i];
+            vector[methodName] = createMethod(methodName);
+          }
+
+          window.vector = vector;
+
+          if (!vector.loaded) {
+            var scriptElement = document.createElement("script");
+            scriptElement.type = "text/javascript";
+            scriptElement.async = true;
+            scriptElement.src = "https://cdn.vector.co/pixel.js";
+
+            var firstScript = document.getElementsByTagName("script")[0];
+            firstScript.parentNode.insertBefore(scriptElement, firstScript);
+
+            vector.loaded = true;
+          }
+        } catch (error) {
+          console.error("Error loading Vector:", error);
+        }
+      })(window, document);
+
+      vector.load("43eae314-6799-4cc9-90a7-cd66b355b149");
     </script>
+
+    <script
+      id="bwh_adv_chat"
+      src="https://cdn.botwebhook.com/resources/widget.js"
+      data-agency_ref="41641691224919"
+      data-widget_ref="3331746223836336"
+    ></script>
   </head>
   <body>
     <div id="root"></div>
