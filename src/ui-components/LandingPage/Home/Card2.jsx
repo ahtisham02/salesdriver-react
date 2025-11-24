@@ -37,11 +37,18 @@ export default function ExactUILayout() {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?_embed"
+          "https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?_embed&exclude=913&categories_exclude=137"
         );
         const data = await response.json();
+        
+        // Filter out the demo blog post and demo category posts
+        const filteredData = data.filter(post => 
+          post.slug !== 'helloo-demo-blog' && 
+          post.id !== 913 &&
+          !post.categories.includes(137)
+        );
 
-        const postsWithMedia = data.map((post) => {
+        const postsWithMedia = filteredData.map((post) => {
           const featuredMedia = post._embedded?.["wp:featuredmedia"]?.[0];
           const imageSize =
             featuredMedia?.media_details?.sizes?.medium?.source_url ||

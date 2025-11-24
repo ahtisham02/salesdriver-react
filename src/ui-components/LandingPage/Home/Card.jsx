@@ -79,10 +79,16 @@ const ExactUILayout = () => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(
-          `https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?categories=${activeCategory}&_embed=true`
+          `https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?categories=${activeCategory}&_embed=true&exclude=913&categories_exclude=137`
         );
         const data = await response.json();
-        setPosts(data);
+        // Filter out the demo blog post and demo category posts
+        const filteredPosts = data.filter(post => 
+          post.slug !== 'helloo-demo-blog' && 
+          post.id !== 913 &&
+          !post.categories.includes(137)
+        );
+        setPosts(filteredPosts);
       } catch (error) {
         console.error("Error fetching posts:", error);
       } finally {
