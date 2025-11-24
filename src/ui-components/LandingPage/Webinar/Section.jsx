@@ -35,39 +35,45 @@ export default function SearchSection() {
       setError(null);
       try {
         const response = await fetch(
-          "https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?_embed&per_page=50"
+          "https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?_embed&per_page=50&exclude=913&categories_exclude=137"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
 
-        const fetchedPosts = data.map((post) => {
-          const primaryCategoryArray = post._embedded?.["wp:term"]?.[0];
-          const primaryCategoryName =
-            primaryCategoryArray?.[0]?.name || "General";
-          const excerptText = stripHtml(post.excerpt.rendered);
+        const fetchedPosts = data
+          .filter(post => 
+            post.slug !== 'helloo-demo-blog' && 
+            post.id !== 913 &&
+            !post.categories.includes(137)
+          )
+          .map((post) => {
+            const primaryCategoryArray = post._embedded?.["wp:term"]?.[0];
+            const primaryCategoryName =
+              primaryCategoryArray?.[0]?.name || "General";
+            const excerptText = stripHtml(post.excerpt.rendered);
 
-          return {
-            id: post.id,
-            slug: post.slug,
-            title: post.title.rendered,
-            author: post._embedded?.author?.[0]?.name || "Unknown Author",
-            date: new Date(post.date),
-            displayDate: new Date(post.date).toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            }),
-            category: primaryCategoryName,
-            description:
-              excerptText.substring(0, 120) +
-              (excerptText.length > 120 ? "..." : ""),
-            imageUrl:
-              post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-              imgPlaceholder,
-          };
-        });
+            return {
+              id: post.id,
+              slug: post.slug,
+              title: post.title.rendered,
+              author: post._embedded?.author?.[0]?.name || "Unknown Author",
+              date: new Date(post.date),
+              displayDate: new Date(post.date).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              }),
+              category: primaryCategoryName,
+              description:
+                excerptText.substring(0, 120) +
+                (excerptText.length > 120 ? "..." : ""),
+              imageUrl:
+                post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+                imgPlaceholder,
+            };
+          });
 
         setAllPosts(fetchedPosts);
 

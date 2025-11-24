@@ -35,6 +35,11 @@ const PostDetails = () => {
           throw new Error("Post not found with the given slug.");
         }
         const currentPost = postDataArray[0];
+        
+        // Block access to the demo blog post
+        if (currentPost.slug === 'helloo-demo-blog' || currentPost.id === 913) {
+          throw new Error("Post not found with the given slug.");
+        }
         setPost(currentPost);
 
         const categoriesEmbedded = currentPost._embedded?.["wp:term"]?.[0];
@@ -44,11 +49,17 @@ const PostDetails = () => {
 
           if (primaryCategoryId) {
             const relatedResponse = await fetch(
-              `https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?categories=${primaryCategoryId}&per_page=3&_embed=true&exclude=${currentPost.id}`
+              `https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?categories=${primaryCategoryId}&per_page=3&_embed=true&exclude=${currentPost.id},913`
             );
             if (relatedResponse.ok) {
               const relatedData = await relatedResponse.json();
-              setRelatedPosts(relatedData.filter(item => item.slug));
+              // Filter out the demo blog post and demo category posts
+              setRelatedPosts(relatedData.filter(item => 
+                item.slug && 
+                item.slug !== 'helloo-demo-blog' && 
+                item.id !== 913 &&
+                !item.categories.includes(137)
+              ));
             } else {
               console.warn("Could not fetch related posts.");
             }
@@ -58,11 +69,17 @@ const PostDetails = () => {
         }
 
         const otherPostsResponse = await fetch(
-          `https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?per_page=3&_embed=true&exclude=${currentPost.id}${primaryCategory ? `&categories_exclude=${primaryCategory.id}` : ''}`
+          `https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/posts?per_page=3&_embed=true&exclude=${currentPost.id},913&categories_exclude=137${primaryCategory ? `,${primaryCategory.id}` : ''}`
         );
         if (otherPostsResponse.ok) {
           const otherData = await otherPostsResponse.json();
-          setOtherCategoriesPosts(otherData.filter(item => item.slug));
+          // Filter out the demo blog post and demo category posts
+          setOtherCategoriesPosts(otherData.filter(item => 
+            item.slug && 
+            item.slug !== 'helloo-demo-blog' && 
+            item.id !== 913 &&
+            !item.categories.includes(137)
+          ));
         } else {
           console.warn("Could not fetch other category posts.");
         }
