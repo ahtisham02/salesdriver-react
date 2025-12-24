@@ -27,7 +27,7 @@ export default function SLFooter() {
   }, [inView, hasAnimated]);
 
   return (
-    <div ref={ref} className="text-center max-w-full mx-auto">
+    <div ref={ref} className="text-center max-w-full mx-auto py-10">
       <div className="overflow-hidden">
         <h2 className="text-3xl hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] md:text-[46px] lg:!leading-[4rem] font-extrabold text-[#005895] mb-1 mt-5">
           Trusted by{" "}

@@ -1,53 +1,60 @@
-import img1 from "../../../assets/Website_Media/Website_Media/designs/cta_banner_bg.png";
+import React, { useState } from "react";
+import img1 from "../../../assets/new_assets/cto.png";
 import { useNavigate } from "react-router-dom";
 
-export default function SalesInsightsSection() {
+export default function SlFooter() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    // Add subscription logic here if needed, for now just preventing default
+    console.log("Subscribing email:", email);
+  };
 
   return (
-    <footer className="w-full text-white">
-      <div className="mx-auto text-center">
-        <div className="relative bg-cover bg-center bg-[#00263A] flex flex-col lg:grid lg:grid-cols-2">
-          <div className="relative w-full h-60">
-            <img
-              src={img1}
-              alt="Sales Insights"
-              className="w-full h-full object-cover"
+    <div className="relative w-full py-20">
+      {/* Full Width Background Image */}
+      <img
+        src={img1}
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Blue Overlay for Full Width Background */}
+      <div className="absolute inset-0 bg-[#001A2C] bg-opacity-75"></div>
+
+      <div className="relative z-10 px-5 md:px-20">
+        <div className="max-w-6xl mx-auto bg-[#001A2C]/80 rounded-[50px] p-10 md:p-16 text-center text-white shadow-2xl">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Stay in the loop
+          </h2>
+          <p className="text-lg md:text-xl mb-10 text-gray-200">
+            Get insights and updates from the SalesDriver team
+          </p>
+
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto mb-6">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-grow px-6 py-3 rounded-md bg-[#234B5E] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00A1E0] border border-transparent"
+              required
             />
+            <button
+              type="submit"
+              className="px-8 py-3 bg-[#00A1E0] text-white font-semibold rounded-full hover:bg-[#008bc2] transition-colors duration-300"
+            >
+              Subscribe
+            </button>
+          </form>
 
-            <div className="absolute inset-0 flex flex-col lg:items-start sm:pl-14 justify-center text-center lg:text-left px-4">
-              <h2 className="md:text-[50px] text-4xl mb-4 font-black">
-                Let’s Talk Sales
-              </h2>
-              <p className="sm:text-2xl text-xl font-medium">
-                Get a plan that’s built for you.
-              </p>
-            </div>
-          </div>
-
-          <div className="relative z-10 flex flex-col text-white justify-center lg:px-16 px-8 py-16 text-center lg:text-left">
-            <p className="md:text-base mt-4">
-              More leads, better conversions, or an efficient unified sales
-              system, we can help.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-end space-y-4 sm:space-y-0 sm:space-x-4">
-              <a
-                href="https://link.salesdriver.io/widget/booking/YLwxGlwqKM9noAp4HNIx"
-                className="bg-yellowclr text-white hover:bg-[#DA9613] px-7 py-[11px] hover:scale-[1.04] transition-transform duration-200 rounded-full font-semibold text-base"
-              >
-                Book a Call
-              </a>
-              <button
-                onClick={() => navigate("/services")}
-                className="border-2 text-white px-7 py-2.5 rounded-full font-semibold text-base 
-             border-white hover:bg-white hover:border-[#fbad18] hover:scale-[1.04] hover:text-[#fbad18] transition-transform duration-300"
-              >
-                Browse Services
-              </button>
-            </div>
-          </div>
+          <p className="text-gray-400 text-xs md:text-sm">
+            We respect your inbox. Unsubscribe anytime.
+          </p>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
+

@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/LandingPages/Home/Home";
+import HomePage from "../pages/LandingPages/HomeUpdated/Home";
 import ServicesPage from "../pages/LandingPages/Services/Services";
 import SolutionsPage from "../pages/LandingPages/Solutions/Solutions";
 import IndustriesPage from "../pages/LandingPages/Industries/Industries";
@@ -16,6 +16,9 @@ import DownloadablesPage from "../pages/LandingPages/Downloadables/Downloadables
 import PostDetails from "../pages/LandingPages/PostDetails/PostDetails";
 import Privacy from "../pages/LandingPages/Privacy/Privacy";
 import Terms from "../pages/LandingPages/Terms/Terms";
+import AboutUsPage from "../pages/LandingPages/AboutUs/AboutUs"; // Import About Us
+import PricingPage from "../pages/LandingPages/Pricing/Pricing"; // Import Pricing
+import PlatformPage from "../pages/LandingPages/Platform/Platform"; // Import Platform
 import Layout from "./LandingPageLayout";
 import ScrollToTop from "../utils/ScrollToTop";
 
@@ -40,6 +43,9 @@ const MainRoutes = () => {
           <Route path="/data-sheets" element={<DataSheetsPage />} />
           <Route path="/white-papers" element={<WhitePapersPage />} />
           <Route path="/downloadables" element={<DownloadablesPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} /> {/* New Route */}
+          <Route path="/pricing" element={<PricingPage />} /> {/* Pricing Route */}
+          <Route path="/platform" element={<PlatformPage />} /> {/* Platform Route */}
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="/Terms" element={<Terms />} />
           <Route path="/post/:slug" element={<PostDetails />} />

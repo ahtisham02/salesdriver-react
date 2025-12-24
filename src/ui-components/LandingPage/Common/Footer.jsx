@@ -1,188 +1,94 @@
-import React, { useState } from "react";
-// import x from "../../../assets/Website_Media/Website_Media/icons/x.svg";
+import React from "react";
 import fb from "../../../assets/Website_Media/Website_Media/icons/facebook.svg";
 import yt from "../../../assets/Website_Media/Website_Media/icons/youtube.svg";
 import insta from "../../../assets/Website_Media/Website_Media/icons/instagram.svg";
 import linkedin from "../../../assets/Website_Media/Website_Media/icons/linkedin.svg";
-
-import img from "../../../assets/Website_Media/Website_Media/white_salesdriver_logo.svg";
+import img from "../../../assets/Website_Media/Website_Media/white_salesdriver_logo.svg"; // Keeping original logo import
 import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState(null);
-
-  const handleSubscribe = async () => {
-    if (!email) {
-      setStatus({ type: "error", message: "Please enter an email address." });
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        "https://sales-driver-f29297.ingress-earth.ewp.live/wp-json/wp/v2/subscribe",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus({ type: "success", message: "Subscribed successfully!" });
-        setEmail("");
-      } else {
-        throw new Error(data.message || "Subscription failed.");
-      }
-    } catch (error) {
-      setStatus({ type: "error", message: error.message });
-    }
-  };
 
   return (
-    <footer className="bg-[#00263A] text-white pt-10 lg:pt-16 pb-6 px-5 md:px-20">
+    <footer className="bg-[#001A2C] text-white pt-16 pb-8 px-5 md:px-20 font-plus-jakarta">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-col lg:mr-20 items-center lg:items-start text-center lg:text-left lg:self-center">
-            <img
-              src={img}
-              alt="logo"
-              className="md:h-[40px] cursor-pointer md:ml-[50px] mb-2 h-[32px] md:0 z-10"
-            />
-            <div className="flex space-x-4 mt-4 md:ml-10">
-              {/* <a
+        <div className="flex flex-col lg:flex-row justify-between mb-16">
+          {/* Left Section: Logo, Address, Contact, Socials */}
+          <div className="flex flex-col space-y-8 lg:w-1/3">
+            {/* Logo */}
+            <div>
+              <img
+                src={img}
+                alt="SalesDriver Logo"
+                className="h-8 cursor-pointer"
+                onClick={() => navigate("/")}
+              />
+            </div>
+
+            {/* Address */}
+            <div>
+              <h4 className="font-bold mb-2 text-white">Address</h4>
+              <p className="text-gray-300 text-sm">
+                2117 Lake Ave, Altadena 91001
+              </p>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-bold mb-2 text-white">Contact</h4>
+              <p className="text-gray-300 text-sm underline cursor-pointer hover:text-[#fbad18] transition-colors">
+                +1 877 333 5540
+              </p>
+              <p className="text-gray-300 text-sm underline cursor-pointer hover:text-[#fbad18] transition-colors">
+                info@salesdriver.io
+              </p>
+            </div>
+
+            {/* Social Icons - Now on the left */}
+            <div className="flex space-x-4">
+               <a
                 href="https://www.linkedin.com/company/salesdriver-io"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full hover:bg-[#fbad18] transition-colors duration-200"
+                className="transition-transform duration-200 hover:scale-110"
               >
-                <img
-                  src={x}
-                  alt="LinkedIn"
-                  className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform duration-200"
-                />
-              </a> */}
-              <a
-                href="https://www.linkedin.com/company/salesdriver-io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full hover:bg-[#fbad18] transition-colors duration-200"
-              >
-                <img
-                  src={linkedin}
-                  alt="LinkedIn"
-                  className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform duration-200"
-                />
+                <img src={linkedin} alt="LinkedIn" className="w-5 h-5" />
               </a>
-              <a
+               <a
                 href="https://www.facebook.com/salesdriver/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full hover:bg-[#fbad18] transition-colors duration-200"
+                className="transition-transform duration-200 hover:scale-110"
               >
-                <img
-                  src={fb}
-                  alt="Facebook"
-                  className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform duration-200"
-                />
+                <img src={fb} alt="Facebook" className="w-5 h-5" />
               </a>
               <a
                 href="https://www.instagram.com/salesdriver.io/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full hover:bg-[#fbad18] transition-colors duration-200"
+                className="transition-transform duration-200 hover:scale-110"
               >
-                <img
-                  src={insta}
-                  alt="Instagram"
-                  className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform duration-200"
-                />
+                <img src={insta} alt="Instagram" className="w-5 h-5" />
               </a>
               <a
                 href="https://www.youtube.com/@salesdriver"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full hover:bg-[#fbad18] transition-colors duration-200"
+                className="transition-transform duration-200 hover:scale-110"
               >
-                <img
-                  src={yt}
-                  alt="YouTube"
-                  className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform duration-200"
-                />
+                <img src={yt} alt="YouTube" className="w-5 h-5" />
               </a>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-sm mt-6 lg:mt-0">
-            {/* <div>
-              <h3 className="font-bold mb-3">Services</h3>
-              <ul className="space-y-2.5 text-white">
-                <li className="cursor-pointer hover:text-blueclr">Strategy</li>
-                <li className="cursor-pointer hover:text-blueclr">Sales</li>
-                <li className="cursor-pointer hover:text-blueclr">Data</li>
-                <li className="cursor-pointer hover:text-blueclr">Content</li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Automation
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">SEO/Ads</li>
-              </ul>
-            </div>
+          {/* Right Section: Link Columns */}
+          <div className="flex flex-col md:flex-row gap-16 lg:w-1/2 justify-end mt-10 lg:mt-0">
+             {/* Company Column */}
             <div>
-              <h3 className="font-bold mb-3">Solutions</h3>
-              <ul className="space-y-2.5 text-white">
-                <li className="cursor-pointer hover:text-blueclr">
-                  Virtual Sales Reps
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Complete Web Solution
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Social Selling
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Lead Generation
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Web Design
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Custom Software Solutions
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-3">Industry</h3>
-              <ul className="space-y-2.5 text-white">
-                <li className="cursor-pointer hover:text-blueclr">Marketing</li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Technology
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Consulting
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  B2B Agencies
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Real Estate
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Healthcare
-                </li>
-                <li className="cursor-pointer hover:text-blueclr">
-                  Industrial
-                </li>
-              </ul>
-            </div> */}
-            <div>
-              <h3 className="font-bold mb-3">Company</h3>
-              <ul className="space-y-2.5 text-white">
-                {/* <li className="cursor-pointer hover:text-blueclr">About Us</li> */}
+              <h3 className="font-bold mb-3 text-white">Company</h3>
+              <ul className="space-y-4 text-sm font-medium">
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/contact");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -191,7 +97,7 @@ export default function Footer() {
                   Contact
                 </li>
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/blog");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -200,7 +106,7 @@ export default function Footer() {
                   Blog
                 </li>
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/howitworks");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -208,9 +114,8 @@ export default function Footer() {
                 >
                   How It Works
                 </li>
-                {/* <li className="cursor-pointer hover:text-blueclr">Careers</li> */}
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/casestudy");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -220,11 +125,13 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
+
+            {/* Resources Column */}
             <div>
-              <h3 className="font-bold mb-3">Resources</h3>
-              <ul className="space-y-2.5 text-white">
+              <h3 className="font-bold mb-3 text-white">Resources</h3>
+              <ul className="space-y-4 text-sm font-medium">
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/data-sheets");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -233,7 +140,7 @@ export default function Footer() {
                   DataSheets
                 </li>
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/white-papers");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -242,7 +149,7 @@ export default function Footer() {
                   Whitepapers
                 </li>
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/downloadables");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -251,7 +158,7 @@ export default function Footer() {
                   Downloadables
                 </li>
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/dictionary");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -260,7 +167,7 @@ export default function Footer() {
                   Dictionary
                 </li>
                 <li
-                  className="cursor-pointer hover:text-blueclr"
+                  className="cursor-pointer hover:text-[#fbad18] transition-colors"
                   onClick={() => {
                     navigate("/webinar");
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -272,53 +179,32 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 flex flex-col lg:flex-row items-center justify-center gap-4">
-          <h3 className="text-white hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px] font-bold text-base text-center lg:text-left">
-            Get Sales Insights <br /> Straight to Your Inbox
-          </h3>
-          <div className="flex w-full lg:w-auto items-center">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="px-4 py-2 rounded-md text-black w-full lg:w-96 hover:scale-[1.04] transition-all duration-300 hover:-translate-y-[2px]"
-            />
-            <button
-              onClick={handleSubscribe}
-              className="bg-yellowclr text-white font-semibold text-sm px-6 py-3 hover:bg-[#DA9613] hover:scale-[1.04] transition-transform duration-200 rounded-full ml-3"
-            >
-              SUBSCRIBE
-            </button>
-          </div>
-          {status && (
-            <p
-              className={`text-${
-                status.type === "success" ? "green" : "red"
-              }-500 mt-2`}
-            >
-              {status.message}
-            </p>
-          )}
-        </div>
 
-        <div className="border-t mt-8 pt-6 text-white text-center text-sm">
-          &copy; SalesDriver.io. {new Date().getFullYear()}{" "}
-          <span
-            className="cursor-pointer hover:text-blueclr"
-            onClick={() => navigate("/privacy")}
-          >
-            Privacy
-          </span>{" "}
-          —{" "}
-          <span
-            className="cursor-pointer hover:text-blueclr"
-            onClick={() => navigate("/terms")}
-          >
-            Terms
-          </span>
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+            <div className="mb-4 md:mb-0">
+             &copy; {new Date().getFullYear()} SalesDriver. All rights reserved.
+            </div>
+            <div className="flex space-x-6">
+                <span
+                    className="cursor-pointer hover:text-white transition-colors underline"
+                    onClick={() => navigate("/privacy")}
+                >
+                    Privacy policy
+                </span>
+                <span
+                    className="cursor-pointer hover:text-white transition-colors underline"
+                    onClick={() => navigate("/terms")}
+                >
+                    Terms of service
+                </span>
+                <span className="cursor-pointer hover:text-white transition-colors underline">
+                    Cookie settings
+                </span>
+            </div>
         </div>
       </div>
     </footer>
   );
 }
+
