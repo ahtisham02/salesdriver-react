@@ -99,14 +99,16 @@ const ServicesScrollSection = () => {
                   alt="Resources" 
                   className="h-8 w-auto object-contain"
                 />
-                <span className={`font-semibold text-sm uppercase tracking-wide ${
-                  currentTheme === 'dark' ? 'text-blue-300' : 'text-[#00a0dc]'
+                <span className={`inline-block px-4 py-1 rounded-full border transition-all duration-500 font-bold text-xs uppercase tracking-widest shadow-sm ${
+                  currentTheme === 'dark' 
+                    ? 'border-blue-400/30 bg-blue-400/10 text-blue-300' 
+                    : 'border-[#00a0dc]/30 bg-[#00a0dc]/5 text-[#00a0dc]'
                 }`}>
                   Resources
                 </span>
               </div>
 
-              <h2 className={`text-4xl md:text-5xl font-bold mb-8 leading-tight transition-colors duration-500 ${
+              <h2 className={`text-4xl md:text-5xl font-black mb-8 leading-tight transition-colors duration-500 tracking-tight ${
                 currentTheme === 'dark' ? 'text-white' : 'text-[#005a8c]'
               }`}>
                 Four services built to improve your system
@@ -119,20 +121,20 @@ const ServicesScrollSection = () => {
               </p>
 
               <div className="flex items-center gap-6">
-                <button className={`px-8 py-3 rounded-full border-2 font-semibold transition-all duration-300 ${
+                <button className={`px-8 py-3 rounded-full border-2 font-black transition-all duration-500 active:scale-95 ${
                   currentTheme === 'dark' 
-                    ? 'border-white text-white hover:bg-white hover:text-[#003049]' 
-                    : 'border-gray-200 text-gray-700 hover:border-[#00a0dc] hover:text-[#00a0dc]'
+                    ? 'border-white text-white hover:bg-white hover:text-[#003049] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]' 
+                    : 'border-[#005a8c] text-[#005a8c] hover:bg-[#005a8c] hover:text-white hover:shadow-lg'
                 }`}>
                   Learn
                 </button>
-                <a href="#" className={`flex items-center gap-2 font-semibold transition-colors ${
+                <a href="#" className={`flex items-center gap-2 font-black transition-colors ${
                   currentTheme === 'dark' 
                     ? 'text-blue-300 hover:text-white' 
                     : 'text-[#005a8c] hover:text-[#00a0dc]'
                 } group`}>
                   Video
-                  <span className="transform group-hover:translate-x-1 transition-transform">›</span>
+                  <span className="transform group-hover:translate-x-1.5 transition-transform duration-300">›</span>
                 </a>
               </div>
 
@@ -160,13 +162,15 @@ const ServicesScrollSection = () => {
 
                 {/* Content */}
                 <div className="max-w-2xl">
-                  <span className={`font-semibold text-sm uppercase tracking-wide mb-3 block ${
-                    step.theme === 'dark' ? 'text-blue-300' : 'text-[#00a0dc]'
+                  <span className={`inline-block px-4 py-1 rounded-full border mb-4 font-bold text-xs uppercase tracking-widest shadow-sm ${
+                    step.theme === 'dark' 
+                      ? 'border-blue-400/30 bg-blue-400/10 text-blue-300' 
+                      : 'border-[#00a0dc]/30 bg-[#00a0dc]/5 text-[#00a0dc]'
                   }`}>
                     {step.title}
                   </span>
                   
-                  <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors duration-500 ${
+                  <h3 className={`text-3xl md:text-5xl font-black mb-6 transition-colors duration-500 tracking-tight ${
                     step.theme === 'dark' ? 'text-white' : 'text-[#005a8c]'
                   }`}>
                     {step.heading}

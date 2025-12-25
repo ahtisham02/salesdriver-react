@@ -110,8 +110,8 @@ const PlatformHeroSection = () => {
         </div>
 
         {/* Main Heading with gradient text */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-[#005a8c] to-[#00a0dc] bg-clip-text text-transparent leading-tight">
-          Your core B2B tools in one system
+        <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-center mb-6 bg-gradient-to-r from-[#005a8c] to-[#00a0dc] bg-clip-text text-transparent leading-tight tracking-tight">
+          Your core B2B tools <br /> in one system
         </h1>
 
         {/* Description */}
@@ -123,13 +123,13 @@ const PlatformHeroSection = () => {
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           <button 
             onClick={() => navigate('/pricing')}
-            className="px-8 py-3 bg-[#00a0dc] text-white font-semibold rounded-full hover:bg-[#0080b8] hover:shadow-lg hover:scale-105 transition-all duration-300"
+            className="px-10 py-3.5 bg-[#00a0dc] text-white font-black uppercase tracking-widest text-xs rounded-full hover:bg-[#0080b8] shadow-[0_10px_20px_-10px_rgba(0,160,220,0.5)] hover:shadow-[0_15px_25px_-10px_rgba(0,160,220,0.6)] hover:scale-105 transition-all duration-300 active:scale-95"
           >
             Self-Run
           </button>
           <button 
             onClick={() => navigate('/services')}
-            className="px-8 py-3 text-[#00a0dc] font-semibold hover:text-[#0080b8] hover:bg-[#e8f4f8] rounded-full transition-all duration-300"
+            className="px-10 py-3.5 bg-white/50 backdrop-blur-sm border-2 border-[#00a0dc] text-[#00a0dc] font-black uppercase tracking-widest text-xs hover:text-[#0080b8] hover:bg-white rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
           >
             Managed
           </button>
@@ -143,8 +143,8 @@ const PlatformHeroSection = () => {
         </div>
 
         {/* Section Title */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-[#005a8c] to-[#00a0dc] bg-clip-text text-transparent leading-tight">
-          All tools built to work as one.
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-center mb-6 bg-gradient-to-r from-[#005a8c] to-[#00a0dc] bg-clip-text text-transparent leading-tight tracking-tight">
+          All tools built <br /> to work as one.
         </h1>
 
         {/* Section Description */}
@@ -156,23 +156,23 @@ const PlatformHeroSection = () => {
         {/* Main Content Container - Rounded White Box with shadow */}
         <div className="bg-[#f5fcfe] backdrop-blur-sm rounded-3xl shadow-2xl p-6 md:p-10 lg:p-12 border border-gray-100">
           {/* Tab Navigation with smooth transitions */}
-          <div className="flex justify-center gap-3 mb-10">
+          <div className="flex justify-center gap-3 mb-12">
             <button
               onClick={() => setActiveTab('all')}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+              className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 active:scale-95 ${
                 activeTab === 'all'
-                  ? 'bg-[#00a0dc] text-white shadow-md scale-105'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-102'
+                  ? 'bg-[#00a0dc] text-white shadow-[0_10px_20px_-5px_rgba(0,160,220,0.4)] scale-105'
+                  : 'bg-white text-gray-400 hover:text-gray-700 hover:bg-white/80 border border-gray-100 shadow-sm'
               }`}
             >
               All tools
             </button>
             <button
               onClick={() => setActiveTab('featured')}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+              className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 active:scale-95 ${
                 activeTab === 'featured'
-                  ? 'bg-[#00a0dc] text-white shadow-md scale-105'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-102'
+                  ? 'bg-[#00a0dc] text-white shadow-[0_10px_20px_-5px_rgba(0,160,220,0.4)] scale-105'
+                  : 'bg-white text-gray-400 hover:text-gray-700 hover:bg-white/80 border border-gray-100 shadow-sm'
               }`}
             >
               Featured
@@ -184,11 +184,12 @@ const PlatformHeroSection = () => {
             {filteredTools.map((tool, index) => (
               <div
                 key={tool.id}
-                className="bg-white border-2 border-gray-100 rounded-2xl p-6 hover:border-[#00a0dc] hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+                className="group relative bg-white border border-gray-100 rounded-2xl p-6 hover:border-[#00a0dc]/50 hover:shadow-[0_20px_40px_rgba(0,160,220,0.08)] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
                 style={{
                   animationDelay: `${index * 50}ms`,
                 }}
               >
+                <div className="absolute top-0 left-0 w-1 h-0 bg-[#00a0dc] group-hover:h-full transition-all duration-500"></div>
                 {/* Logo with hover effect */}
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                   <img

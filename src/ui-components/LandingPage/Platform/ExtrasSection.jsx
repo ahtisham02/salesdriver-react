@@ -44,7 +44,7 @@ export default function ExtrasSection() {
 
           {/* Right Side - Content */}
           <div className="text-left">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#004A77] mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-[#004A77] mb-8 leading-tight tracking-tight">
               Extras that replace <br />
               even more <br />
               subscriptions
@@ -55,15 +55,15 @@ export default function ExtrasSection() {
             </p>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {/* Left Column */}
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {leftFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFB800] flex items-center justify-center">
-                      <Check size={14} className="text-white" strokeWidth={3} />
+                  <div key={index} className="flex items-center gap-3 group">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFB800]/10 border border-[#FFB800]/30 flex items-center justify-center group-hover:bg-[#FFB800] transition-colors duration-300">
+                      <Check size={12} className="text-[#FFB800] group-hover:text-white transition-colors duration-300" strokeWidth={4} />
                     </div>
-                    <span className="text-gray-700 text-sm md:text-base font-medium">
+                    <span className="text-gray-700 text-sm md:text-base font-bold opacity-80 group-hover:opacity-100 transition-opacity">
                       {feature}
                     </span>
                   </div>
@@ -71,13 +71,13 @@ export default function ExtrasSection() {
               </div>
 
               {/* Right Column */}
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {rightFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFB800] flex items-center justify-center">
-                      <Check size={14} className="text-white" strokeWidth={3} />
+                  <div key={index} className="flex items-center gap-3 group">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFB800]/10 border border-[#FFB800]/30 flex items-center justify-center group-hover:bg-[#FFB800] transition-colors duration-300">
+                      <Check size={12} className="text-[#FFB800] group-hover:text-white transition-colors duration-300" strokeWidth={4} />
                     </div>
-                    <span className="text-gray-700 text-sm md:text-base font-medium">
+                    <span className="text-gray-700 text-sm md:text-base font-bold opacity-80 group-hover:opacity-100 transition-opacity">
                       {feature}
                     </span>
                   </div>
@@ -91,10 +91,10 @@ export default function ExtrasSection() {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="px-8 py-3 bg-[#00A1E0] text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#00A1E0]/30 transform hover:scale-105">
+              <button className="px-10 py-3.5 bg-[#00A1E0] text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(0,161,224,0.5)] hover:shadow-xl hover:shadow-[#00A1E0]/30 transform hover:-translate-y-1 active:scale-95">
                 View Plans
               </button>
-              <button className="px-8 py-3 bg-transparent border-2 border-[#004A77] text-[#004A77] font-semibold rounded-full transition-all duration-300 hover:bg-[#004A77] hover:text-white transform hover:scale-105">
+              <button className="px-10 py-3.5 bg-white/50 backdrop-blur-sm border-2 border-[#004A77]/50 text-[#004A77] font-black uppercase tracking-widest text-xs rounded-full transition-all duration-300 hover:bg-[#004A77] hover:text-white hover:border-[#004A77] transform hover:-translate-y-1 active:scale-95">
                 Contact Us
               </button>
             </div>

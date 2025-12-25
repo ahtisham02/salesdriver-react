@@ -31,7 +31,7 @@ export default function ReadySection() {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center animate-fade-in">
         <div className="inline-flex items-center gap-2 bg-[#00A1E0]/10 border border-[#00A1E0]/20 px-4 py-1.5 rounded-full mb-8">
-          <span className="text-[#00A1E0] text-[10px] font-black uppercase tracking-widest">Get Started</span>
+          <span className="text-[#00A1E0] text-[10px] font-black uppercase tracking-[0.2em]">Get Started</span>
         </div>
         
         <h2 className="text-4xl md:text-5xl lg:text-7xl font-black mb-8 leading-tight tracking-tight">
@@ -46,16 +46,14 @@ export default function ReadySection() {
         <div className="flex flex-col sm:flex-row justify-center gap-6 mb-12">
           <button 
             onClick={() => navigate('/pricing')}
-            className="relative px-12 py-5 bg-gradient-to-r from-[#00A1E0] to-[#0088CC] text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-500 shadow-xl shadow-[#00A1E0]/20 hover:shadow-2xl hover:shadow-[#00A1E0]/40 transform hover:-translate-y-1 active:scale-95 overflow-hidden group"
+            className="relative px-12 py-5 bg-[#00A1E0] text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-500 shadow-[0_10px_20px_-10px_rgba(0,161,224,0.5)] hover:shadow-2xl hover:shadow-[#00A1E0]/40 transform hover:-translate-y-1 active:scale-95 overflow-hidden group"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-[#0088CC] to-[#00A1E0] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             <span className="relative z-10">Start Free for 30 Days</span>
           </button>
           <button 
             onClick={() => navigate('/platform')}
-            className="relative px-12 py-5 bg-transparent border-2 border-white/10 text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-500 hover:bg-white/5 hover:border-white/30 transform hover:-translate-y-1 active:scale-95 group overflow-hidden"
+            className="relative px-12 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-500 hover:bg-white/20 hover:border-white/40 transform hover:-translate-y-1 active:scale-95 group overflow-hidden"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             <span className="relative z-10">Learn more</span>
           </button>
         </div>

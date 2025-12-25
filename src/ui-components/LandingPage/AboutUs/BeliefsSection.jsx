@@ -17,7 +17,7 @@ export default function BeliefsSection() {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-28">
         {/* Left Column */}
         <div className="lg:w-1/2">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black mb-8 leading-tight tracking-tight">
             What we believe <br /> about B2B sales
           </h2>
           <p className="text-gray-200 text-lg mb-8 leading-relaxed">
@@ -31,7 +31,7 @@ export default function BeliefsSection() {
               <span
                 key={index}
                 style={{ animationDelay: `${index * 0.1}s` }}
-                className="px-6 py-2 rounded-full border border-[#235B7A] bg-[#0A4565] text-white text-sm font-medium hover:bg-gradient-to-r hover:from-[#00A1E0] hover:to-[#005F8F] hover:border-[#00A1E0] transition-all duration-300 cursor-default transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl animate-fade-in-up"
+                className="px-6 py-2 rounded-full border border-white/10 bg-white/5 text-white text-xs font-black uppercase tracking-widest hover:bg-white hover:text-[#003049] hover:border-white transition-all duration-300 cursor-default transform hover:scale-105 shadow-lg active:scale-95 animate-fade-in-up"
               >
                 {tag}
               </span>

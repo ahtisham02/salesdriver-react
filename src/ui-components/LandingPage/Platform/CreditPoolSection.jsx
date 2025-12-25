@@ -29,13 +29,13 @@ export default function CreditPoolSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
-          <button className="relative px-10 md:px-12 py-4 md:py-5 bg-[#00A1E0] text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-500 shadow-xl shadow-[#00A1E0]/20 hover:shadow-2xl hover:shadow-[#00A1E0]/40 transform hover:-translate-y-1 active:scale-95 group">
+          <button className="relative px-10 md:px-12 py-4 md:py-5 bg-[#00A1E0] text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-500 shadow-[0_10px_20px_-10px_rgba(0,161,224,0.5)] hover:shadow-[0_15px_30px_-5px_rgba(0,161,224,0.4)] transform hover:-translate-y-1 active:scale-95 group">
             <span className="relative z-10">See Pricing</span>
           </button>
-          <button className="relative px-10 md:px-12 py-4 md:py-5 bg-transparent border-2 border-white/10 text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-500 hover:bg-white/5 hover:border-white/30 transform hover:-translate-y-1 active:scale-95 group overflow-hidden">
-             <div className="flex items-center gap-2">
+          <button className="relative px-10 md:px-12 py-4 md:py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black uppercase tracking-widest text-xs rounded-full transition-all duration-500 hover:bg-white/20 hover:border-white/40 transform hover:-translate-y-1 active:scale-95 group overflow-hidden">
+             <div className="flex items-center gap-2 justify-center">
                 <span className="relative z-10">Learn How Credits Work</span>
-                <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={16} className="transform group-hover:translate-x-1.5 transition-transform duration-300" />
              </div>
           </button>
         </div>

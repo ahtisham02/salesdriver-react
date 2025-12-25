@@ -75,13 +75,13 @@ export default function PricingSection() {
       
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16 animate-fade-in space-y-4">
           <div className="inline-block relative">
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight bg-gradient-to-r from-[#4A3F35] via-[#B45309] to-[#4A3F35] bg-clip-text text-transparent animate-gradient">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight bg-gradient-to-r from-[#4A3F35] via-[#B45309] to-[#4A3F35] bg-clip-text text-transparent animate-gradient tracking-tight">
               Four plans.<br />One complete system.
             </h1>
             {/* Decorative line */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-[#F59E0B] to-transparent rounded-full opacity-60"></div>
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-gradient-to-r from-transparent via-[#F59E0B] to-transparent rounded-full opacity-60"></div>
           </div>
           
           <p className="text-gray-700 text-lg md:text-xl max-w-2xl mx-auto mt-8 md:mt-10 mb-6 opacity-90 leading-relaxed">
@@ -95,24 +95,24 @@ export default function PricingSection() {
           </div>
           
           {/* Billing Toggle */}
-          <div className="flex flex-col items-center gap-6">
-            <div className="flex items-center bg-white/60 backdrop-blur-sm p-1.5 rounded-full border border-[#F59E0B]/20 shadow-inner">
+          <div className="flex flex-col items-center gap-8 mt-12">
+            <div className="flex items-center bg-white/80 backdrop-blur-md p-1.5 rounded-full border border-orange-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <button
                 onClick={() => setIsYearly(false)}
-                className={`px-8 py-3 rounded-full font-bold transition-all duration-300 ${
+                className={`px-10 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 active:scale-95 ${
                   !isYearly 
-                    ? 'bg-[#00A1E0] text-white shadow-lg' 
-                    : 'text-gray-500 hover:text-gray-800'
+                    ? 'bg-[#00A1E0] text-white shadow-[0_10px_20px_-5px_rgba(0,161,224,0.4)]' 
+                    : 'text-gray-400 hover:text-gray-700'
                 }`}
               >
                 Monthly
               </button>
               <button
                 onClick={() => setIsYearly(true)}
-                className={`px-8 py-3 rounded-full font-bold transition-all duration-300 ${
+                className={`px-10 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 active:scale-95 ${
                   isYearly 
-                    ? 'bg-[#00A1E0] text-white shadow-lg' 
-                    : 'text-gray-500 hover:text-gray-800'
+                    ? 'bg-[#00A1E0] text-white shadow-[0_10px_20px_-5px_rgba(0,161,224,0.4)]' 
+                    : 'text-gray-400 hover:text-gray-700'
                 }`}
               >
                 Yearly
@@ -120,7 +120,7 @@ export default function PricingSection() {
             </div>
             
             <div className="relative">
-              <span className="bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-xl animate-pulse inline-block">
+              <span className="bg-[#B45309] text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl animate-pulse inline-block border border-white/20">
                 ✨ 50% off annual plans if you lock in before Jan 31
               </span>
             </div>

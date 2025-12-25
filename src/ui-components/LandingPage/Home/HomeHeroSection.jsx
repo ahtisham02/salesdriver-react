@@ -95,13 +95,13 @@ const HomeHeroSection = () => {
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           <button 
             onClick={() => navigate('/pricing')}
-            className="px-8 py-3 bg-[#00a0dc] text-white rounded-full font-bold hover:bg-[#0089bd] transition-colors shadow-lg shadow-blue-200"
+            className="px-8 py-3 bg-[#00a0dc] text-white rounded-full font-bold hover:bg-[#0089bd] transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(0,160,220,0.5)] hover:shadow-[0_15px_25px_-10px_rgba(0,160,220,0.6)] hover:scale-[1.02] active:scale-[0.98]"
           >
             Start Free
           </button>
           <button 
             onClick={() => navigate('/platform')}
-            className="px-8 py-3 bg-transparent border-2 border-[#00a0dc] text-[#003049] rounded-full font-bold hover:bg-white transition-colors"
+            className="px-8 py-3 bg-white/50 backdrop-blur-sm border-2 border-[#00a0dc] text-[#003049] rounded-full font-bold hover:bg-white transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
           >
             Explore the System
           </button>

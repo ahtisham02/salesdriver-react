@@ -14,13 +14,13 @@ const StatItem = ({ number, label }) => {
     <div className="text-center group cursor-default">
       <div className="relative inline-block">
         {/* Gradient border effect */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-[#00A1E0] to-[#005F8F] rounded-lg opacity-0 group-hover:opacity-20 blur transition-opacity duration-500"></div>
-        <h3 className="relative text-3xl md:text-4xl font-bold text-black mb-1 transform group-hover:scale-110 transition-transform duration-300">
+        <div className="absolute -inset-2 bg-gradient-to-r from-[#00A1E0] to-[#005F8F] rounded-lg opacity-0 group-hover:opacity-15 blur-lg transition-all duration-500"></div>
+        <h3 className="relative text-3xl md:text-5xl font-black text-black mb-1 transform group-hover:scale-110 transition-transform duration-500 tracking-tight">
           <CountUp end={numericValue} duration={2.5} separator="," enableScrollSpy scrollSpyOnce />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A1E0] to-[#0088CC]">{symbol}</span>
         </h3>
       </div>
-      <p className="text-gray-500 text-xs md:text-sm max-w-[150px] mx-auto leading-tight mt-2 group-hover:text-gray-700 transition-colors">
+      <p className="text-gray-500 text-xs md:text-sm max-w-[150px] mx-auto leading-tight mt-3 font-bold uppercase tracking-wider group-hover:text-[#00A1E0] transition-colors">
         {label}
       </p>
     </div>
@@ -28,25 +28,26 @@ const StatItem = ({ number, label }) => {
 };
 
 const CheckListItem = ({ text }) => (
-  <div className="flex items-start gap-3 mb-3">
-    <div className="mt-1 w-5 h-5 rounded-full border border-orange-400 flex items-center justify-center flex-shrink-0">
+  <div className="flex items-center gap-3 mb-4 group cursor-default">
+    <div className="w-6 h-6 rounded-full bg-orange-400/10 border border-orange-400/30 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-400 transition-colors duration-300">
       <svg
         width="10"
-        height="8"
+        height="10"
         viewBox="0 0 10 8"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M1 4L3.5 6.5L9 1"
-          stroke="#FB923C"
-          strokeWidth="1.5"
+          stroke="currentColor"
+          className="text-orange-500 group-hover:text-white"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       </svg>
     </div>
-    <span className="text-gray-600 text-sm md:text-base">{text}</span>
+    <span className="text-gray-700 text-sm md:text-base font-bold opacity-80 group-hover:opacity-100 transition-opacity">{text}</span>
   </div>
 );
 
@@ -67,7 +68,7 @@ export default function WhatWeDoSection() {
         <div className="relative bg-white rounded-2xl md:rounded-3xl p-6 md:p-12 shadow-2xl space-y-16 md:space-y-24 border border-gray-100">
         {/* Part 1: Intro & Stats */}
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#005F8F] mb-3 md:mb-4">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-[#005F8F] mb-6 tracking-tight">
             What We Do
           </h2>
           <p className="text-gray-500 text-sm md:text-base mb-12 md:mb-16 max-w-3xl mx-auto px-2">
@@ -86,7 +87,7 @@ export default function WhatWeDoSection() {
         {/* Part 2: Why we exist */}
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="lg:w-1/2">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#005F8F] mb-4">
+            <h3 className="text-3xl md:text-5xl font-black text-[#005F8F] mb-6 tracking-tight">
               Why we exist
             </h3>
             <h4 className="text-lg font-bold text-[#00263A] mb-4">
@@ -101,8 +102,8 @@ export default function WhatWeDoSection() {
               for real workflows.
             </p>
             <div className="space-y-1">
-              <p className="text-sm font-semibold text-gray-400 uppercase mb-3">
-                inherit values:
+              <p className="text-xs font-black text-[#00A1E0] uppercase mb-4 tracking-[0.2em]">
+                core values:
               </p>
               <CheckListItem text="Total control" />
               <CheckListItem text="Complex setups" />
@@ -120,7 +121,7 @@ export default function WhatWeDoSection() {
         {/* Part 3: It started as a real problem */}
         <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
           <div className="lg:w-1/2">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#005F8F] mb-6">
+            <h3 className="text-3xl md:text-5xl font-black text-[#005F8F] mb-6 tracking-tight">
               It started as <br /> a real problem
             </h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
@@ -151,7 +152,7 @@ export default function WhatWeDoSection() {
         {/* Part 4: Rockford Hunt */}
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           <div className="lg:w-1/2">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#005F8F] mb-6">
+            <h3 className="text-3xl md:text-5xl font-black text-[#005F8F] mb-6 tracking-tight">
               Rockford Hunt built <br /> this from experience
             </h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
@@ -174,19 +175,19 @@ export default function WhatWeDoSection() {
           </div>
           <div className="lg:w-1/2 relative">
             {/* Floating Tags */}
-            <div className="absolute top-[2%] left-[-5%] bg-white px-4 py-2 rounded-lg shadow-md text-[#005F8F] text-xs md:text-sm font-semibold border-l-[3px] border-[#00A1E0] hidden md:block z-10">
+            <div className="absolute top-[2%] left-[-5%] bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg text-[#005F8F] text-xs md:text-sm font-black border-l-[4px] border-[#00A1E0] hidden md:block z-10 hover:scale-105 transition-transform">
               VP Business Development at Omnicom
             </div>
-            <div className="absolute top-[15%] right-[-8%] bg-white px-4 py-2 rounded-lg shadow-md text-[#005F8F] text-xs md:text-sm font-semibold border-l-[3px] border-[#00A1E0] hidden lg:block z-10">
+            <div className="absolute top-[15%] right-[-8%] bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg text-[#005F8F] text-xs md:text-sm font-black border-l-[4px] border-[#00A1E0] hidden lg:block z-10 hover:scale-105 transition-transform">
               Designer of multiple<br />enterprise outbound systems
             </div>
-            <div className="absolute bottom-[45%] left-[-10%] bg-white px-4 py-2 rounded-lg shadow-md text-[#005F8F] text-xs md:text-sm font-semibold border-l-[3px] border-[#00A1E0] hidden lg:block z-10">
+            <div className="absolute bottom-[45%] left-[-10%] bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg text-[#005F8F] text-xs md:text-sm font-black border-l-[4px] border-[#00A1E0] hidden lg:block z-10 hover:scale-105 transition-transform">
               Developed data products used<br />across agencies & SaaS teams
             </div>
-            <div className="absolute bottom-[25%] right-[-5%] bg-white px-4 py-2 rounded-lg shadow-md text-[#005F8F] text-xs md:text-sm font-semibold border-l-[3px] border-[#00A1E0] hidden md:block z-10">
+            <div className="absolute bottom-[25%] right-[-5%] bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg text-[#005F8F] text-xs md:text-sm font-black border-l-[4px] border-[#00A1E0] hidden md:block z-10 hover:scale-105 transition-transform">
               Built & trained<br />100+ sales reps
             </div>
-            <div className="absolute bottom-[5%] left-[20%] bg-white px-4 py-2 rounded-lg shadow-md text-[#005F8F] text-xs md:text-sm font-semibold border-l-[3px] border-[#00A1E0] hidden md:block z-10">
+            <div className="absolute bottom-[5%] left-[20%] bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg text-[#005F8F] text-xs md:text-sm font-black border-l-[4px] border-[#00A1E0] hidden md:block z-10 hover:scale-105 transition-transform">
               Rockford Hunt<br />SalesDriver CEO & Founder
             </div>
             
