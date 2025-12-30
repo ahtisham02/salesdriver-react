@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { 
   ChevronDown, 
   Menu, 
@@ -12,11 +12,8 @@ import {
   Bot, 
   AtSign, 
   Video,
-  CreditCard,
-  LayoutGrid,
   Zap,
-  BarChart3,
-  Gift
+  User,
 } from "lucide-react";
 import img from "../../../assets/Website_Media/Website_Media/salesdriver_logo.svg";
 
@@ -24,9 +21,9 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Simulated logged-in state
   const timeoutRef = useRef(null);
   const navigate = useNavigate();
-  const location = useLocation();
 
   // Scroll handler for navbar background
   useEffect(() => {
@@ -230,18 +227,61 @@ const Navbar = () => {
 
         {/* RIGHT ACTIONS */}
         <div className="hidden lg:flex items-center gap-4">
-          <button 
-            onClick={() => navigate('/pricing')} // Simplified Login to specific page or keep generic
-            className="px-6 py-2.5 rounded-full border border-[#005a8c]/20 text-[#005a8c] font-bold text-sm tracking-wide hover:border-[#00A1E0] hover:text-[#00A1E0] transition-all"
-          >
-            LOGIN
-          </button>
-          <button 
-            onClick={() => navigate('/pricing')}
-            className="px-6 py-2.5 rounded-full bg-[#00A1E0] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-200 hover:bg-[#0089bd] hover:shadow-blue-300 hover:scale-[1.02] transition-all"
-          >
-            START FREE
-          </button>
+          {isLoggedIn ? (
+            <>
+              <button 
+                onClick={() => navigate('/signin')}
+                className="px-6 py-2.5 rounded-full border border-[#005a8c]/20 text-[#005a8c] font-bold text-sm tracking-wide hover:border-[#00A1E0] hover:text-[#00A1E0] transition-all"
+              >
+                LOGIN
+              </button>
+              <button 
+                onClick={() => navigate('/signup')}
+                className="px-6 py-2.5 rounded-full bg-[#00A1E0] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-200 hover:bg-[#0089bd] hover:shadow-blue-300 hover:scale-[1.02] transition-all"
+              >
+                START FREE
+              </button>
+            </>
+          ) : (
+            <div className="relative group">
+              <button 
+                onClick={() => navigate('/profile')}
+                className="flex items-center gap-3 p-1.5 pr-4 rounded-full bg-gray-50 border border-gray-100 hover:border-[#00A1E0] transition-all group"
+              >
+                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-[#00A1E0] overflow-hidden">
+                   <img src="https://i.pravatar.cc/150?u=1" alt="Profile" className="w-full h-full object-cover" />
+                </div>
+                <div className="text-left hidden xl:block">
+                  <p className="text-[13px] font-bold text-[#003049] leading-tight">John Doe</p>
+                  <p className="text-[10px] text-gray-500 leading-tight">Admin Account</p>
+                </div>
+                <ChevronDown size={14} className="text-gray-400 group-hover:text-[#00A1E0] transition-colors" />
+              </button>
+              
+              {/* Profile Dropdown */}
+              <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right group-hover:translate-y-0 translate-y-2">
+                <div className="p-4 border-b border-gray-50">
+                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Account</p>
+                  <div 
+                    onClick={() => navigate('/profile')}
+                    className="flex items-center gap-3 p-2 rounded-xl hover:bg-blue-50 cursor-pointer transition-colors"
+                  >
+                    <User size={18} className="text-[#00A1E0]" />
+                    <span className="text-sm font-bold text-[#003049]">My Profile</span>
+                  </div>
+                </div>
+                <div className="p-2">
+                  <div 
+                    onClick={() => setIsLoggedIn(false)}
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 text-gray-600 hover:text-red-500 cursor-pointer transition-colors"
+                  >
+                    <Zap size={18} />
+                    <span className="text-sm font-bold">Sign Out</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* MOBILE MENU BUTTON */}
@@ -293,12 +333,38 @@ const Navbar = () => {
                 ))}
                 
                 <div className="flex flex-col gap-3 mt-4">
-                    <button className="w-full py-3 rounded-full border border-[#005a8c]/20 text-[#005a8c] font-bold">
-                        LOGIN
-                    </button>
-                    <button className="w-full py-3 rounded-full bg-[#00A1E0] text-white font-bold shadow-lg">
-                        START FREE
-                    </button>
+                    {!isLoggedIn ? (
+                        <>
+                            <button 
+                                onClick={() => { navigate('/signin'); setMobileMenuOpen(false); }}
+                                className="w-full py-3 rounded-full border border-[#005a8c]/20 text-[#005a8c] font-bold"
+                            >
+                                LOGIN
+                            </button>
+                            <button 
+                                onClick={() => { navigate('/signup'); setMobileMenuOpen(false); }}
+                                className="w-full py-3 rounded-full bg-[#00A1E0] text-white font-bold shadow-lg"
+                            >
+                                START FREE
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <button 
+                                onClick={() => { navigate('/profile'); setMobileMenuOpen(false); }}
+                                className="w-full py-3 flex items-center justify-center gap-3 rounded-full bg-gray-50 border border-gray-100 text-[#003049] font-bold"
+                            >
+                                <User size={20} className="text-[#00A1E0]" />
+                                MY PROFILE
+                            </button>
+                            <button 
+                                onClick={() => setIsLoggedIn(false)}
+                                className="w-full py-3 rounded-full bg-red-50 text-red-500 font-bold"
+                            >
+                                SIGN OUT
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

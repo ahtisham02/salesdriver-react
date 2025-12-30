@@ -7,6 +7,7 @@ import SLFooter from "../ui-components/LandingPage/Common/SlFooter";
 const Layout = () => {
   const location = useLocation();
   const isPostPage = location.pathname.startsWith("/post/");
+  const isProfilePage = location.pathname === "/profile";
 
   return (
     <div className="text-black font-plus-jakarta">
@@ -16,8 +17,8 @@ const Layout = () => {
           <Outlet />
         </div>
       </main>
-      <SLFooter />
-      <Footer />
+      {!isProfilePage && <SLFooter />}
+      {!isProfilePage && <Footer />}
     </div>
   );
 };

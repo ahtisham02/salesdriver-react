@@ -19,7 +19,14 @@ import Terms from "../pages/LandingPages/Terms/Terms";
 import AboutUsPage from "../pages/LandingPages/AboutUs/AboutUs"; // Import About Us
 import PricingPage from "../pages/LandingPages/Pricing/Pricing"; // Import Pricing
 import PlatformPage from "../pages/LandingPages/Platform/Platform"; // Import Platform
+import Signin from "../pages/Auth/Signin";
+import Signup from "../pages/Auth/Signup";
+import ForgotPassword from "../pages/Auth/ForgotPassword";
+import ResetPassword from "../pages/Auth/ResetPassword";
+import VerifyEmail from "../pages/Auth/VerifyEmail";
+import Profile from "../pages/LandingPages/Profile/Profile";
 import Layout from "./LandingPageLayout";
+import AuthLayout from "./AuthLayout";
 import ScrollToTop from "../utils/ScrollToTop";
 
 const MainRoutes = () => {
@@ -43,12 +50,22 @@ const MainRoutes = () => {
           <Route path="/data-sheets" element={<DataSheetsPage />} />
           <Route path="/white-papers" element={<WhitePapersPage />} />
           <Route path="/downloadables" element={<DownloadablesPage />} />
-          <Route path="/about-us" element={<AboutUsPage />} /> {/* New Route */}
-          <Route path="/pricing" element={<PricingPage />} /> {/* Pricing Route */}
-          <Route path="/platform" element={<PlatformPage />} /> {/* Platform Route */}
+          <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/platform" element={<PlatformPage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="/Terms" element={<Terms />} />
           <Route path="/post/:slug" element={<PostDetails />} />
+        </Route>
+
+        {/* Authentication Routes */}
+        <Route element={<AuthLayout />}>
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
         </Route>
       </Routes>
     </>
