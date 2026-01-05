@@ -25,4 +25,5 @@ module.exports = {
     return config;
   },
   safelist: ["font-plus-jakarta"],
-}
+};
+

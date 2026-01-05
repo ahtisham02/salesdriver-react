@@ -1,0 +1,15 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "feature/updated-ui",
+    "main"
+  ],
+  "parent": {
+    "feature/updated-ui": "main",
+    "main": null
+  },
+  "order": [
+    "main",
+    "feature/updated-ui"
+  ]
+}
