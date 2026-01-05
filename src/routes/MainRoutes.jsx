@@ -25,6 +25,7 @@ import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 import Profile from "../pages/LandingPages/Profile/Profile";
+import ToolDetailPage from "../pages/Tools/ToolDetailPage";
 import Layout from "./LandingPageLayout";
 import AuthLayout from "./AuthLayout";
 import ScrollToTop from "../utils/ScrollToTop";
@@ -53,6 +54,7 @@ const MainRoutes = () => {
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/platform" element={<PlatformPage />} />
+          <Route path="/tools/:slug" element={<ToolDetailPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="/Terms" element={<Terms />} />
@@ -66,6 +68,7 @@ const MainRoutes = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="/api/auth/verify-email" element={<VerifyEmail />} />
         </Route>
       </Routes>
     </>

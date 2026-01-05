@@ -1,12 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import bgImg from "../../../assets/new_assets/g_bg.png";
 
-const FloatingTab = ({ text, className }) => (
-  <div
-    className={`absolute bg-white/90 backdrop-blur-md px-6 py-2 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-[#008CC9] font-bold text-sm md:text-base hidden xl:block border border-blue-100 border-l-[4px] border-l-[#00A1E0] ${className} hover:scale-105 hover:shadow-[0_15px_35px_rgba(0,160,220,0.15)] transition-all duration-300 cursor-default`}
+const FloatingTab = ({ text, className, to }) => (
+  <Link
+    to={to || "#"}
+    className={`absolute bg-white/90 backdrop-blur-md px-6 py-2 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-[#008CC9] font-bold text-sm md:text-base hidden xl:block border border-blue-100 border-l-[4px] border-l-[#00A1E0] ${className} hover:scale-105 hover:shadow-[0_15px_35px_rgba(0,160,220,0.15)] transition-all duration-300 cursor-pointer`}
   >
     {text}
-  </div>
+  </Link>
 );
 
 export default function SystemSection() {
@@ -22,35 +24,43 @@ export default function SystemSection() {
       {/* Floating Tabs */}
       <FloatingTab
         text="Find accurate contacts"
+        to="/tools/exact-mails"
         className="top-[10%] left-[10%] -rotate-2"
       />
       <FloatingTab
         text="Verify data"
+        to="/tools/mtn-verify"
         className="top-[35%] left-[2%] -rotate-3"
       />
       <FloatingTab
         text="Enrich profiles"
+        to="/tools/enrichy"
         className="top-[60%] left-[5%] -rotate-3"
       />
       <FloatingTab
         text="Track website activity"
+        to="/tools/trafera"
         className="top-[80%] left-[15%] rotate-2"
       />
 
       <FloatingTab
         text="Understand behavior"
+        to="/tools/trafera"
         className="top-[11%] right-[10%] rotate-6"
       />
       <FloatingTab
         text="Record and review calls"
+        to="/tools/callix"
         className="top-[58%] right-[2%] rotate-6"
       />
       <FloatingTab
         text="Send effective outreach"
+        to="/tools/hyperpitch"
         className="top-[82%] right-[15%] -rotate-3"
       />
       <FloatingTab
         text="Maintain reliable information"
+        to="/tools/mtn-verify"
         className="top-[35%] right-[8%] rotate-2"
       />
 

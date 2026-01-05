@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle2, XCircle, Loader2, Mail } from "lucide-react";
+import { authService } from "../../services/authService";
+import { toast } from "react-toastify";
 
 const VerifyEmail = () => {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
   const [status, setStatus] = useState("loading"); // loading, success, error
 
   useEffect(() => {
-    // Simulate verification process
-    const timer = setTimeout(() => {
-      setStatus("success");
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+    const verify = async () => {
+      if (!token) {
+        setStatus("error");
+        return;
+      }
+      try {
+        await authService.verifyEmail(token);
+        setStatus("success");
+      } catch (error) {
+        setStatus("error");
+        toast.error(error.message || "Verification failed.");
+      }
+    };
+    verify();
+  }, [token]);
 
   return (
     <div className="text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -61,10 +74,10 @@ const VerifyEmail = () => {
                 Back to login
             </Link>
             <button
-                onClick={() => setStatus("loading")}
+                onClick={() => window.location.reload()}
                 className="font-bold text-[#00A7E2] hover:text-[#0089bd] transition-colors"
             >
-                Resend verification email
+                Retry verification
             </button>
         </>
       )}

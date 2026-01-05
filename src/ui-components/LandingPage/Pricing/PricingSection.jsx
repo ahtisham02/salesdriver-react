@@ -1,52 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PricingCard from "./PricingCard";
 import bgImg from "../../../assets/new_assets/p_bg.png";
 
-const pricingPlans = [
-  {
-    name: "Free plan",
-    price: { monthly: 0, yearly: 0 },
-    yearlyNote: "or $0 yearly",
-    features: [
-      "Tools access",
-      "Very limited credits"
-    ]
-  },
-  {
-    name: "Basic plan",
-    price: { monthly: 99, yearly: 990 },
-    yearlyNote: "or $990 yearly",
-    features: [
-      "Feature text goes here",
-      "Feature text goes here",
-      "Feature text goes here"
-    ]
-  },
-  {
-    name: "Business plan",
-    price: { monthly: 299, yearly: 2990 },
-    yearlyNote: "or $2990 yearly",
-    features: [
-      "Feature text goes here",
-      "Feature text goes here",
-      "Feature text goes here",
-      "Feature text goes here"
-    ],
-    isPopular: true
-  },
-  {
-    name: "Enterprise plan",
-    price: { monthly: 499, yearly: 4990 },
-    yearlyNote: "or $4990 yearly",
-    features: [
-      "Live intent data audiences",
-      "PR software"
-    ]
-  }
-];
+import { subscriptionService } from "../../../services/subscriptionService";
+import { toast } from "react-toastify";
 
 export default function PricingSection() {
-  const [isYearly, setIsYearly] = useState(false);
+  const [plans, setPlans] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const data = await subscriptionService.getPlans();
+        setPlans(data);
+      } catch (error) {
+        console.error("Failed to fetch plans:", error);
+        toast.error("Failed to load pricing plans.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchPlans();
+  }, []);
+
+  const handleCheckout = async (planType) => {
+    try {
+      const successUrl = `${window.location.origin}/profile?session_id={CHECKOUT_SESSION_ID}`;
+      const cancelUrl = `${window.location.origin}/pricing`;
+      const checkoutUrl = await subscriptionService.createCheckout(planType, successUrl, cancelUrl);
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      console.error("Checkout error:", error);
+      toast.error(error.message || "Failed to initiate checkout.");
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="w-full py-32 flex justify-center items-center bg-gradient-to-b from-[#FFF9E6] to-[#FFF9E6]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00A1E0]"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full py-20 md:py-32 px-4 md:px-8 lg:px-16 font-plus-jakarta overflow-hidden bg-gradient-to-b from-[#FFF9E6] via-[#FFFBF0] to-[#FFF9E6]">
@@ -78,7 +74,7 @@ export default function PricingSection() {
         <div className="text-center mb-16 animate-fade-in space-y-4">
           <div className="inline-block relative">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight bg-gradient-to-r from-[#4A3F35] via-[#B45309] to-[#4A3F35] bg-clip-text text-transparent animate-gradient tracking-tight">
-              Four plans.<br />One complete system.
+              Three plans.<br />One complete system.
             </h1>
             {/* Decorative line */}
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-gradient-to-r from-transparent via-[#F59E0B] to-transparent rounded-full opacity-60"></div>
@@ -94,47 +90,20 @@ export default function PricingSection() {
             <span className="w-1 h-1 rounded-full bg-gray-300"></span>
           </div>
           
-          {/* Billing Toggle */}
-          <div className="flex flex-col items-center gap-8 mt-12">
-            <div className="flex items-center bg-white/80 backdrop-blur-md p-1.5 rounded-full border border-orange-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-              <button
-                onClick={() => setIsYearly(false)}
-                className={`px-10 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 active:scale-95 ${
-                  !isYearly 
-                    ? 'bg-[#00A1E0] text-white shadow-[0_10px_20px_-5px_rgba(0,161,224,0.4)]' 
-                    : 'text-gray-400 hover:text-gray-700'
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setIsYearly(true)}
-                className={`px-10 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 active:scale-95 ${
-                  isYearly 
-                    ? 'bg-[#00A1E0] text-white shadow-[0_10px_20px_-5px_rgba(0,161,224,0.4)]' 
-                    : 'text-gray-400 hover:text-gray-700'
-                }`}
-              >
-                Yearly
-              </button>
-            </div>
-            
-            <div className="relative">
-              <span className="bg-[#B45309] text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl animate-pulse inline-block border border-white/20">
-                ✨ 50% off annual plans if you lock in before Jan 31
-              </span>
-            </div>
+          <div className="relative mt-12 mb-16">
+            <span className="bg-[#B45309] text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl animate-pulse inline-block border border-white/20">
+              ✨ Special limited time pricing
+            </span>
           </div>
         </div>
         
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {pricingPlans.map((plan, index) => (
-            <div key={index} className="animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards', opacity: 0 }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {plans.map((plan, index) => (
+            <div key={plan.id || index} className="animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards', opacity: 0 }}>
               <PricingCard 
                 plan={plan} 
-                isYearly={isYearly}
-                isPopular={plan.isPopular}
+                isPopular={plan.plan_type === "Business"}
+                onCheckout={() => handleCheckout(plan.plan_type)}
               />
             </div>
           ))}

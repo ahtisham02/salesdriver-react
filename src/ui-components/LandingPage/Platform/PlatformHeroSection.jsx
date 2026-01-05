@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import bgImg from '../../../assets/new_assets/gb.png';
 
 // Import logos from new_assets/logo
@@ -21,6 +21,7 @@ const PlatformHeroSection = () => {
       name: 'ExactMails',
       description: 'Verified email discovery',
       link: 'Learn More',
+      slug: 'exact-mails',
       featured: true,
     },
     {
@@ -29,6 +30,7 @@ const PlatformHeroSection = () => {
       name: 'Trafera.io',
       description: 'Website visitor identification and behavior tracking',
       link: 'Learn More',
+      slug: 'trafera',
       featured: true,
     },
     {
@@ -37,6 +39,7 @@ const PlatformHeroSection = () => {
       name: 'MTN Verify',
       description: 'Validation and accuracy at scale',
       link: 'Learn More',
+      slug: 'mtn-verify',
       featured: true,
     },
     {
@@ -45,6 +48,7 @@ const PlatformHeroSection = () => {
       name: 'SD Callix',
       description: 'Call tracking, transcripts, and follow-up',
       link: 'Learn More',
+      slug: 'callix',
       featured: true,
     },
     {
@@ -53,6 +57,7 @@ const PlatformHeroSection = () => {
       name: 'MTN Data',
       description: 'Company and contact intelligence',
       link: 'Learn More',
+      slug: 'mtn-data',
     },
     {
       id: 6,
@@ -60,6 +65,7 @@ const PlatformHeroSection = () => {
       name: 'Enrichy',
       description: 'Deep enrichment and profile building',
       link: 'Learn More',
+      slug: 'enrichy',
     },
     {
       id: 7,
@@ -67,6 +73,7 @@ const PlatformHeroSection = () => {
       name: 'HyperPitch',
       description: 'Auto-personalized landing pages for your list',
       link: 'Learn More',
+      slug: 'hyperpitch',
     },
     {
       id: 8,
@@ -74,6 +81,7 @@ const PlatformHeroSection = () => {
       name: 'AI SDR (light)',
       description: 'Optional automation support',
       link: 'Learn More',
+      slug: 'aisdr-light',
     },
   ];
 
@@ -182,9 +190,10 @@ const PlatformHeroSection = () => {
           {/* Tools Grid with stagger animation */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mb-12">
             {filteredTools.map((tool, index) => (
-              <div
+              <Link
                 key={tool.id}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-6 hover:border-[#00a0dc]/50 hover:shadow-[0_20px_40px_rgba(0,160,220,0.08)] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                to={`/tools/${tool.slug}`}
+                className="group relative bg-white border border-gray-100 rounded-2xl p-6 hover:border-[#00a0dc]/50 hover:shadow-[0_20px_40px_rgba(0,160,220,0.08)] transition-all duration-500 hover:-translate-y-2 overflow-hidden block"
                 style={{
                   animationDelay: `${index * 50}ms`,
                 }}
@@ -209,15 +218,12 @@ const PlatformHeroSection = () => {
                   {tool.description}
                 </p>
 
-                {/* Link with arrow animation */}
-                <a
-                  href="#"
-                  className="text-[#00a0dc] text-sm font-semibold hover:text-[#0080b8] flex items-center gap-1 transition-all group-hover:gap-2"
-                >
+                {/* Link with arrow animation (styled as a div since parent is a Link) */}
+                <div className="text-[#00a0dc] text-sm font-semibold group-hover:text-[#0080b8] flex items-center gap-1 transition-all group-hover:gap-2">
                   {tool.link}
                   <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
 

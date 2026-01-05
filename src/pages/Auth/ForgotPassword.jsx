@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mail, ArrowLeft, Key } from "lucide-react";
+import { Mail, ArrowLeft, Loader2 } from "lucide-react";
+import { authService } from "../../services/authService";
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
   const [submitted, setSubmitted] = useState(false);
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Handle forgot password logic
-    console.log("Forgot password submitted for:", email);
+    setIsLoading(true);
+    try {
+      await authService.forgotPassword(email);
+      setSubmitted(true);
+      toast.success("Reset link sent!");
+    } catch (error) {
+      toast.error(error.message || "Failed to send reset link.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -23,15 +33,19 @@ const ForgotPassword = () => {
         <p className="text-gray-500 mb-8 leading-relaxed">
           We've sent a password reset link to <span className="font-semibold text-gray-900">{email}</span>
         </p>
-        <button
+        {/* <button
           onClick={() => window.location.href = `mailto:${email}`}
           className="w-full py-3.5 bg-[#00A7E2] text-white font-bold rounded-xl shadow-lg shadow-blue-100 hover:bg-[#0089bd] mb-6 transition-all"
         >
           Open email app
-        </button>
+        </button> */}
         <p className="text-gray-600">
           Didn't receive the email?{" "}
-          <button onClick={() => setSubmitted(false)} className="font-bold text-[#00A7E2] hover:text-[#0089bd] transition-colors">
+          <button 
+            onClick={() => setSubmitted(false)} 
+            disabled={isLoading}
+            className="font-bold text-[#00A7E2] hover:text-[#0089bd] transition-colors disabled:opacity-50"
+          >
             Click to resend
           </button>
         </p>
@@ -58,7 +72,8 @@ const ForgotPassword = () => {
             <input
               type="email"
               required
-              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#00A7E2] focus:border-transparent outline-none transition-all"
+              disabled={isLoading}
+              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#00A7E2] focus:border-transparent outline-none transition-all disabled:opacity-50"
               placeholder="name@company.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -68,9 +83,17 @@ const ForgotPassword = () => {
 
         <button
           type="submit"
-          className="w-full py-3.5 bg-[#00A7E2] text-white font-bold rounded-xl shadow-lg shadow-blue-100 hover:bg-[#0089bd] hover:shadow-blue-200 transition-all font-plus-jakarta"
+          disabled={isLoading}
+          className="w-full py-3.5 bg-[#00A7E2] text-white font-bold rounded-xl shadow-lg shadow-blue-100 hover:bg-[#0089bd] hover:shadow-blue-200 transition-all font-plus-jakarta disabled:opacity-70 flex items-center justify-center gap-2"
         >
-          Reset password
+          {isLoading ? (
+            <>
+              <Loader2 className="animate-spin" size={20} />
+              Sending Reset Link...
+            </>
+          ) : (
+            "Reset password"
+          )}
         </button>
       </form>
 

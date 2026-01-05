@@ -1,19 +1,40 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Lock, Eye, EyeOff, CheckCircle2 } from "lucide-react";
+import { Link, useSearchParams } from "react-router-dom";
+import { Lock, Eye, EyeOff, CheckCircle2, Loader2 } from "lucide-react";
+import { authService } from "../../services/authService";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
   const [showPassword, setShowPassword] = useState(false);
   const [completed, setCompleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setCompleted(true);
-    // Handle reset password logic
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+    if (!token) {
+      toast.error("Invalid or missing reset token.");
+      return;
+    }
+    setIsLoading(true);
+    try {
+      await authService.resetPassword(token, formData.password);
+      setCompleted(true);
+      toast.success("Password reset successfully!");
+    } catch (error) {
+      toast.error(error.message || "Failed to reset password.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (completed) {
@@ -51,15 +72,17 @@ const ResetPassword = () => {
             <input
               type={showPassword ? "text" : "password"}
               required
-              className="w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#00A7E2] focus:border-transparent outline-none transition-all"
+              disabled={isLoading}
+              className="w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#00A7E2] focus:border-transparent outline-none transition-all disabled:opacity-50"
               placeholder="••••••••"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
             <button
               type="button"
+              disabled={isLoading}
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -73,7 +96,8 @@ const ResetPassword = () => {
             <input
               type={showPassword ? "text" : "password"}
               required
-              className="w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#00A7E2] focus:border-transparent outline-none transition-all"
+              disabled={isLoading}
+              className="w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#00A7E2] focus:border-transparent outline-none transition-all disabled:opacity-50"
               placeholder="••••••••"
               value={formData.confirmPassword}
               onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
@@ -83,9 +107,17 @@ const ResetPassword = () => {
 
         <button
           type="submit"
-          className="w-full py-3.5 bg-[#00A7E2] text-white font-bold rounded-xl shadow-lg shadow-blue-100 hover:bg-[#0089bd] transition-all"
+          disabled={isLoading}
+          className="w-full py-3.5 bg-[#00A7E2] text-white font-bold rounded-xl shadow-lg shadow-blue-100 hover:bg-[#0089bd] transition-all disabled:opacity-70 flex items-center justify-center gap-2"
         >
-          Reset password
+          {isLoading ? (
+            <>
+              <Loader2 className="animate-spin" size={20} />
+              Resetting Password...
+            </>
+          ) : (
+            "Reset password"
+          )}
         </button>
       </form>
     </div>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 // Import logos
 import logo1 from '../../../assets/new_assets/B2B/logo/logo1.png';
 import logo2 from '../../../assets/new_assets/B2B/logo/logo2.png';
@@ -40,10 +42,11 @@ const DeepDiveSection = () => {
       ],
       whyItMatters: 'Clean, predictable, and structured for high-volume teams.',
       links: [
-        { text: 'See More', url: '#' },
+        { text: 'See More', url: '/tools/exact-mails' },
         { text: 'Video', url: '#' },
       ],
       image: exactMailsImg,
+      slug: 'exact-mails'
     },
     {
       id: 1,
@@ -60,10 +63,11 @@ const DeepDiveSection = () => {
       ],
       whyItMatters: 'You get structured intelligence without just for an unverified email.',
       links: [
-        { text: 'See More', url: '#' },
+        { text: 'See More', url: '/tools/mtn-data' },
         { text: 'Video', url: '#' },
       ],
       image: mtnDataImg,
+      slug: 'mtn-data'
     },
     {
       id: 2,
@@ -80,10 +84,11 @@ const DeepDiveSection = () => {
       ],
       whyItMatters: 'Timing gives you clarity most teams don\'t have.',
       links: [
-        { text: 'See More', url: '#' },
+        { text: 'See More', url: '/tools/trafera' },
         { text: 'Video', url: '#' },
       ],
       image: traferaImg,
+      slug: 'trafera'
     },
     {
       id: 3,
@@ -101,10 +106,11 @@ const DeepDiveSection = () => {
       ],
       whyItMatters: 'You stop wasting credits on bad data.',
       links: [
-        { text: 'See More', url: '#' },
+        { text: 'See More', url: '/tools/mtn-verify' },
         { text: 'Video', url: '#' },
       ],
       image: mtnVerifyImg,
+      slug: 'mtn-verify'
     },
     {
       id: 4,
@@ -122,10 +128,11 @@ const DeepDiveSection = () => {
       ],
       whyItMatters: 'Your pipelines stop relying on weak or incomplete profiles.',
       links: [
-        { text: 'See More', url: '#' },
+        { text: 'See More', url: '/tools/enrichy' },
         { text: 'Video', url: '#' },
       ],
       image: enrichyImg,
+      slug: 'enrichy'
     },
     {
       id: 5,
@@ -143,10 +150,11 @@ const DeepDiveSection = () => {
       ],
       whyItMatters: 'Direct, fast conversations that stands out without forcing reps to burn hours on warm touches.',
       links: [
-        { text: 'See More', url: '#' },
+        { text: 'See More', url: '/tools/hyperpitch' },
         { text: 'Video', url: '#' },
       ],
       image: hyperPitchImg,
+      slug: 'hyperpitch'
     },
     {
       id: 6,
@@ -164,10 +172,11 @@ const DeepDiveSection = () => {
       ],
       whyItMatters: 'Call history becomes an asset instead of a blind spot.',
       links: [
-        { text: 'See More', url: '#' },
+        { text: 'See More', url: '/tools/callix' },
         { text: 'Video', url: '#' },
       ],
       image: callixImg,
+      slug: 'callix'
     },
     {
       id: 7,
@@ -185,10 +194,11 @@ const DeepDiveSection = () => {
       ],
       whyItMatters: 'Useful but not intrusive.',
       links: [
-        { text: 'See More', url: '#' },
+        { text: 'See More', url: '/tools/aisdr-light' },
         { text: 'Video', url: '#' },
       ],
       image: aisdrImg,
+      slug: 'aisdr-light'
     },
   ];
 
@@ -261,7 +271,8 @@ const DeepDiveSection = () => {
               <div
                 key={tool.id}
                 ref={(el) => (sectionRefs.current[index] = el)}
-                className="min-h-[400px] md:min-h-[500px]"
+                onClick={() => window.location.href = `/tools/${tool.slug}`}
+                className="min-h-[400px] md:min-h-[500px] cursor-pointer group"
               >
                 {/* Logo */}
                 <div className="mb-4 md:mb-6">
@@ -273,7 +284,7 @@ const DeepDiveSection = () => {
                 </div>
 
                 {/* Title - Responsive */}
-                <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 leading-tight">
+                <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 leading-tight group-hover:text-[#00a0dc] transition-colors">
                   {tool.title}
                 </h3>
 
@@ -288,7 +299,7 @@ const DeepDiveSection = () => {
                 </p>
 
                 {/* Why It Matters / Benefit / Credit Usage */}
-                <div className="mb-6 md:mb-8 p-4 md:p-5 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+                <div className="mb-6 md:mb-8 p-4 md:p-5 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 group-hover:bg-white/10 transition-all">
                   <h4 className="text-base md:text-lg font-semibold text-white mb-2">
                     {tool.id === 2 ? 'Why it matters:' : 
                      tool.id === 4 ? 'Benefit:' : 
@@ -300,14 +311,17 @@ const DeepDiveSection = () => {
                 {/* Links - Responsive */}
                 <div className="flex flex-wrap gap-4 md:gap-6">
                   {tool.links.map((link, idx) => (
-                    <a
+                    <div
                       key={idx}
-                      href={link.url}
-                      className="text-white font-semibold hover:text-white/80 flex items-center gap-2 transition-all hover:gap-3 text-sm md:text-base group"
+                      className="text-white font-semibold hover:text-white/80 flex items-center gap-2 transition-all hover:gap-3 text-sm md:text-base group/link"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.location.href = link.url;
+                      }}
                     >
                       {link.text}
-                      <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
+                      <span className="transform group-hover/link:translate-x-1 transition-transform">→</span>
+                    </div>
                   ))}
                 </div>
               </div>

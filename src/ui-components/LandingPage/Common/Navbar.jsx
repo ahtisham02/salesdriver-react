@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { authService } from "../../../services/authService";
 import { 
   ChevronDown, 
   Menu, 
@@ -21,7 +22,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Simulated logged-in state
+  const [isLoggedIn, setIsLoggedIn] = useState(authService.isAuthenticated());
   const timeoutRef = useRef(null);
   const navigate = useNavigate();
 
@@ -57,14 +58,14 @@ const Navbar = () => {
       path: "/platform",
       type: "mega",
       content: [
-        { icon: AtSign, name: "ExactMails", desc: "Verified email discovery for clean outreach lists.", path: "/platform" },
-        { icon: Database, name: "MTN Data", desc: "Company and contact intelligence for precise targeting.", path: "/platform" },
-        { icon: MousePointerClick, name: "Trafera.io", desc: "Website visitor identification and behavior tracking.", path: "/platform" },
-        { icon: ShieldCheck, name: "MTN Verify", desc: "Data and email validation to protect deliverability.", path: "/platform" },
-        { icon: Sparkles, name: "Enrichly", desc: "Deep enrichment that fills in missing contact/company fields.", path: "/platform" },
-        { icon: Video, name: "HyperPitch", desc: "Fast personalized video messages for warm engagement.", path: "/platform" },
-        { icon: Phone, name: "SD Callix", desc: "Call recordings, transcripts, and organized follow-up notes.", path: "/platform" },
-        { icon: Bot, name: "AI SDR (light)", desc: "Optional support for replies, rewrites, and quick assistance.", path: "/platform" },
+        { icon: AtSign, name: "ExactMails", desc: "Verified email discovery for clean outreach lists.", path: "/tools/exact-mails" },
+        { icon: Database, name: "MTN Data", desc: "Company and contact intelligence for precise targeting.", path: "/tools/mtn-data" },
+        { icon: MousePointerClick, name: "Trafera.io", desc: "Website visitor identification and behavior tracking.", path: "/tools/trafera" },
+        { icon: ShieldCheck, name: "MTN Verify", desc: "Data and email validation to protect deliverability.", path: "/tools/mtn-verify" },
+        { icon: Sparkles, name: "Enrichly", desc: "Deep enrichment that fills in missing contact/company fields.", path: "/tools/enrichy" },
+        { icon: Video, name: "HyperPitch", desc: "Fast personalized video messages for warm engagement.", path: "/tools/hyperpitch" },
+        { icon: Phone, name: "SD Callix", desc: "Call recordings, transcripts, and organized follow-up notes.", path: "/tools/callix" },
+        { icon: Bot, name: "AI SDR (light)", desc: "Optional support for replies, rewrites, and quick assistance.", path: "/tools/aisdr-light" },
       ],
       footerLink: { text: "View the full Platform Suite. All Tools Overview", path: "/platform" }
     },
@@ -227,7 +228,7 @@ const Navbar = () => {
 
         {/* RIGHT ACTIONS */}
         <div className="hidden lg:flex items-center gap-4">
-          {isLoggedIn ? (
+          {!isLoggedIn ? (
             <>
               <button 
                 onClick={() => navigate('/signin')}
@@ -249,11 +250,11 @@ const Navbar = () => {
                 className="flex items-center gap-3 p-1.5 pr-4 rounded-full bg-gray-50 border border-gray-100 hover:border-[#00A1E0] transition-all group"
               >
                 <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-[#00A1E0] overflow-hidden">
-                   <img src="https://i.pravatar.cc/150?u=1" alt="Profile" className="w-full h-full object-cover" />
+                   <User size={18} />
                 </div>
                 <div className="text-left hidden xl:block">
-                  <p className="text-[13px] font-bold text-[#003049] leading-tight">John Doe</p>
-                  <p className="text-[10px] text-gray-500 leading-tight">Admin Account</p>
+                  <p className="text-[13px] font-bold text-[#003049] leading-tight">My Account</p>
+                  <p className="text-[10px] text-gray-500 leading-tight">Manage Profile</p>
                 </div>
                 <ChevronDown size={14} className="text-gray-400 group-hover:text-[#00A1E0] transition-colors" />
               </button>
@@ -272,7 +273,11 @@ const Navbar = () => {
                 </div>
                 <div className="p-2">
                   <div 
-                    onClick={() => setIsLoggedIn(false)}
+                    onClick={() => {
+                        authService.logout();
+                        setIsLoggedIn(false);
+                        navigate('/signin');
+                    }}
                     className="flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 text-gray-600 hover:text-red-500 cursor-pointer transition-colors"
                   >
                     <Zap size={18} />
@@ -358,7 +363,12 @@ const Navbar = () => {
                                 MY PROFILE
                             </button>
                             <button 
-                                onClick={() => setIsLoggedIn(false)}
+                                onClick={() => {
+                                    authService.logout();
+                                    setIsLoggedIn(false);
+                                    setMobileMenuOpen(false);
+                                    navigate('/signin');
+                                }}
                                 className="w-full py-3 rounded-full bg-red-50 text-red-500 font-bold"
                             >
                                 SIGN OUT

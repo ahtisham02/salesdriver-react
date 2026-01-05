@@ -1,19 +1,44 @@
 import React, { useState } from "react";
-import { Lock, Eye, EyeOff, CheckCircle2, ShieldCheck, Shield } from "lucide-react";
+import { Lock, Eye, EyeOff, CheckCircle2, ShieldCheck, Shield, Loader2 } from "lucide-react";
+import { authService } from "../../../services/authService";
+import { toast } from "react-toastify";
 
 const UpdatePasswordSection = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [completed, setCompleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setCompleted(true);
-    // Handle update password logic
+    if (formData.newPassword !== formData.confirmPassword) {
+      toast.error("New passwords do not match.");
+      return;
+    }
+    setIsLoading(true);
+    try {
+      await authService.updatePassword(formData.currentPassword, formData.newPassword);
+      setCompleted(true);
+      setFormData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+      toast.success("Password updated successfully.");
+    } catch (error) {
+      let errorMessage = error.message || "Failed to update password.";
+      // Clean up backend error messages (e.g., removing "401: " prefix)
+      if (errorMessage.includes(": ")) {
+        errorMessage = errorMessage.split(": ").pop();
+      }
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (completed) {
@@ -24,7 +49,7 @@ const UpdatePasswordSection = () => {
         </div>
         <h2 className="text-3xl font-bold text-[#003049] mb-4">Password updated!</h2>
         <p className="text-gray-500 mb-8 leading-relaxed max-w-sm mx-auto">
-          Your security settings have been updated successfully. We recommend using a unique password for different accounts.
+          Your security settings have been updated successfully.
         </p>
         <button
           onClick={() => setCompleted(false)}
@@ -58,15 +83,17 @@ const UpdatePasswordSection = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   required
-                  className="w-full pl-12 pr-12 py-4 bg-white/50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-100/50 focus:border-[#00A7E2] focus:bg-white outline-none transition-all placeholder:text-gray-300 font-medium"
+                  disabled={isLoading}
+                  className="w-full pl-12 pr-12 py-4 bg-white/50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-100/50 focus:border-[#00A7E2] focus:bg-white outline-none transition-all placeholder:text-gray-300 font-medium disabled:opacity-50"
                   placeholder="Verify current password"
                   value={formData.currentPassword}
                   onChange={(e) => setFormData({ ...formData, currentPassword: e.target.value })}
                 />
                 <button
                   type="button"
+                  disabled={isLoading}
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#00A7E2] transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#00A7E2] transition-colors disabled:opacity-50"
                 >
                   {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                 </button>
@@ -84,7 +111,8 @@ const UpdatePasswordSection = () => {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 required
-                                className="w-full pl-12 pr-12 py-4 bg-white/50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-100/50 focus:border-[#00A7E2] focus:bg-white outline-none transition-all placeholder:text-gray-300 font-medium"
+                                disabled={isLoading}
+                                className="w-full pl-12 pr-12 py-4 bg-white/50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-100/50 focus:border-[#00A7E2] focus:bg-white outline-none transition-all placeholder:text-gray-300 font-medium disabled:opacity-50"
                                 placeholder="Min. 8 intricate characters"
                                 value={formData.newPassword}
                                 onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
@@ -99,7 +127,8 @@ const UpdatePasswordSection = () => {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 required
-                                className="w-full pl-12 pr-12 py-4 bg-white/50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-100/50 focus:border-[#00A7E2] focus:bg-white outline-none transition-all placeholder:text-gray-300 font-medium"
+                                disabled={isLoading}
+                                className="w-full pl-12 pr-12 py-4 bg-white/50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-100/50 focus:border-[#00A7E2] focus:bg-white outline-none transition-all placeholder:text-gray-300 font-medium disabled:opacity-50"
                                 placeholder="Re-type ensuring match"
                                 value={formData.confirmPassword}
                                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
@@ -133,9 +162,10 @@ const UpdatePasswordSection = () => {
             <div className="pt-8">
                  <button
                     type="submit"
-                    className="w-full py-4 bg-[#003049] text-white font-bold rounded-2xl shadow-2xl shadow-blue-900/10 hover:bg-[#001d2d] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group/submit"
+                    disabled={isLoading}
+                    className="w-full py-4 bg-[#003049] text-white font-bold rounded-2xl shadow-2xl shadow-blue-900/10 hover:bg-[#001d2d] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group/submit disabled:opacity-70"
                 >
-                    <ShieldCheck size={22} className="transition-transform group-hover/submit:scale-110" />
+                    {isLoading ? <Loader2 className="animate-spin" size={22} /> : <ShieldCheck size={22} className="transition-transform group-hover/submit:scale-110" />}
                     Commit Security Update
                 </button>
             </div>
@@ -144,7 +174,7 @@ const UpdatePasswordSection = () => {
       </div>
       
       {/* 2FA Layer */}
-      <div className="bg-white/70 backdrop-blur-xl rounded-[32px] p-8 md:p-10 border border-white/40 shadow-xl shadow-blue-900/5 flex flex-col md:flex-row items-center justify-between gap-8 group/2fa">
+      {/* <div className="bg-white/70 backdrop-blur-xl rounded-[32px] p-8 md:p-10 border border-white/40 shadow-xl shadow-blue-900/5 flex flex-col md:flex-row items-center justify-between gap-8 group/2fa">
         <div className="flex items-center gap-6">
           <div className="w-16 h-16 bg-orange-50 text-orange-500 rounded-[24px] flex items-center justify-center shrink-0 shadow-sm group-hover/2fa:scale-110 group-hover/2fa:rotate-3 transition-transform duration-500">
             <Shield size={32} />
@@ -157,7 +187,7 @@ const UpdatePasswordSection = () => {
         <button className="whitespace-nowrap px-8 py-3.5 rounded-2xl bg-[#003049]/5 border-2 border-orange-200/50 text-orange-600 font-black tracking-tight hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300">
           ENABLE PROTECTION
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

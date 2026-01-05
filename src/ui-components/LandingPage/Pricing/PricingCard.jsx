@@ -3,9 +3,9 @@ import { Check } from "lucide-react";
 import CountUp from "react-countup";
 import { useNavigate } from "react-router-dom";
 
-export default function PricingCard({ plan, isYearly, isPopular }) {
+export default function PricingCard({ plan, onCheckout, isPopular }) {
   const navigate = useNavigate();
-  const price = isYearly ? plan.price.yearly : plan.price.monthly;
+  const price = plan.price;
   
   return (
     <div className={`relative h-full bg-white/90 backdrop-blur-md rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,160,220,0.1)] transition-all duration-500 border border-white/60 group hover:-translate-y-2 flex flex-col ${isPopular ? 'ring-[3px] ring-[#F59E0B]/30 scale-105 z-10 md:my-[-10px] bg-white border-[#F59E0B]/10' : ''}`}>
@@ -31,12 +31,12 @@ export default function PricingCard({ plan, isYearly, isPopular }) {
         </div>
       </div>
       
-      {/* Yearly Note */}
-      <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-10 opacity-60">{plan.yearlyNote}</p>
+      {/* Description */}
+      <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-10 opacity-60">{plan.description || "Billed monthly"}</p>
       
       {/* Features */}
       <div className="space-y-4 mb-10 flex-grow">
-        {plan.features.map((feature, index) => (
+        {(plan.features || []).map((feature, index) => (
           <div key={index} className="flex items-center gap-3 group/item">
             <div className="w-6 h-6 rounded-full bg-[#FEF3C7] border border-[#FDE68A] flex items-center justify-center flex-shrink-0 group-hover/item:bg-[#F59E0B] transition-all duration-300">
               <Check size={12} className="text-[#B45309] group-hover/item:text-white transition-colors duration-300" strokeWidth={4} />
@@ -48,13 +48,13 @@ export default function PricingCard({ plan, isYearly, isPopular }) {
 
       {/* CTA Button */}
       <button 
-        onClick={() => navigate('/contact')}
+        onClick={onCheckout}
         className={`w-full py-4 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-500 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 active:scale-95 ${
         isPopular 
           ? 'bg-[#B45309] text-white shadow-[0_10px_20px_-10px_rgba(180,83,9,0.5)]' 
           : 'bg-[#003049] text-white hover:bg-[#002B49] shadow-[0_10px_20px_-10px_rgba(0,48,73,0.5)]'
       }`}>
-        Get started
+        {plan.plan_type === "Free" ? "Get started" : "Buy Plan"}
       </button>
       
       {/* Gradient border effect on hover */}
